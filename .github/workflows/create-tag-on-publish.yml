@@ -1,0 +1,27 @@
+name: Tag on Publish
+
+on:
+  push:
+    branches:
+      - xtext-website 
+
+jobs:
+  create_tag:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Set up date for tag
+        id: get_date
+        run: echo "TAG_DATE=$(date +'%Y%m%d%H%M')" >> $GITHUB_ENV
+
+      - name: Create and push tag
+        env:
+          TAG_NAME: "published${{ env.TAG_DATE }}"
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag $TAG_NAME
+          git push origin $TAG_NAME
