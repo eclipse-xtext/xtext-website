@@ -4,6 +4,6 @@ gem 'therubyracer'
 gem 'execjs'
 
 group :jekyll_plugins do
-  gem 'jekyll-markdown-block'
+  gem 'kramdown-parser-gfm'
   gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 end
