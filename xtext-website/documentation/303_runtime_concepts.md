@@ -531,7 +531,7 @@ Serialization is invoked when calling [XtextResource.save(..)]({{site.src.xtext}
 
 ### The Contract {#serialization-contract}
 
-The contract of serialization says that a model which is saved (serialized) to its textual representation and then loaded (parsed) again yields a new model that is equal to the original model. Please be aware that this does *not* imply that loading a textual representation and serializing it back produces identical textual representations. However, the serialization algorithm tries to restore as much information as possible. That is, if the parsed model was not modified in-memory, the serialized output will usually be equal to the previous input. Unfortunately, this cannot be ensured for each and every case. A use case where is is hardly possible, is shown in the following example:
+The contract of serialization says that a model which is saved (serialized) to its textual representation and then loaded (parsed) again yields a new model that is equal to the original model. Please be aware that this does *not* imply that loading a textual representation and serializing it back produces identical textual representations. However, the serialization algorithm tries to restore as much information as possible. That is, if the parsed model was not modified in-memory, the serialized output will usually be equal to the previous input. Unfortunately, this cannot be ensured for each and every case. A use case where it is hardly possible, is shown in the following example:
 
 ```xtext
 MyRule:
@@ -601,13 +601,13 @@ Example:
 
 ```xtext
 PluralRule:
-  'contents:' count=INT Plural;
+  'contents:' count=INT PLURAL;
 
-terminal Plural:
+terminal PLURAL:
   'item' | 'items';
 ```
 
-Valid models for this example are `contents 1 item` or `contents 5 items`. However, it is not stored in the semantic model whether the keyword *item* or *items* has been parsed. This is due to the fact that the rule call *Plural* is unassigned. However, the [parse tree constructor](#parse-tree-constructor) needs to decide which value to write during serialization. This decision can be be made by customizing the [IValueSerializer.serializeUnassignedValue(EObject, RuleCall, INode)]({{site.src.xtext}}/org.eclipse.xtext/src/org/eclipse/xtext/parsetree/reconstr/ITokenSerializer.java).
+Valid models for this example are `contents 1 item` or `contents 5 items`. However, it is not stored in the semantic model whether the keyword *item* or *items* has been parsed. This is due to the fact that the rule call *PLURAL* is unassigned. However, the [parse tree constructor](#parse-tree-constructor) needs to decide which value to write during serialization. This decision can be be made by customizing the [IValueSerializer.serializeUnassignedValue(EObject, RuleCall, INode)]({{site.src.xtext}}/org.eclipse.xtext/src/org/eclipse/xtext/parsetree/reconstr/ITokenSerializer.java).
 
 ### Cross-Reference Serializer {#cross-reference-serializer}
 
