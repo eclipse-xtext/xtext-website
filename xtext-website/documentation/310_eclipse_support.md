@@ -388,12 +388,13 @@ Note that the method `_text(modelElement)` can return a [String]({{site.javadoc.
 private StylerFactory stylerFactory;
 
 public Object _text(Entity entity) {
-  if(entity.isAbstract()) {
+  if (entity.isAbstract()) {
     return new StyledString(entity.getName(), 
       stylerFactory
-        .createXtextStyleAdapterStyler(getTypeTextStyle())));
-  else
+        .createXtextStyleAdapterStyler(getTypeTextStyle()));
+  } else {
     return entity.getName();
+  }
 }
 
 protected TextStyle getTypeTextStyle() {

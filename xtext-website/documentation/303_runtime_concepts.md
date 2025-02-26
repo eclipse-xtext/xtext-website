@@ -531,7 +531,7 @@ Serialization is invoked when calling [XtextResource.save(..)]({{site.src.xtext}
 
 ### The Contract {#serialization-contract}
 
-The contract of serialization says that a model which is saved (serialized) to its textual representation and then loaded (parsed) again yields a new model that is equal to the original model. Please be aware that this does *not* imply that loading a textual representation and serializing it back produces identical textual representations. However, the serialization algorithm tries to restore as much information as possible. That is, if the parsed model was not modified in-memory, the serialized output will usually be equal to the previous input. Unfortunately, this cannot be ensured for each and every case. A use case where is is hardly possible, is shown in the following example:
+The contract of serialization says that a model which is saved (serialized) to its textual representation and then loaded (parsed) again yields a new model that is equal to the original model. Please be aware that this does *not* imply that loading a textual representation and serializing it back produces identical textual representations. However, the serialization algorithm tries to restore as much information as possible. That is, if the parsed model was not modified in-memory, the serialized output will usually be equal to the previous input. Unfortunately, this cannot be ensured for each and every case. A use case where it is hardly possible, is shown in the following example:
 
 ```xtext
 MyRule:
@@ -601,13 +601,13 @@ Example:
 
 ```xtext
 PluralRule:
-  'contents:' count=INT Plural;
+  'contents:' count=INT PLURAL;
 
-terminal Plural:
+terminal PLURAL:
   'item' | 'items';
 ```
 
-Valid models for this example are `contents 1 item` or `contents 5 items`. However, it is not stored in the semantic model whether the keyword *item* or *items* has been parsed. This is due to the fact that the rule call *Plural* is unassigned. However, the [parse tree constructor](#parse-tree-constructor) needs to decide which value to write during serialization. This decision can be be made by customizing the [IValueSerializer.serializeUnassignedValue(EObject, RuleCall, INode)]({{site.src.xtext}}/org.eclipse.xtext/src/org/eclipse/xtext/parsetree/reconstr/ITokenSerializer.java).
+Valid models for this example are `contents 1 item` or `contents 5 items`. However, it is not stored in the semantic model whether the keyword *item* or *items* has been parsed. This is due to the fact that the rule call *PLURAL* is unassigned. However, the [parse tree constructor](#parse-tree-constructor) needs to decide which value to write during serialization. This decision can be be made by customizing the [IValueSerializer.serializeUnassignedValue(EObject, RuleCall, INode)]({{site.src.xtext}}/org.eclipse.xtext/src/org/eclipse/xtext/parsetree/reconstr/ITokenSerializer.java).
 
 ### Cross-Reference Serializer {#cross-reference-serializer}
 
@@ -629,6 +629,91 @@ public interface ITokenStream {
   void flush() throws IOException;
   void writeHidden(EObject grammarElement, String value);
   void writeSemantic(EObject grammarElement, String value);
+}
+```
+
+## Tree Manipulation {#tree-manipulation}
+An implementation of [IDerivedStateComputer](https://github.com/eclipse/xtext/blob/main/org.eclipse.xtext/src/org/eclipse/xtext/resource/IDerivedStateComputer.java) can be used to modify the objects in the abstract syntax tree after parsing. Commonly, implementations of this interface are used to modify the objects' features programmatically.
+
+As an example, let's take a simple Entity DSL defined by the following grammar:
+
+```xtext
+grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
+
+generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
+
+Model:
+    entities+=Entity*;
+
+Entity:
+    'Entity' name=QUOTED_NAME shortName=ID?;
+
+terminal QUOTED_NAME:
+    '\'' ID (ID | ' ')* '\'';
+```
+
+This grammar allows declaring that an Entity has got a name and a short name. The former is mandatory, and composed by one or more tokens matched by the ID terminal rule, each followed by an arbitrary number of whitespaces. The resulting name must then be wrapped in single quotation marks. The latter is optional, and consists of a simple ID token. Suppose we want all Entities in our AST to have a short name: we can use a custom IDerivedStateComputer to achieve this.
+
+Let's see a sample implementation of this interface that takes care of setting the `shortName` feature of Entities which lack a short name. We want to set it to the name of the Entity, deprived of the quotation marks, without any whitespace, and suffixed with "_computed". For this purpose, we write the following implementation and place it, for instance, inside the `org.xtext.example.mydsl.services` package of our DSL project:
+
+```java
+package org.xtext.example.mydsl.services;
+
+import org.eclipse.xtext.resource.DerivedStateAwareResource;
+import org.eclipse.xtext.resource.IDerivedStateComputer;
+import org.xtext.example.mydsl.myDsl.Entity;
+
+public class MyDslDerivedStateComputer implements IDerivedStateComputer {
+    private static final String SUFFIX = "_computed";
+
+    @Override
+    public void installDerivedState(DerivedStateAwareResource resource, boolean preLinkingPhase) {
+        resource.getAllContents().forEachRemaining(eObject -> {
+            if (eObject instanceof final Entity entity) {
+                if (entity.getShortName() == null) {
+                    final String name = entity.getName();
+                    final String shortName = name
+                        .substring(1, name.length() - 1)
+                        .replaceAll("\\s", "")
+                        .trim()
+                        .concat(SUFFIX);
+                    entity.setShortName(shortName);
+                }
+            }
+        });
+    }
+
+    @Override
+    public void discardDerivedState(DerivedStateAwareResource resource) {
+        resource.getAllContents().forEachRemaining(eObject -> {
+            if (eObject instanceof final Entity entity) {
+                if (entity.getShortName().endsWith(SUFFIX)) {
+                    entity.setShortName(null);
+                }
+            }
+        });
+    }
+}
+```
+
+The `installDerivedState()` method is responsible for applying the desired changes. For serialization purposes, we also need to implement `discardDerivedState()` to tell the framework how to revert the changes applied programmatically. Note that this implementation sets to `null` the `shortName` feature of any Entity whose short name ends with the suffix, regardless of the origin of such name (input by the user or set by `installDerivedState()`).
+
+In order for Xtext to actually use our custom IDerivedStateComputer, as a last step we need to bind it in our runtime module:
+
+```java
+public class MyDslRuntimeModule extends AbstractMyDslRuntimeModule {
+	public Class<? extends IDerivedStateComputer> bindIDerivedStateComputer() {
+		return MyDslDerivedStateComputer.class;
+	}
+
+	@Override
+	public Class<? extends XtextResource> bindXtextResource() {
+	  return DerivedStateAwareResource.class;
+	}
+
+	public Class<? extends IResourceDescription.Manager> bindIResourceDescriptionManager() {
+	  return DerivedStateAwareResourceDescriptionManager.class;
+	}
 }
 ```
 
