@@ -139,7 +139,7 @@ public Class<? extends IProjectCreator> bindIProjectCreator() {
 }
 ```
 
-Now your language and its IDE should now no longer depend on JDT.
+Now your language and its IDE should no longer depend on JDT.
 
 ## Parsing Expressions with Xtext {#expressions}
 
@@ -149,7 +149,7 @@ Let's have a look at parsing a simple arithmetic expression:
 
 `2 + 20 * 2`
 
-If you know EBNF a bit and wouldn't think about avoiding left recursion, operator precedence or associativity, you'ld probably write a grammar like this:
+If you know EBNF a bit and wouldn't think about avoiding left recursion, operator precedence or associativity, you'd probably write a grammar like this:
 
 ```xtext
 Expression :
