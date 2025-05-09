@@ -158,12 +158,11 @@ public void fixTypeName(Issue issue, IssueResolutionAcceptor acceptor) {
     "Capitalize name", // quick fix label
     "Capitalize name  of '" + issue.getData()[0] + "'", // description
     "upcase.png",      // quick fix icon
-    (IModificationContext context) -> {
+    context -> {
       IXtextDocument xtextDocument = context.getXtextDocument();
       String firstLetter = xtextDocument.get(issue.getOffset(), 1);
       xtextDocument.replace(issue.getOffset(), 1, Strings.toFirstUpper(firstLetter));
     });
-  );
 }
 ```
 
