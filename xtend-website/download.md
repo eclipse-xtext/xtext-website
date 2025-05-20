@@ -20,8 +20,7 @@ title: Download
 		<div class="row">
 			<div class="span12">
 				<a href="https://www.eclipse.org/downloads/" target="_blank" class="has-popover btn btn-success btn-large pull_left">Download Eclipse</a>
-
-				<h3>Eclipse Updatesites</h3>
+				<h3>Eclipse Update Sites</h3>
 				<p> To install the Xtend plug-in into a running Eclipse.</p>
 				<p><a href="https://download.eclipse.org/modeling/tmf/xtext/updates/composite/releases/" class="has-popover btn btn-primary btn-medium">Releases (right click &amp; copy)</a></p>
 				<p><a href="https://download.eclipse.org/modeling/tmf/xtext/updates/composite/milestones/" class="has-popover btn btn-primary btn-medium">Milestones (right click &amp; copy)</a></p>
