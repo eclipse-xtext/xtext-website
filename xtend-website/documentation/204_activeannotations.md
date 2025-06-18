@@ -357,7 +357,7 @@ public void setName(final String name) {
 }
 ```
 
-So by default a public getter and a public setter method is created. The `@Accessors` can be configured to tell that you only want one or the other and to change the visibility. this is done by means of [AccessorType]({{site.src.xtext}}/org.eclipse.xtend.lib/src/org/eclipse/xtend/lib/annotations/Accessors.xtend) You can also use the annotation on class level to do the same for all fields.
+So by default a public getter and a public setter methods are created. The `@Accessors` can be configured to tell that you only want one or the other and to change the visibility. this is done by means of [AccessorType]({{site.src.xtext}}/org.eclipse.xtend.lib/src/org/eclipse/xtend/lib/annotations/Accessors.xtend) You can also use the annotation on class level to do the same for all fields.
 
 Here is a more complex example, that shows how it works:
 
@@ -432,15 +432,15 @@ Example:
 
 ## @Delegate {#delegate-annotation}
 
-The [`@Delegate`]({{site.src.xtext}}/org.eclipse.xtend.lib/src/org/eclipse/xtend/lib/annotations/Delegate.xtend) annotation automatically generated delegate methods for all interfaces shared between the delegate and the currently implemented class. You can optionally restrict it to explicitly stated interfaces.
+The [`@Delegate`]({{site.src.xtext}}/org.eclipse.xtend.lib/src/org/eclipse/xtend/lib/annotations/Delegate.xtend) annotation automatically generates delegate methods for all interfaces shared between the delegate and the currently implemented class. You can optionally restrict it to explicitly stated interfaces.
 
 Let's start with a basic example:
 
 ```xtend
 class MyClass implements SomeInterface {
 
-  // generates all methods of List and delegates to this field
-  @Delegate SomeSubTypeOfSumInterface myDelegate
+  // generates all methods of SomeInterface and delegates to this field
+  @Delegate SomeSubTypeOfSomeInterface myDelegate
 
 }
 ```
