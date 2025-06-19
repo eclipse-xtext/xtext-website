@@ -307,6 +307,8 @@ To further speed up the p2 dependency resolution step, use the concrete build re
 
 | Xtext         | EMF           | MWE2/MWE    | Xpand       | Eclipse     | All included in |
 | ------------- | ------------- | ----------- | ----------- | ----------- | ----------- |
+| [2.40.0]({{page.upsite.xtext}}releases/2.40.0/)           | [2.43.0]({{page.upsite.eclipse}}modeling/emf/emf/builds/release/2.43.0) (2.36.0)     | [2.22.0]({{page.upsite.mwe}}releases/2.22.0/) (2.9.1) | no longer supported  | [4.37.0]({{page.upsite.eclipse}}releases/2025-09) (4.30) | [2025-09]({{page.upsite.eclipse}}releases/2025-09)|
+
 | [2.39.0]({{page.upsite.xtext}}releases/2.39.0/)           | [2.42.0]({{page.upsite.eclipse}}modeling/emf/emf/builds/release/2.42.0) (2.36.0)     | [2.22.0]({{page.upsite.mwe}}releases/2.22.0/) (2.9.1) | no longer supported  | [4.36.0]({{page.upsite.eclipse}}releases/2025-06) (4.30) | [2025-06]({{page.upsite.eclipse}}releases/2025-06)|
 | [2.38.0]({{page.upsite.xtext}}releases/2.38.0/)           | [2.41.0]({{page.upsite.eclipse}}modeling/emf/emf/builds/release/2.41.0) (2.36.0)     | [2.21.0]({{page.upsite.mwe}}releases/2.21.0/) (2.9.1) | no longer supported  | [4.35.0]({{page.upsite.eclipse}}releases/2025-03) (4.30) | [2025-03]({{page.upsite.eclipse}}releases/2025-03)|
 | [2.37.0]({{page.upsite.xtext}}releases/2.37.0/)           | [2.40.0]({{page.upsite.eclipse}}modeling/emf/emf/builds/release/2.40.0) (2.29.0)     | [2.20.0]({{page.upsite.mwe}}releases/2.20.0/) (2.9.1) | no longer supported  | [4.34.0]({{page.upsite.eclipse}}releases/2024-12) (4.24) | [2024-12]({{page.upsite.eclipse}}releases/2024-12)|
@@ -342,7 +344,7 @@ To further speed up the p2 dependency resolution step, use the concrete build re
 | [2.8.3]({{page.upsite.xtext}}releases/2.8.3/), [2.8.2]({{page.upsite.xtext}}releases/2.8.2/), [2.8.1]({{page.upsite.xtext}}releases/2.8.1/) | [2.11.0]({{page.upsite.emf}}2.11/core/R201506010402/) (2.10.2)  	 | [2.8.0]({{page.upsite.mwe}}releases/2.8.0/) (2.7.1) | [2.1.0]({{page.upsite.xpand}}releases/R201505260349) (1.4)  | [4.5.0]({{page.upsite.eclipse}}eclipse/updates/4.5/R-4.5-201506032000/) (3.6) | [Mars R]({{page.upsite.eclipse}}releases/mars/201506241002/)|
 | [2.7.3]({{page.upsite.xtext}}releases/maintenance/R201411190455/) | [2.10.2]({{page.upsite.emf}}2.10.x/core/S201501230452/) (2.10) | [2.7.0]({{page.upsite.mwe}}releases/R201409021051/mwe2lang/) [1.3.4]({{page.upsite.mwe}}releases/R201409021027/mwe) (2.7.0/1.2)  | [2.0.0]({{page.upsite.xpand}}releases/R201406030414) (1.4) | [4.4.2]({{page.upsite.eclipse}}eclipse/updates/4.4/R-4.4.2-201502041700) (3.6) |[Luna SR2]({{page.upsite.eclipse}}releases/luna/201502271000/)|
 
-The following is an example target platform definition for Xtext 2.39.0 and Eclipse 4.36 alias 2025-06.
+The following is an example target platform definition for Xtext 2.40.0 and Eclipse 4.37 alias 2025-09.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
@@ -351,7 +353,7 @@ The following is an example target platform definition for Xtext 2.39.0 and Ecli
 <locations>
   <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
     <unit id="org.eclipse.xtext.sdk.feature.group" version="0.0.0"/>
-    <repository location="https://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.39.0/"/>
+    <repository location="https://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.40.0/"/>
   </location>
   <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
     <unit id="org.eclipse.jdt.feature.group" version="0.0.0"/>
@@ -360,7 +362,7 @@ The following is an example target platform definition for Xtext 2.39.0 and Ecli
     <unit id="org.eclipse.draw2d.feature.group" version="0.0.0"/>
     <unit id="org.eclipse.emf.sdk.feature.group" version="0.0.0"/>
     <unit id="org.eclipse.emf.mwe2.launcher.feature.group" version="0.0.0"/>
-    <repository location="https://download.eclipse.org/releases/2025-06/"/>
+    <repository location="https://download.eclipse.org/releases/2025-09/"/>
   </location>
 </locations>
 </target>
