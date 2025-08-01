@@ -212,6 +212,129 @@ terminal ASCII:
 
 This group has three elements `'0x'`, `('0'..'7')`, and `('0'..'9'|'A'..'F')`, which have to appear in this order.
 
+####  Fragments {#fragments}
+
+Fragments allow reusing parts of rule definitions. For example, take the following grammar snippet:
+
+```xtext
+AbstractEntity:
+    'abstract' 'entity' name=ID;
+
+ConcreteEntity:
+    'concrete' 'entity' name=ID;
+```
+
+Using fragments, it can be rewritten as:
+
+```xtext
+AbstractEntity:
+    'abstract' Entity;
+
+ConcreteEntity:
+    'concrete' Entity;
+
+fragment Entity:
+    'entity' name=ID;
+```
+
+The common portion of the AbstractEntity and ConcreteEntity rules has been extracted into the Entity fragment. Upon hitting a call to this fragment, the parser does not instantiate any EObject. Instead, it behaves as though the body of the fragment definition was inlined in place of the fragment call. Thus, these two grammar snippets define the same (subset of a) DSL.
+
+Fragments have an impact on the Ecore metamodel inferred from the grammar. By default, a fragment introduces a new namesake type in the Ecore metamodel. This type is a supertype of all types associated to the parser rules the fragment is used in (hereafter referred to as the *calling rules*). All structural features defined in the fragment are added to its namesake type, and not to the calling rules' types. In the context of the example above, when using the second grammar snippet a new Entity type is introduced, and both AbstractEntity and ConcreteEntity extend Entity. The `name` structural feature belongs to type Entity (i.e. the generated Entity interface owns the usual getName() and setName(String) methods).
+
+In order to suppress this behaviour, one can define a *wildcard fragment*. A wildcard fragment does not yield a namesake type when the Ecore metamodel is generated from the grammar. A wildcard fragment is defined this way:
+
+```xtext
+AbstractEntity:
+    'abstract' Entity;
+
+ConcreteEntity:
+    'concrete' Entity;
+
+fragment Entity *:
+    'entity' name=ID;
+```
+
+With this modified version of the previous example, the parser will behave the same way but no Entity type will be inferred. The `name` structural feature will be added to both AbstractEntity and ConcreteEntity.
+
+One can also explicitly declare what type to associate to a given fragment by specifying it in the `returns` clause. This allows DSL developers to fine-tune the inferred Ecore metamodel even more. Extending the previous DSL introducing the notion of Subjects, one could write:
+
+```xtext
+AbstractEntity:
+    'abstract' Entity;
+
+ConcreteEntity:
+    'concrete' Entity;
+
+fragment Entity returns NamedElement:
+    'entity' name=ID;
+
+Subject:
+    'subject' SubjectName;
+
+fragment SubjectName returns NamedElement:
+    name=ID;
+```
+
+This grammar snippet yields an Ecore metamodel where AbstractEntity, ConcreteEntity and Subject all extend the NamedElement type, which owns all structural features assigned in at least one fragment that returns NamedElement (in this case, only the `name` structural feature). Note that the declared return type of a fragment need not coincide with a type associated to an already existing Parser rule. In the example above, there is no parser rule NamedElement: NamedElement is just a type introduced artificially to group all elements that have got a name (having such a type might, for example, come handy when programmatically navigating the AST).
+
+Suppose instead that one has got a grammar containing this snippet:
+
+```xtext
+AbstractEntity:
+    'abstract' 'entity' name=ID;
+
+ConcreteEntity:
+    'concrete' 'entity' name=ID;
+
+Subject:
+    'subject' name=ID;
+
+NamedElement:
+    AbstractEntity | ConcreteEntity | Subject;
+
+Package:
+    'package' name=ID '{' members+=NamedElement+ '}';
+```
+
+This grammar features a NamedElement Parser rule that groups AbstractEntity, ConcreteEntity and Subject, to conveniently allow declaring any of them into a Package. The Ecore model inferrer, though, is not able to automatically extract the `name` structural feature, common to all three kinds of NamedElement, into the NamedElement type itself. This means that when navigating the AST programmatically, the following code will not work:
+
+```java
+Package pkg = ... // an instance of Package obtained somehow
+String name = pkg.getMembers().getFirst().getName(); // this does not compile
+```
+
+getFirst() returns a NamedElement, but the getName() method belongs to types AbstractEntity, ConcreteEntity and Subject, not to the common NamedElement supertype. To avoid writing several verbose `instanceof` checks, the grammar can be modified introducing fragments that return NamedElement, as shown in one of the previous examples:
+
+```xtext
+AbstractEntity:
+    'abstract' Entity;
+
+ConcreteEntity:
+    'concrete' Entity;
+
+fragment Entity returns NamedElement:
+    'entity' name=ID;
+
+Subject:
+    'subject' SubjectName;
+
+fragment SubjectName returns NamedElement:
+    name=ID;
+
+NamedElement:
+    AbstractEntity | ConcreteEntity | Subject;
+
+Package:
+    'package' name=ID '{' members+=NamedElement+ '}';
+```
+
+Now the `name` structural feature is moved to type NamedElement, together with its accessor methods. By using fragments that return a type associated to an existing Parser rule it is possible to group multiple parsable objects under a common supertype and at the same time move all their common structural features to said supertype. The following code now works correctly:
+
+```java
+Package pkg = ... // an instance of Package obtained somehow
+String name = pkg.getMembers().getFirst().getName(); // this now compiles
+```
+
 #### Terminal Fragments {#terminal-fragment}
 
 Since terminal rules are used in a stateless context, it's not easily possible to reuse parts of their definition. Fragments solve this problem. They allow the same EBNF elements as terminal rules do but may not be consumed by the lexer. Instead, they have to be used by other terminal rules. This allows to extract repeating parts of a definition:
