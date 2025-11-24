@@ -51,7 +51,7 @@ If you already have a project, you need to add the Xtend library:
 <dependency>
   <groupId>org.eclipse.xtend</groupId>
   <artifactId>org.eclipse.xtend.lib</artifactId>
-  <version>2.40.0</version>
+  <version>2.41.0</version>
 </dependency>
 ```
 
@@ -61,7 +61,7 @@ and the Xtend compiler plugin:
 <plugin>
   <groupId>org.eclipse.xtend</groupId>
   <artifactId>xtend-maven-plugin</artifactId>
-  <version>2.40.0</version>
+  <version>2.41.0</version>
   <executions>
     <execution>
       <goals>
@@ -89,7 +89,7 @@ plugins {
 repositories.mavenCentral()
 
 dependencies {
-  compile 'org.eclipse.xtend:org.eclipse.xtend.lib:2.40.0'
+  compile 'org.eclipse.xtend:org.eclipse.xtend.lib:2.41.0'
 }
 ```
 
