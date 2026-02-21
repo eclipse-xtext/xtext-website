@@ -1,6 +1,7 @@
 {
   "name": "xtext-website",
   "version": "1.0.0",
+  "type": "module",
   "description": "Xtext - Language Engineering Framework website",
   "scripts": {
     "build": "eleventy",

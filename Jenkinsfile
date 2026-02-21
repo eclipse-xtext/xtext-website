@@ -62,14 +62,14 @@ spec:
         echo 'Building..'
         dir ('git-repo/xtext-website') {
           sh '''
-            # generate things in _site
-            bundle exec jekyll build
+            npm ci
+            npm run build
           '''
         }
         dir ('git-repo/xtend-website') {
           sh '''
-            # generate things in _site
-            bundle exec jekyll build --destination ../xtext-website/_site/xtend
+            npm ci
+            npm run build -- --outputdir ../xtext-website/_site/xtend
           '''
         }
         }

@@ -1,7 +1,7 @@
 const isServe = process.env.ELEVENTY_RUN_MODE === "serve";
 const baseurl = process.env.ELEVENTY_BASEURL ?? (isServe ? "" : "/Xtext");
 
-module.exports = {
+export default {
   title: "Xtext - Language Engineering Framework",
   url: "https://eclipse.dev",
   baseurl,
