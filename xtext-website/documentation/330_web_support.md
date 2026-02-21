@@ -4,7 +4,7 @@ title: Web Editor Support
 part: Reference Documentation
 ---
 
-# {{page.title}} {#web-integration}
+# {{ title }} {#web-integration}
 
 Since version 2.9 Xtext offers an interface for integration of text editors in web applications. The text editors are implemented in JavaScript, and the language-related services such as code completion are realized through HTTP requests to a server-side component.
 

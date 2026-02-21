@@ -4,7 +4,7 @@ title: Typical Language Configurations
 part: Reference Documentation
 ---
 
-# {{page.title}} {#special-languages}
+# {{ title }} {#special-languages}
 
 ## Case Insensitive Languages {#case-insensitive-languages}
 

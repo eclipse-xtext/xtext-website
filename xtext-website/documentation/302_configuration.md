@@ -4,7 +4,7 @@ title: Configuration
 part: Reference Documentation
 ---
 
-# {{page.title}} {#configuration}
+# {{ title }} {#configuration}
 
 Xtext offers two levels on which you can configure your language: the language generator and dependency injection. The language generator uses a special DSL called MWE2 to configure the generator.
 

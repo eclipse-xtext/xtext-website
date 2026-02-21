@@ -4,7 +4,7 @@ title: LSP Support
 part: Reference Documentation
 ---
 
-# {{page.title}} {#lsp-support}
+# {{ title }} {#lsp-support}
 
 Xtext supports the generation of language servers that comply to the [Language Server Protocol (LSP)](https://microsoft.github.io/language-server-protocol/).
 

@@ -4,7 +4,7 @@ title: Hello World
 part: Getting Started
 ---
 
-# {{page.title}} {#getting-started}
+# {{ title }} {#getting-started}
 
 The first thing you want to see in any language is a *Hello World* example. In Xtend, that reads as 
 

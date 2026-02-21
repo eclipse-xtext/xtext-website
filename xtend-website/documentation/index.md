@@ -2,6 +2,7 @@
 layout: documentation
 title: Documentation
 part: Xtend User Guide
+permalink: /documentation/index.html
 ---
 
 # Introduction {#introduction}

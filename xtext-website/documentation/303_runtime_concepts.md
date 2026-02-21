@@ -4,7 +4,7 @@ title: Language Implementation
 part: Reference Documentation
 ---
 
-# {{page.title}} {#runtime-concepts}
+# {{ title }} {#runtime-concepts}
 
 This chapter describes the platform-independent language features that are not covered by the [grammar language](301_grammarlanguage.html).
 

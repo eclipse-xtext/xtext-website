@@ -4,7 +4,7 @@ title: 15 Minutes Tutorial - Extended
 part: Getting Started
 ---
 
-# {{page.title}} {#domainmodel-next-steps}
+# {{ title }} {#domainmodel-next-steps}
 
 After you have developed your first own DSL, the question arises how the behavior and the semantics of the language can be customized. Here you find a few mini-tutorials that illustrate common use cases when crafting your own DSL. These lessons are independent from each other. Each of them will be based on the language that was built in the previous [domainmodel tutorial](102_domainmodelwalkthrough.html).
 

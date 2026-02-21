@@ -4,7 +4,7 @@ title: Eclipse Support
 part: Reference Documentation
 ---
 
-# {{page.title}} {#ide-concepts}
+# {{ title }} {#ide-concepts}
 
 For the following part we will refer to the Xtext Examples shipped with the Xtext framework to describe the different aspects of Xtext's UI features.
 

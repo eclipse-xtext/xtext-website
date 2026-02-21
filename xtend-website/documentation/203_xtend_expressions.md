@@ -4,7 +4,7 @@ title: Expressions
 part: Reference Documentation
 ---
 
-# {{page.title}} {#xtend-expressions}
+# {{ title }} {#xtend-expressions}
 
 In Xtend everything is an expression and has a return type. Statements do not exist. That allows you to compose your code in interesting ways. For example, you can have a `try catch` expression on the right hand side of an assignment: 
 

@@ -4,7 +4,7 @@ title: The Movies Example
 part: Getting Started
 ---
 
-# {{page.title}} {#movies-example}
+# {{ title }} {#movies-example}
 
 The movies example is included in the example project *Xtend Introductory Examples* (src/examples6/Movies.xtend) and is about reading a file with data about movies and doing some analysis on it.
 

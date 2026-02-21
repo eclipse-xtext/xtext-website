@@ -1,6 +1,4 @@
 ---
-darkblue: "#005580"
-lightblue: "#c1e6ff"
 ---
 /*
 Shield Website Template
@@ -26,13 +24,10 @@ body {
 	line-height: 1.5em;
 	font-weight: 300;
 	color: #717576;
-	background: url({{ site.baseurl }}/images/header_background.jpg) #010211;
-	background-repeat: no-repeat;
-/* 	background: url('{{ site.baseurl }}/images/noise.png') #005580; */
 }
 
 a {
-	color: {{ page.darkblue }};
+	color: #005580;
 	font-weight: 400;
 }
 
@@ -59,8 +54,8 @@ li {
 
 
 .btn-primary {
-/* 	background: url('{{ site.baseurl }}/images/noise.png') #74C0CF; */
-	background: url('{{ site.baseurl }}/images/noise.png') #005580;
+/* 	background: url('../images/noise.png') #74C0CF; */
+	background: url('../images/noise.png') #005580;
 }
 
 .btn-primary:hover {
@@ -80,7 +75,7 @@ h2 {
 	margin-top: 20px;
 	margin-bottom: 10px;
 	font-size: 26px;
-	font-family: 'Lato', serif;
+	font-family: 'Lato', sans-serif;
 	font-weight: normal;
 	color: #383838;
 }
@@ -142,7 +137,7 @@ hr {
 }
 
 #features {
-	background: url({{ site.baseurl }}/images/pattern1.jpg) repeat #ebebeb;
+	background: url(../images/pattern1.jpg) repeat #ebebeb;
 }
 
 #comparison h2 {
@@ -168,7 +163,7 @@ td.code pre {
 }
 
 .btn_download {
-	background: url({{ site.baseurl }}/images/download.png) no-repeat;
+	background: url(../images/download.png) no-repeat;
 	width: 160px;
 	height: 60px;
 /* 	margin-top: 20px; */
@@ -176,7 +171,7 @@ td.code pre {
 /* 	margin-left: 10px; */
 }
 .btn_documentation {
-	background: url({{ site.baseurl }}/images/documentation.png) no-repeat;
+	background: url(../images/documentation.png) no-repeat;
 	width: 200px;
 	height: 60px;
 	float: left;
@@ -211,7 +206,7 @@ td.code pre {
 }
 
 .row_color {
-	background: url({{ site.baseurl }}/images/div-grey-top.png) no-repeat center top #f8f8f8;
+	background: url(../images/div-grey-top.png) no-repeat center top #f8f8f8;
 	bspwidth: 100%;
 	border-bottom: 1px solid #e2e2e2;
 }
@@ -236,10 +231,13 @@ td.code pre {
 	border: none;
 	overflow: hidden;
 	padding-top : 80pt;
+	background: url('../images/header_background.jpg') #010211;
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 #header_wrapper a {
-	color : {{ page.lightblue }};
+	color : #c1e6ff;
 }
 
 @media (max-width: 767px) {
@@ -367,7 +365,7 @@ img.screenshot {
 }
 
 .thumb .zoom {
-	background: url({{ site.baseurl }}/images/videoOverlay.png) 0 0 no-repeat transparent;
+	background: url(../images/videoOverlay.png) 0 0 no-repeat transparent;
 	width: 80px;
 	height: 80px;
 	position: absolute;
@@ -383,7 +381,7 @@ img.screenshot {
 }
 
 .introduction .zoom {
-	background: url({{ site.baseurl }}/images/videoOverlayBig.png) 0 0 no-repeat transparent;
+	background: url(../images/videoOverlayBig.png) 0 0 no-repeat transparent;
 	width: 140px;
 	height: 140px;
 	opacity: 0.4;
@@ -413,7 +411,7 @@ img.screenshot {
 }
 
 /* .thumb .zoom:hover { */
-/* 	background: url({{ site.baseurl }}/images/videoOverlay.png) 0 -80px no-repeat transparent; */
+/* 	background: url(../images/videoOverlay.png) 0 -80px no-repeat transparent; */
 /* } */
 #team {
 	padding-top: 10px;
@@ -496,7 +494,7 @@ ul.textlist li {
   display: none;
   text-indent: -9999px;
   outline: hidden;
-  background: url('{{ site.baseurl }}/images/icon_top.png') no-repeat;
+  background: url('../images/icon_top.png') no-repeat;
 }
 
 .pricing {
@@ -1046,7 +1044,7 @@ UNUSED.btn-the-bizzniss-4.active,UNUSED.btn-the-bizzniss-4:active {
 
 /*List Styles */
 ul.list1 li {
-	background: url({{ site.baseurl }}/images/bullet-checkmark.png) no-repeat 0 4px;
+	background: url(../images/bullet-checkmark.png) no-repeat 0 4px;
 	padding-left: 20px;
 	margin-bottom: 10px;
 	display: block;
@@ -1054,7 +1052,7 @@ ul.list1 li {
 }
 
 ul.list2 li {
-	background: url({{ site.baseurl }}/images/bullet-circles.png) no-repeat 0 4px;
+	background: url(../images/bullet-circles.png) no-repeat 0 4px;
 	padding-left: 22px;
 	margin-bottom: 10px;
 	display: block;
@@ -1062,7 +1060,7 @@ ul.list2 li {
 }
 
 ul.list3 li {
-	background: url({{ site.baseurl }}/images/bullet-plus.png) no-repeat 0 4px;
+	background: url(../images/bullet-plus.png) no-repeat 0 4px;
 	padding-left: 22px;
 	margin-bottom: 10px;
 	display: block;
@@ -1080,7 +1078,7 @@ ul.list3 li {
 	overflow: hidden;
 	line-height: 600px;
 	color: #010220;
-	background: url({{ site.baseurl }}/images/logo.png) no-repeat 0 0;
+	background: url(../images/logo.png) no-repeat 0 0;
 }
 
 .navbar .brand {

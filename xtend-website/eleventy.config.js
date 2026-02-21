@@ -1,6 +1,7 @@
 import eleventySyntaxhighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 import markdownIt from "markdown-it";
 import markdownItAnchor from "markdown-it-anchor";
+import markdownItAttrs from "markdown-it-attrs";
 
 const mdOptions = {
   html: true,
@@ -8,9 +9,11 @@ const mdOptions = {
   typographer: true
 };
 
-const md = markdownIt(mdOptions).use(markdownItAnchor, {
-  permalink: markdownItAnchor.permalink.headerLink()
-});
+const md = markdownIt(mdOptions)
+  .use(markdownItAnchor, {
+    permalink: markdownItAnchor.permalink.headerLink()
+  })
+  .use(markdownItAttrs);
 
 export default function(eleventyConfig) {
   eleventyConfig.setLibrary("md", md);

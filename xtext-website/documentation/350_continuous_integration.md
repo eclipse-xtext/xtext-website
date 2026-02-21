@@ -10,7 +10,7 @@ upsite:
   xpand: https://download.eclipse.org/modeling/m2t/xpand/updates/
 ---
 
-# {{page.title}} {#continuous-integration}
+# {{ title }} {#continuous-integration}
 
 There are two aspects to consider when it comes to continuous integration. Firstly you may want to have a continuous build of your language that runs all tests and creates an Eclipse update site and other needed artifacts, and secondly you may want to have your language and its corresponding code generator integrated in your application builds. We will discuss both cases in this section along with a set of example projects, which you can clone, inspect or download from [github.com/xtext/maven-xtext-example](https://github.com/xtext/maven-xtext-example).
 

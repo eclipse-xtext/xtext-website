@@ -4,7 +4,7 @@ title: Five simple steps to your JVM language
 part: Getting Started
 ---
 
-# {{page.title}} {#jvm-domain-model}
+# {{ title }} {#jvm-domain-model}
 
 In this tutorial we will basically implement the [domain model language](https://www.eclipse.dev/Xtext/documentation/103_domainmodelnextsteps.html) again, but this time we will make use of the special JVM support shipped with Xtext. This kind of language is really a sweet spot for DSLs, so feel free to use this as a blueprint and add your project specific features later on.
 

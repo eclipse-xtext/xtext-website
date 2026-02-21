@@ -1,6 +1,7 @@
 ---
 layout: download
 title: Download
+permalink: /download.html
 ---
 <div>
 	<div class="container">
@@ -77,7 +78,7 @@ and the Xtend compiler plugin:
 </plugin>
 ```
 
-### Gradle Plugin {#maven-support}
+### Gradle Plugin {#gradle-support}
 
 Here is a minimal Gradle build script using Xtend:
 
