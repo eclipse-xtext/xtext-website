@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Xtext - Language Engineering Framework</title>
+    <link>https://eclipse.dev/Xtext/categories/index.html</link>
+    <description>Recent content in Categories on Xtext - Language Engineering Framework</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 24 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://eclipse.dev/Xtext/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Releasenotes</title>
+      <link>https://eclipse.dev/Xtext/categories/releasenotes.html</link>
+      <pubDate>Mon, 24 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/categories/releasenotes.html</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>News</title>
+      <link>https://eclipse.dev/Xtext/categories/news.html</link>
+      <pubDate>Wed, 11 Nov 2015 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/categories/news.html</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Xtext Update News</title>
+      <link>https://eclipse.dev/Xtext/categories/xtext-update-news.html</link>
+      <pubDate>Thu, 20 Nov 2014 17:02:28 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/categories/xtext-update-news.html</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="UTF-8">
+	<title>Xtext - 15 Minutes Tutorial</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description"
+		content="The website of Eclipse Xtext, an open-source framework for development of programming languages and domain-specific languages">
+	<meta name="author" content="Sven Efftinge">
+	<meta name="author" content="Miro Spoenemann">
+	
+	
+	
+	
+	
+	<link rel="shortcut icon" href="https://eclipse.dev/Xtext/images/favicon.png">
+	
+	<link href="https://eclipse.dev/Xtext/css/bootstrap.css" rel="stylesheet" type='text/css'>
+	<link href="https://eclipse.dev/Xtext/css/bootstrap-responsive.css" rel="stylesheet" type='text/css'>
+	<link href="https://eclipse.dev/Xtext/css/shield-responsive.css" rel="stylesheet" type='text/css'>
+	<link href='https://eclipse.dev/Xtext/css/fonts.css' rel='stylesheet' type='text/css'>
+	<link href="https://eclipse.dev/Xtext/css/prettyPhoto.css" rel="stylesheet" media="screen" type='text/css'>
+	<link href="https://eclipse.dev/Xtext/css/prettify.css" type="text/css" rel="stylesheet"/>
+	<link href="https://eclipse.dev/Xtext/css/style.css" rel="stylesheet" type='text/css'>
+	
+	<link href="https://eclipse.dev/Xtext/css/coverflow.css" rel="stylesheet" type='text/css'>
+	
+
+	
+</head>
+
+  <body>
+    <header class="site-header">
+
+  
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse"
+          data-target=".nav-collapse"> <span class="icon-bar"></span> <span
+          class="icon-bar"></span> <span class="icon-bar"></span>
+        </a> <a class="brand" href="https://eclipse.dev/Xtext/index.html"></a>
+        <div class="nav-collapse collapse" style="height: 0px;">
+          <ul class="nav">
+            
+            <li ><a href="https://eclipse.dev/Xtext/download.html">Download</a></li>
+            <li ><a href="https://eclipse.dev/Xtext/documentation/index.html">Documentation</a></li>
+            <li ><a href="https://eclipse.dev/Xtext/community.html">Community</a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Support &amp; Trainings<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="https://info.itemis.com/professional-xtext-support" target="_blank">itemis</a></li>
+                <li><a href="https://www.typefox.io/language-engineering/" target="_blank">TypeFox</a></li>
+              </ul>
+            </li>
+            <li ><a href="https://eclipse.dev/Xtext/xtend">Xtend</a></li>
+          </ul>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+
+</header>
+
+    
+<div class="page-content">
+  <script>
+    function startSearch(event) {
+        if (event.keyCode == 13) {
+            var q = 'site:eclipse.dev/Xtext/documentation+' + event.target.value;
+            window.open('https://www.google.com/search?q=' + q, "_self");
+        }
+    }
+  </script>
+  <div class="wrapper">
+  	<div id="page">  
+      <div class="inner">
+        <div id="maincontainer" class="container">
+          <span class="edit-on-github pull-right">
+            <a href="https://github.com/eclipse/xtext-website/edit/published/xtext-website/documentation/102_domainmodelwalkthrough.md">Edit on Github</a>
+          </span>
+          <div class="span3" style="margin-left: 0px;">
+            <div class="search-bar">
+              <img src="https://eclipse.dev/Xtext/images/search-gray.png"/>
+              <input type="search" id="google-search" onkeyup="startSearch(event);"/>
+            </div>
+            <ul id="nav-outline" style="margin-left: 0px;">
+	<li class="nav-part">Getting Started</li>
+	<li><a href="/Xtext/documentation/102_domainmodelwalkthrough.html">15 Minutes Tutorial</a></li>
+	<li><a href="/Xtext/documentation/103_domainmodelnextsteps.html">15 Minutes Tutorial - Extended</a></li>
+	<li><a href="/Xtext/documentation/104_jvmdomainmodel.html">Five simple steps to your JVM language</a></li>
+		
+	<li class="nav-part">Reference Documentation</li>
+	<li><a href="/Xtext/documentation/301_grammarlanguage.html">The Grammar Language</a></li>
+	<li><a href="/Xtext/documentation/302_configuration.html">Configuration</a></li>
+	<li><a href="/Xtext/documentation/303_runtime_concepts.html">Language Implementation</a></li>
+	<li><a href="/Xtext/documentation/305_xbase.html">Integration with Java</a></li>
+	<li><a href="/Xtext/documentation/307_special_languages.html">Typical Language Configurations</a></li>
+	<li><a href="/Xtext/documentation/308_emf_integration.html">Integration with EMF</a></li>
+	<li><a href="/Xtext/documentation/310_eclipse_support.html">Eclipse Support</a></li>
+	<li><a href="/Xtext/documentation/330_web_support.html">Web Editor Support</a></li>
+	<li><a href="/Xtext/documentation/340_lsp_support.html">LSP Support</a></li>
+	<li><a href="/Xtext/documentation/350_continuous_integration.html">Continuous Integration</a></li>
+</ul>
+
+          </div>
+          <div class="span8 doc-contents">
+            <h1 id="domain-model-walkthrough">15 Minutes Tutorial
+</h1>
+<p>In this tutorial we will implement a small domain-specific language to model entities and properties similar to what you may know from Rails, Grails or Spring Roo. The syntax is very suggestive:</p>
+<pre tabindex="0"><code class="language-domainexample" data-lang="domainexample">datatype String
+
+entity Blog {
+    title: String
+    many posts: Post
+}
+
+entity HasAuthor {
+    author: String
+}
+
+entity Post extends HasAuthor {
+    title: String
+    content: String
+    many comments: Comment
+}
+
+entity Comment extends HasAuthor {
+    content: String
+}
+</code></pre><p>After you have installed Xtext on your machine, start Eclipse and set up a fresh workspace.</p>
+<h2 id="create-a-new-xtext-project">Create A New Xtext Project</h2>
+<p>In order to get started we first need to create some Eclipse projects. Use the Eclipse wizard to do so:</p>
+<p><em>File → New → Project&hellip; → Xtext → Xtext project</em></p>
+<p>Choose a meaningful project name, language name and file extension, e.g.</p>
+<p>|:&mdash;|:&mdash;|
+|<strong>Project name:</strong>|org.example.domainmodel|
+|<strong>Language name:</strong>|org.example.domainmodel.Domainmodel|
+|<strong>DSL-File extensions:</strong>|dmodel|</p>
+<p>Click on <em>Finish</em> to create the projects.</p>
+<p><img src="images/30min_wizard.png" alt=""></p>
+<p>After you have successfully finished the wizard, you will find five new projects in your workspace.</p>
+<p>|:&mdash;|:&mdash;|
+|org.example.domainmodel|The grammar definition and all language-specific components (parser, lexer, linker, validation, etc.)|
+|org.example.domainmodel.ide|Platform-independent IDE functionality (e.g. services for content assist)|
+|org.example.domainmodel.tests|Unit tests for the language|
+|org.example.domainmodel.ui|The Eclipse editor and other workbench related functionality|
+|org.example.domainmodel.ui.tests|UI tests for the Eclipse editor|</p>
+<p><img src="images/30min_initialprojectlayout.png" alt=""></p>
+<h2 id="write-the-grammar">Write The Grammar</h2>
+<p>The wizard will automatically open the grammar file <em>Domainmodel.xtext</em> in the editor. As you can see it already contains a simple <em>Hello World</em> grammar:</p>
+<pre tabindex="0"><code class="language-xtext" data-lang="xtext">grammar org.example.domainmodel.Domainmodel with
+                                      org.eclipse.xtext.common.Terminals
+
+generate domainmodel &#34;http://www.example.org/domainmodel/Domainmodel&#34;
+
+Model:
+    greetings+=Greeting*;
+  
+Greeting:
+    &#39;Hello&#39; name=ID &#39;!&#39;;
+</code></pre><p>Let&rsquo;s now just replace that grammar definition with the one for our entities language:</p>
+<pre tabindex="0"><code class="language-xtext" data-lang="xtext">grammar org.example.domainmodel.Domainmodel with
+                                      org.eclipse.xtext.common.Terminals
+
+generate domainmodel &#34;http://www.example.org/domainmodel/Domainmodel&#34;
+
+Domainmodel:
+    (elements+=Type)*;
+
+Type:
+    DataType | Entity;
+
+DataType:
+    &#39;datatype&#39; name=ID;
+
+Entity:
+    &#39;entity&#39; name=ID (&#39;extends&#39; superType=[Entity])? &#39;{&#39;
+        (features+=Feature)*
+    &#39;}&#39;;
+
+Feature:
+    (many?=&#39;many&#39;)? name=ID &#39;:&#39; type=[Type];
+</code></pre><p>Let&rsquo;s have a more detailed look at what the different grammar rules mean:</p>
+<ol>
+<li>
+<p>The first rule in a grammar is always used as the start rule.</p>
+<pre tabindex="0"><code class="language-xtext" data-lang="xtext">Domainmodel:
+    (elements+=Type)*;
+</code></pre><p>It says that a <em>Domainmodel</em> contains an arbitrary number (<code>*</code>) of <em>Type</em>s which are added (<code>+=</code>) to a feature called <code>elements</code>.</p>
+</li>
+<li>
+<p>The rule <em>Type</em> delegates to either the rule <em>DataType</em> or (<code>|</code>) the rule <em>Entity</em>.</p>
+<pre tabindex="0"><code class="language-xtext" data-lang="xtext">Type:
+    DataType | Entity;
+</code></pre></li>
+<li>
+<p>The rule <em>DataType</em> starts with a keyword <code>'datatype'</code>, followed by an identifier which is parsed by a rule called <em>ID</em>. The rule <em>ID</em> is defined in the super grammar <em>org.eclipse.xtext.common.Terminals</em> and parses a single word, a.k.a identifier. You can navigate to the declaration by using <em>F3</em> on the rule call. The value returned by the call to <em>ID</em> is assigned (<code>=</code>) to the feature <code>name</code>.</p>
+<pre tabindex="0"><code class="language-xtext" data-lang="xtext">DataType:
+    &#39;datatype&#39; name=ID;
+</code></pre></li>
+<li>
+<p>The rule <em>Entity</em> again starts with the definition of a keyword followed by a name.</p>
+<pre tabindex="0"><code class="language-xtext" data-lang="xtext">Entity :
+    &#39;entity&#39; name=ID (&#39;extends&#39; superType=[Entity])? &#39;{&#39;
+        (features+=Feature)*
+    &#39;}&#39;;
+</code></pre><p>Next up there is the <code>extends</code> clause which is parenthesized and optional (<code>?</code>). Since the feature named <code>superType</code> is a cross reference (note the square brackets), the parser rule <em>Entity</em> is not called here, but only a single identifier (the <em>ID</em>-rule) is parsed. The actual <em>Entity</em> to assign to the <code>superType</code> reference is resolved during the linking phase. Finally between curly braces there can be any number of <em>Features</em>, which invokes the next rule.</p>
+</li>
+<li>
+<p>Last but not least, the rule <em>Feature</em> is defined as follows:</p>
+<pre tabindex="0"><code class="language-xtext" data-lang="xtext">Feature:
+    (many?=&#39;many&#39;)? name=ID &#39;:&#39; type=[Type];
+</code></pre><p>The keyword <code>many</code> shall be used to model a multi-valued feature in this DSL. The assignment operator (<code>?=</code>) implies that the feature <code>many</code> is of type <em>boolean</em>. You are already familiar with the other syntax elements in this parser rule.</p>
+</li>
+</ol>
+<p>This entities grammar already uses the most important concepts of Xtext&rsquo;s grammar language. You have learned that keywords are written as string literals and a simple assignment uses a plain equal sign (<code>=</code>), whereas a multi-value assignment uses a plus-equals (<code>+=</code>). We have also seen the boolean assignment operator (<code>?=</code>). Furthermore the example contains syntax elements with different cardinalities (<code>?</code> = optional, <code>*</code> = any number, <code>+</code> = at least once) and demonstrates how cross-references can be declared. Please consult the <a href="301_grammarlanguage.html">Grammar Language Reference</a> for more details. Let&rsquo;s now have a look what you can do with such a language description.</p>
+<h2 id="generate-language-artifacts">Generate Language Artifacts</h2>
+<p>Now that we have the grammar in place we need to execute the code generator that will derive the various language components. To do so, right-click into the grammar editor and select</p>
+<p><em>Run As → Generate Xtext Artifacts</em>.</p>
+<p>This action generates the parser and text editor and some additional infrastructure code. You will see its logging messages in the Console View.</p>
+<p><img src="images/30min_rungenerator.png" alt=""></p>
+<h2 id="run-generated-plugin">Run the Generated Eclipse Plug-in</h2>
+<p>We are now able to test the Eclipse IDE integration. If you right-click the project <code>org.example.domainmodel</code> in the Package Explorer and select <em>Run As → Eclipse Application</em>, a new run configuration is created and launched that starts a second instance of Eclipse including your new language plug-ins. In the new instance, create a new project of your choice, e.g. <em>File → New → Project&hellip; → Java Project</em> and therein a new file with the file extension you chose in the beginning (<em>*.dmodel</em>). This will open the generated entity editor. Try it and discover the default functionality for code completion, syntax highlighting, syntactic validation, linking errors, formatting, (quick) outline view, hyperlinking, find references, folding, rename refactoring etc.</p>
+<p><img src="images/30min_editor.png" alt=""></p>
+<h2 id="add-imports">Second Iteration: Adding Packages and Imports</h2>
+<p>After you have created your first DSL and had a look at the editor, the language should be refined and incrementally enhanced. The domainmodel language should support the notion of <em>Packages</em> in order to avoid name clashes and to better fit with the target environment Java. A <em>Package</em> may contain <em>Types</em> and other packages. In order to allow for names in references, we will also add a way to declare imports.</p>
+<p>In the end we want to be able to split the previously used model into distinct files:</p>
+<pre tabindex="0"><code class="language-domainexample" data-lang="domainexample">// datatypes.dmodel
+
+datatype String
+</code></pre><pre tabindex="0"><code class="language-domainexample" data-lang="domainexample">// commons.dmodel
+
+package my.company.common {
+
+    entity HasAuthor {
+        author: String
+    }
+}
+</code></pre><pre tabindex="0"><code class="language-domainexample" data-lang="domainexample">// blogs.dmodel
+
+package my.company.blog {
+
+    import my.company.common.*
+
+    entity Blog {
+        title: String
+        many posts: Post
+    }
+
+    entity Post extends my.company.common.HasAuthor {
+        title: String
+        content: String
+        many comments: Comment
+    }
+
+    entity Comment extends HasAuthor {
+        content: String
+    }
+}
+</code></pre><p>Let&rsquo;s start enhancing the grammar.</p>
+<ol>
+<li>
+<p>Since a <em>Domainmodel</em> no longer contains types but also packages, the entry rule has to be modified. Furthermore, a common super type for <em>PackageDeclarations</em> and <em>Types</em> should be introduced: the <em>AbstractElement</em>.</p>
+<pre tabindex="0"><code class="language-xtext" data-lang="xtext">Domainmodel:
+    (elements+=AbstractElement)*;
+
+AbstractElement:
+    PackageDeclaration | Type;
+</code></pre></li>
+<li>
+<p>A <code>PackageDeclaration</code> in turn looks pretty much as expected. It contains a number of <em>Imports</em> and <em>AbstractElements</em>. Since <em>Imports</em> should be allowed for the root-Domainmodel, too, we add them as an alternative to the rule <code>AbstractElement</code>.</p>
+<pre tabindex="0"><code class="language-xtext" data-lang="xtext">PackageDeclaration:
+    &#39;package&#39; name=QualifiedName &#39;{&#39;
+        (elements+=AbstractElement)*
+    &#39;}&#39;;
+
+AbstractElement:
+    PackageDeclaration | Type | Import;
+
+QualifiedName:
+    ID (&#39;.&#39; ID)*;
+</code></pre><p>The <code>QualifiedName</code> is a little special. It does not contain any assignments. Therefore it serves as a data type rule that returns a String. Hence the feature <code>name</code> of a <em>Package</em> is still of type <a href="https://docs.oracle.com/javase/11/docs/api
+/java/lang/String.html">String</a>.</p>
+</li>
+<li>
+<p>Imports can be defined in a very convenient way with Xtext. If you use the name <code>importedNamespace</code> in a parser rule, the framework will treat the value as an import. It even supports wildcards and handles them as expected:</p>
+<pre tabindex="0"><code class="language-xtext" data-lang="xtext">Import:
+    &#39;import&#39; importedNamespace=QualifiedNameWithWildcard;
+
+QualifiedNameWithWildcard:
+    QualifiedName &#39;.*&#39;?;
+</code></pre><p>Similar to the rule <code>QualifiedName</code>, <code>QualifiedNameWithWildcard</code> returns a plain string.</p>
+</li>
+<li>
+<p>The last step is to allow fully qualified names in cross-references, too. Otherwise one could not refer to an entity without adding an import statement.</p>
+<pre tabindex="0"><code class="language-xtext" data-lang="xtext">Entity:
+    &#39;entity&#39; name=ID (&#39;extends&#39; superType=[Entity|QualifiedName])? &#39;{&#39;
+        (features+=Feature)*
+    &#39;}&#39;;
+
+Feature:
+    (many?=&#39;many&#39;)? name=ID &#39;:&#39; type=[Type|QualifiedName];
+</code></pre><p>Please note that the bar (<code>|</code>) is not an alternative in the context of a cross-reference, but used to specify the syntax of the parsed string.</p>
+</li>
+</ol>
+<p>That&rsquo;s all for the grammar. It should now read as</p>
+<pre tabindex="0"><code class="language-xtext" data-lang="xtext">grammar org.example.domainmodel.Domainmodel with
+                                      org.eclipse.xtext.common.Terminals
+
+generate domainmodel &#34;http://www.example.org/domainmodel/Domainmodel&#34;
+
+Domainmodel:
+    (elements+=AbstractElement)*;
+
+PackageDeclaration:
+    &#39;package&#39; name=QualifiedName &#39;{&#39;
+        (elements+=AbstractElement)*
+    &#39;}&#39;;
+
+AbstractElement:
+    PackageDeclaration | Type | Import;
+
+QualifiedName:
+    ID (&#39;.&#39; ID)*;
+
+Import:
+    &#39;import&#39; importedNamespace=QualifiedNameWithWildcard;
+
+QualifiedNameWithWildcard:
+    QualifiedName &#39;.*&#39;?;
+
+Type:
+    DataType | Entity;
+
+DataType:
+    &#39;datatype&#39; name=ID;
+
+Entity:
+    &#39;entity&#39; name=ID (&#39;extends&#39; superType=[Entity|QualifiedName])? &#39;{&#39;
+        (features+=Feature)*
+    &#39;}&#39;;
+
+Feature:
+    (many?=&#39;many&#39;)? name=ID &#39;:&#39; type=[Type|QualifiedName];
+</code></pre><p>You should regenerate the language infrastructure as described in the previous section, and give the editor another try. You can even split up your model into smaller parts and have cross-references across file boundaries.</p>
+<p><img src="images/30min_multipleeditors.png" alt=""></p>
+<hr>
+<p><strong><a href="103_domainmodelnextsteps.html">Next Chapter: 15 Minutes Tutorial - Extended</a></strong></p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <footer class="site-footer">
+  <div id="extra">
+    <div class="inner">
+      <div class="container">
+        <div class="row">
+          <div class="span6">
+            <h3 class="footer-links-header">Quick Links</h3>
+            <ul class="footer-links clearfix">
+              <li><a href="https://www.eclipse.org/legal/privacy.php">Privacy Policy</a></li>
+              <li><a href="https://www.eclipse.org/legal/termsofuse.php">Terms of Use</a></li>
+              <li><a href="https://www.eclipse.org/legal/copyright.php">Copyright Agent</a></li>
+              <li><a href="https://www.eclipse.org/legal/">Legal</a></li>
+            </ul>
+            <ul class="footer-links clearfix">
+              <li><a href="https://www.eclipse.org">Eclipse Home</a></li>
+              <li><a href="https://marketplace.eclipse.org/">Market Place</a></li>
+              <li><a href="https://www.planeteclipse.org/">Eclipse Planet</a></li>
+              <li><a href="https://www.eclipse.org/forums/index.php/f/27/">Xtext Forum</a></li>
+            </ul>
+            <br/><br/>
+            Xtext is a trademark of the Eclipse Foundation, Inc. and is used with permission
+            <br/><br/>
+            <img src="https://eclipse.dev/Xtext/images/eclipse-foundation-white-orange.svg" alt="Eclipse Foundation"/>
+          </div>
+          <div class="span6">
+            
+            <h3 class="footer-links-header">Social Media</h3>
+            <ul class="footer-links clearfix">
+              <li>
+                <a href="https://twitter.com/xtext"><img src="https://eclipse.dev/Xtext/images/Twitter-bird-darkgray.png" class="img-responsive" style="margin-right: 5px;height: 1em;" alt="Twitter icon">@xtext on Twitter</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="#" class="scrollup fadeOutRight animated" style="display: none;">ScrollUp</a>
+  
+  
+  
+  <script src="https://eclipse.dev/Xtext/js/jquery-1.11.3.min.js"></script>
+  <script src="https://eclipse.dev/Xtext/js/bootstrap.min.js"></script>
+  <script src="https://eclipse.dev/Xtext/js/jquery.easing.1.3.js" type="text/javascript"></script>
+  <script src="https://eclipse.dev/Xtext/js/jquery.prettyPhoto.js" type="text/javascript"></script>
+  <script src="https://eclipse.dev/Xtext/js/prettify.js" type="text/javascript"></script>
+  <script src="https://eclipse.dev/Xtext/js/lang-xtend.js" type="text/javascript"></script>
+  <script src="https://eclipse.dev/Xtext/js/lang-common.js" type="text/javascript"></script>
+  <script src="https://eclipse.dev/Xtext/js/custom.js" type="text/javascript"></script>
+  
+  
+  <script src="https://eclipse.dev/Xtext/js/coverflow.min.js" type="text/javascript"></script>
+  <script>
+      $(function() {
+        $('#coverflow').coverflow({
+          active : 1,
+          visibleAside: 2,
+          overlap : 0.5,
+          scale : 0.9,
+          angle : 20,
+          trigger : {
+            "itemfocus" : true,
+            "swipe" : true,
+            "mousewheel" : false
+          }
+        });
+        $('#coverflow :hidden').toggle();
+        $(window).resize(function() {
+          $('#coverflow').coverflow();
+        });
+      });
+
+  </script>
+</footer>
+
+  </body>
+</html>

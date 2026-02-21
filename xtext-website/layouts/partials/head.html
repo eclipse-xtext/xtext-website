@@ -1,0 +1,83 @@
+<head>
+	<meta charset="UTF-8">
+	<title>Xtext - {{ .Title }}</title>
+	{{ .Params.meta }}
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description"
+		content="The website of Eclipse Xtext, an open-source framework for development of programming languages and domain-specific languages">
+	<meta name="author" content="Sven Efftinge">
+	<meta name="author" content="Miro Spoenemann">
+	<!--  styles -->
+	<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+	<!--[if lt IE 9]>
+	  <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	
+	<!-- Le fav and touch icons -->
+	<link rel="shortcut icon" href="{{ .Site.BaseURL }}images/favicon.png">
+	
+	<link href="{{ .Site.BaseURL }}css/bootstrap.css" rel="stylesheet" type='text/css'>
+	<link href="{{ .Site.BaseURL }}css/bootstrap-responsive.css" rel="stylesheet" type='text/css'>
+	<link href="{{ .Site.BaseURL }}css/shield-responsive.css" rel="stylesheet" type='text/css'>
+	<link href='{{ .Site.BaseURL }}css/fonts.css' rel='stylesheet' type='text/css'>
+	<link href="{{ .Site.BaseURL }}css/prettyPhoto.css" rel="stylesheet" media="screen" type='text/css'>
+	<link href="{{ .Site.BaseURL }}css/prettify.css" type="text/css" rel="stylesheet"/>
+	<link href="{{ .Site.BaseURL }}css/style.css" rel="stylesheet" type='text/css'>
+	<!-- cover flow -->
+	<link href="{{ .Site.BaseURL }}css/coverflow.css" rel="stylesheet" type='text/css'>
+	<!--[if lt IE 9]>
+	  <link href="/css/iebugs.css" rel="stylesheet" type='text/css'>
+	<![endif]-->
+
+	<!-- BEGIN Cookie Consent
+	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+	<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+	<script>
+	window.addEventListener("load", function(){
+	window.cookieconsent.initialise({
+		"palette": {
+		"popup": {
+		  "background": "#000"
+		},
+		"button": {
+		  "background": "#f1d600"
+		}
+		},
+		"theme": "edgeless",
+		"type": "opt-in",
+		onInitialise: function (status) {
+		  var type = this.options.type;
+		  var didConsent = this.hasConsented();
+		  if (type == 'opt-in' && didConsent) {
+		    // TODO: enable cookies
+		  }
+		  if (type == 'opt-out' && !didConsent) {
+		    // TODO: disable cookies
+		  }
+		},
+		onStatusChange: function(status, chosenBefore) {
+		  var type = this.options.type;
+		  var didConsent = this.hasConsented();
+		  if (type == 'opt-in' && didConsent) {
+		    // TODO: enable cookies
+		  }
+		  if (type == 'opt-out' && !didConsent) {
+		    // TODO: disable cookies
+		  }
+		}, 
+		onRevokeChoice: function() {
+		  var type = this.options.type;
+		  if (type == 'opt-in') {
+		    // TODO: disable cookies
+		  }
+		  if (type == 'opt-out') {
+		    // TODO: enable cookies
+		  }
+		},
+		"content": {
+		"href": "https://www.eclipse.org/legal/privacy.php"
+		}
+	})});
+	</script>
+	END Cookie Consent -->
+</head>

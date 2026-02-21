@@ -1,0 +1,16 @@
+{{ define "main" }}
+<div id="page">  
+	<div class="inner">
+		<div class="container clearfix">
+			<h1>Latest News</h1>
+			{{ range first 10 .Pages }}
+			<div class="post">
+				<h2>{{ .Title }}<small>&nbsp;&nbsp;&nbsp;{{ .Date.Format "Jan 2, 2006" }}</small></h2>
+				{{ .Content }}
+				<br/>
+			</div>
+			{{ end }}
+		</div>
+	</div>
+</div>
+{{ end }}

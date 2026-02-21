@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head><script src="/Xtext/xtend/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=Xtext/xtend/livereload" data-no-instant defer></script>
+	<meta charset="UTF-8">
+	<title>Xtend - Xtend 2.14.0 Release Notes</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Xtend is a statically typed programming language sitting on top of Java.">
+	<meta name="author" content="Sven Efftinge">
+	<meta name="author" content="Miro Spoenemann">
+	
+	<link rel="shortcut icon" href="http://localhost:1313/Xtext/xtend/images/favicon.png">
+	
+	<link href="http://localhost:1313/Xtext/xtend/css/bootstrap.css" rel="stylesheet" type='text/css'>
+	<link href="http://localhost:1313/Xtext/xtend/css/bootstrap-responsive.css" rel="stylesheet" type='text/css'>
+	<link href="http://localhost:1313/Xtext/xtend/css/shield-responsive.css" rel="stylesheet" type='text/css'>
+	<link href='http://localhost:1313/Xtext/xtend/css/fonts.css' rel='stylesheet' type='text/css'>
+	<link href="http://localhost:1313/Xtext/xtend/css/prettyPhoto.css" rel="stylesheet" media="screen" type='text/css'>
+	<link href="http://localhost:1313/Xtext/xtend/css/prettify.css" type="text/css" rel="stylesheet"/>
+	<link href="http://localhost:1313/Xtext/xtend/css/style.css" rel="stylesheet" type='text/css'>
+</head>
+
+  <body>
+    <div class="navbar navbar-fixed-top" style="border-bottom: 1px solid #000;">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="http://localhost:1313/Xtext/xtend/index.html"></a>
+      <div class="nav-collapse collapse" style="height: 0px;">
+        <ul class="nav">
+          
+          <li><a href="/Xtext/xtend/download.html">Download</a></li>
+          
+          <li><a href="/Xtext/xtend/documentation/index.html">Documentation</a></li>
+          
+          <li><a href="/Xtext/xtend/community.html">Community</a></li>
+          
+          <li><a href="https://eclipse.dev/Xtext">Xtext</a></li>
+          
+          <li><a href="https://www.eclipse.org">Eclipse.org</a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+<h2 id="java-9-and-10-support">Java 9 and 10 Support</h2>
+<p>Xtext and Xtend 2.14 are able to compile with and against Java 10. Here are a few notes on the Support</p>
+<ul>
+<li>There is no native support for Java 9/10 module visibilities but we fall back to jdt/javac on that topic.</li>
+</ul>
+<h2 id="compiler">Compiler</h2>
+<h3 id="avoid-generation-of-unnecessary-exception-variables">Avoid generation of unnecessary exception variables</h3>
+<p>When an exception variable is not used within a catch block, the transpiled Java code contained an unused variable.</p>
+<p>Considering the following Xtend snippet:</p>
+<pre tabindex="0"><code>try {
+  ... some code ...
+} catch (SomeException e) {
+  // do nothing with &#34;e&#34;
+}
+</code></pre><p>The catch block was transpiled to:</p>
+<pre tabindex="0"><code>catch (final Throwable _t) {
+  if (_t instanceof SomeException) {
+    final SomeException e = (SomeException)_t;
+  } else {
+    throw Exceptions.sneakyThrow(_t);
+  }
+}
+</code></pre><p>Xtend will now avoid the generation of the variable when it is not used within the catch block:</p>
+<pre tabindex="0"><code>catch (final Throwable _t) {
+  if (_t instanceof SomeException) {
+  } else {
+    throw Exceptions.sneakyThrow(_t);
+  }
+}
+</code></pre><h3 id="multi-catch-support">Multi-Catch Support</h3>
+<p>With Xtend 2.14 the exception handling supports multi-catch clauses.</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_14_0_xtend-multi-catch-new.png" alt=""></p>
+<p>The multi-catch clause can handle an arbitrary number of exceptions separated by &ldquo;|&rdquo;.
+Within the catch block, the intersection exception type of the exceptions caught by the multi-catch statement is available for further processing.
+Multi-catch support leads to semantically rich and more concise catch statements.</p>
+<h3 id="multi-type-guard-support">Multi-Type Guard Support</h3>
+<p>The type guard feature in switch statements is enhanced by support for testing multiple types in one case statement.</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_14_0_xtend-multi-type-guard-new.png" alt=""></p>
+<p>As for the multi-catch statements the different types handled by a single case statement are separated by &ldquo;|&rdquo;.
+The intersection type of the types specified in the multi-type guard statement is available within the case block.</p>
+<h2 id="unnecessary-modifiers-validation">Unnecessary Modifiers Validation</h2>
+<p>Xtend detects unnecessary modifiers in code, e.g. the <code>public</code> modifier on types. By default issues of this kind are raised as warnings, the severity level is configurable.</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_14_unnecessary_modifier.png" alt=""></p>
+<p>For convenient resolution of these issues a quick fix has been added.</p>
+<h2 id="eclipse-integration">Eclipse Integration</h2>
+<h3 id="organize-imports">Organize Imports</h3>
+<p>The Organize Imports feature has been improved to consider inner types properly.</p>
+<h2 id="links">Links</h2>
+<ul>
+<li><a href="https://blogs.itemis.com/en/xtend-2-14-unnecessary-modifiers-validation">&ldquo;Unnecessary modifiers validation&rdquo; blog post</a></li>
+</ul>
+<h2 id="fixed-issues">Fixed Issues</h2>
+<p>As in every release we are eagerly hunting down the bugs, review and integrate lots of contributions. 88 issues, 62 Pull Requests and 20 Bugzilla tickets have made it into this release. For further details please refer to the following lists:</p>
+<ul>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Aissue+milestone%3ARelease_2.14+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Fixed GitHub issues</a></p>
+</li>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Apr+milestone%3ARelease_2.14+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Closed Pull Requests</a></p>
+</li>
+<li>
+<p><a href="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&amp;classification=Modeling&amp;classification=Tools&amp;columnlist=product%2Ccomponent%2Cassigned_to%2Cbug_status%2Cresolution%2Cshort_desc%2Cchangeddate%2Ckeywords&amp;f0=OP&amp;f1=OP&amp;f3=CP&amp;f4=CP&amp;known_name=Xtext%202.14&amp;list_id=16618269&amp;product=TMF&amp;product=Xtend&amp;query_based_on=Xtext%202.14&amp;query_format=advanced&amp;status_whiteboard=v2.14&amp;status_whiteboard_type=allwordssubstr">Fixed Eclipse Bugzilla tickets</a></p>
+</li>
+</ul>
+
+
+    <footer class="site-footer">
+  <div id="extra">
+    <div class="container inner-footer">
+      <div class="row">
+        <div class="span6">
+          <h3 class="footer-links-header">Quick Links</h3>
+          <ul class="footer-links clearfix">
+            <li><a href="https://www.eclipse.org/legal/privacy.php">Privacy Policy</a></li>
+            <li><a href="https://www.eclipse.org/legal/termsofuse.php">Terms of Use</a></li>
+            <li><a href="https://www.eclipse.org/legal/copyright.php">Copyright Agent</a></li>
+            <li><a href="https://www.eclipse.org/legal/">Legal</a></li>
+          </ul>
+          <ul class="footer-links clearfix">
+            <li><a href="https://www.eclipse.org">Eclipse Home</a></li>
+            <li><a href="https://marketplace.eclipse.org/">Market Place</a></li>
+            <li><a href="https://www.planeteclipse.org/">Eclipse Planet</a></li>
+            <li><a href="https://www.eclipse.org/forums/index.php/f/27/">Xtext Forum</a></li>
+          </ul>
+        </div>
+        <div class="span6">
+          <h3 class="footer-links-header">Social Media</h3>
+          <ul class="footer-links clearfix">
+            <li>
+              <a href="https://twitter.com/xtendlang"><img src="http://localhost:1313/Xtext/xtend/images/Twitter-bird-darkgray.png" class="img-responsive" style="margin-right: 5px;height: 1em;" alt="Twitter icon">@xtendlang on Twitter</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="#" class="scrollup fadeOutRight animated" style="display: none;">ScrollUp</a>
+  <a href="https://dryicons.com/">Icons by https://dryicons.com</a>
+  
+  <script src="http://localhost:1313/Xtext/xtend/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/prettify.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/lang-xtend.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/jquery.prettyPhoto.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/jquery.easing.1.3.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/custom.js" type="text/javascript"></script>
+</footer>
+
+  </body>
+</html>

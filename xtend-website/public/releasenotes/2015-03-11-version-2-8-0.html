@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head><script src="/Xtext/xtend/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=Xtext/xtend/livereload" data-no-instant defer></script>
+	<meta charset="UTF-8">
+	<title>Xtend - Xtend 2.8.0 Release Notes</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Xtend is a statically typed programming language sitting on top of Java.">
+	<meta name="author" content="Sven Efftinge">
+	<meta name="author" content="Miro Spoenemann">
+	
+	<link rel="shortcut icon" href="http://localhost:1313/Xtext/xtend/images/favicon.png">
+	
+	<link href="http://localhost:1313/Xtext/xtend/css/bootstrap.css" rel="stylesheet" type='text/css'>
+	<link href="http://localhost:1313/Xtext/xtend/css/bootstrap-responsive.css" rel="stylesheet" type='text/css'>
+	<link href="http://localhost:1313/Xtext/xtend/css/shield-responsive.css" rel="stylesheet" type='text/css'>
+	<link href='http://localhost:1313/Xtext/xtend/css/fonts.css' rel='stylesheet' type='text/css'>
+	<link href="http://localhost:1313/Xtext/xtend/css/prettyPhoto.css" rel="stylesheet" media="screen" type='text/css'>
+	<link href="http://localhost:1313/Xtext/xtend/css/prettify.css" type="text/css" rel="stylesheet"/>
+	<link href="http://localhost:1313/Xtext/xtend/css/style.css" rel="stylesheet" type='text/css'>
+</head>
+
+  <body>
+    <div class="navbar navbar-fixed-top" style="border-bottom: 1px solid #000;">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="http://localhost:1313/Xtext/xtend/index.html"></a>
+      <div class="nav-collapse collapse" style="height: 0px;">
+        <ul class="nav">
+          
+          <li><a href="/Xtext/xtend/download.html">Download</a></li>
+          
+          <li><a href="/Xtext/xtend/documentation/index.html">Documentation</a></li>
+          
+          <li><a href="/Xtext/xtend/community.html">Community</a></li>
+          
+          <li><a href="https://eclipse.dev/Xtext">Xtext</a></li>
+          
+          <li><a href="https://www.eclipse.org">Eclipse.org</a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+<p>Version 2.8 got many new features, bug fixes, and performance improvements (<a href="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&amp;list_id=11217573&amp;query_format=advanced&amp;status_whiteboard=v2.8&amp;status_whiteboard_type=allwordssubstr">full bugzilla list</a>).</p>
+<p>The most noteworthy changes are the following.</p>
+<h2 id="target-java-version">Target Java Version</h2>
+<p>The new version of the Xbase compiler allows to configure the Java version of the generated code. The default is to use the same version as set for the source compatibility of the Java compiler (<em>Java → Compiler → Source compatibility</em>), which is in turn usually set to the same version as the <em>compiler compliance level</em>. The Xbase compiler settings can be configured in the <em>Compiler</em> preference page or project properties page of your Xbase language.</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_8_xbase-java-version.png" alt=""></p>
+<p>By unchecking <em>Use source compatibility level from Java settings</em>, you can choose to generate Java code with a different version than is set for the Java compiler. The actual changes in the generated code are described in the following.</p>
+<h3 id="java-5">Java 5</h3>
+<p>Java 5 has been the version level of the Xtend compiler from the beginning, so the generated code is the same as with earlier Xtend versions if you choose this target version.</p>
+<h3 id="java-6">Java 6</h3>
+<p>When the Xtend compiler is set to at least Java 6, it generates an <code>@Override</code> annotation to each method that overrides a method from a superclass or implements an interface method.</p>
+<h3 id="java-7">Java 7</h3>
+<p>Xtend expressions like <code>switch (obj) { ... }</code> where <code>obj</code> is of type <a href="%7B%7Bsite.javadoc.java%7D%7D/java/lang/String.html">String</a> are translated to Java <code>switch</code> statements (see <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/language/strings-switch.html">Strings in switch Statements</a>).</p>
+<p>In Xtend you can write number literals in the form <code>2_147_483_647</code> to enhance their readability. This is also <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/language/underscores-literals.html">supported by Java 7</a>. When the Xtend compiler is set to at least Java 7, underscores in number literals are retained in the generated code.</p>
+<h3 id="java-8">Java 8</h3>
+<p><a href="/Xtext/xtend/documentation/203_xtend_expressions.html#lambdas">Xtend lambda expressions</a> like <code>[String s | s.toLowerCase]</code> are translated to <a href="https://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html">Java 8 lambda expressions</a>, e.g. <code>(String s) -&gt; return s.toLowerCase();</code>. More details on this translation are discussed in <a href="https://spoenemann.blogspot.de/2015/02/xtend-for-java-8.html">this blog post</a>.</p>
+<p>Note that independent of which Java version is chosen for the generated code, Xtend works perfectly with the <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/language/lambda_api_jdk8.html">lambda-optimized Java 8 API</a> because Xtend lambdas are fully compatible with Java 8 lambdas.</p>
+<p>Xtend allows to define non-abstract methods (static or non-static) in interfaces when Java 8 is chosen as target language level. If such a method is non-static, it is translated to a <a href="https://docs.oracle.com/javase/tutorial/java/IandI/defaultmethods.html">Java 8 default method</a>.</p>
+<h2 id="more-compiler-options">More Compiler Options</h2>
+<p>You can now disable the automatic generation of <code>@SuppressWarnings</code> annotations for generated classes. Furthermore, you can enable the generation of <code>@Generated</code> annotations for all generated types, which can be useful for automatic processing of the source code, e.g. when you want to exclude generated types in code analysis tools. The annotation also allows to attach more information, which can be enabled in the preferences.</p>
+<h2 id="enhancements-of-the-xtend-editor">Enhancements of the Xtend Editor</h2>
+<h3 id="open-generated-file">Open Generated File</h3>
+<p>You can open the Java file that was generated from Xtend by right-clicking the Xtend editor and selecting <em>Open Generated File</em>.</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_8_xbase-open-generated.png" alt=""></p>
+<h3 id="open-inferred-type">Open Inferred Type</h3>
+<p>You can open the declaration of the inferred type of a local variable by <em>Ctrl</em>-clicking (<em>Cmd</em> on Mac) the variable name.</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_8_open-inferred-type.png" alt=""></p>
+<h3 id="improved-hover-for-annotations">Improved Hover for Annotations</h3>
+<p>Hovers of annotated members have been improved and allow to navigate to annotation values.</p>
+<h3 id="unique-class-name-validation">Unique Class Name Validation</h3>
+<p>If your Xtend type&rsquo;s qualified name collides with another Java or Xtend type in the same project you now get an error.</p>
+<h2 id="convert-java-to-xtend">Convert Java to Xtend</h2>
+<p>The new version features a Java-to-Xtend converter. Right-click a Java file, package or source folder in the Package Explorer and select <em>Convert to Xtend</em>. You can choose to keep the original Java files (though that will lead to errors due to duplicate types), and you are warned if the Java code contains parts that cannot be translated automatically. These are marked with <code>FIXME</code> comments in the Xtend code. However, the converter is able to convert the majority of Java classes without problems.</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_8_java-convert-to-xtend.png" alt=""></p>
+<h2 id="active-annotations">Active Annotations</h2>
+<h4 id="constant-field-initializer">Constant Field Initializer</h4>
+<p><em>MutableFieldDeclaration</em> now features a set of methods like <code>setConstantValueAsInt(int value)</code> for creating static final fields with constant initializers. All primitive values as well as <a href="%7B%7Bsite.javadoc.java%7D%7D/java/lang/String.html">String</a> are supported.</p>
+<h4 id="default-methods">Default Methods</h4>
+<p>If the Xtend compiler is set to Java 8, you can create a method with default implementation in a Java interface by defining a method body and setting the <em>abstract</em> flag on the <em>MutableMethodDeclaration</em>.</p>
+<h2 id="faster-builds-and-more-responsive-ui">Faster Builds and More Responsive UI</h2>
+<p>Compiling an Xtend resource involves a lot of computation. With 2.8 we store the computed resource state and reload it if no changes have happened. This leads to a significantly faster build.</p>
+<p>Into the bargain, user actions like saving an editor now cancel the auto-build and are no longer blocked by it.</p>
+
+
+    <footer class="site-footer">
+  <div id="extra">
+    <div class="container inner-footer">
+      <div class="row">
+        <div class="span6">
+          <h3 class="footer-links-header">Quick Links</h3>
+          <ul class="footer-links clearfix">
+            <li><a href="https://www.eclipse.org/legal/privacy.php">Privacy Policy</a></li>
+            <li><a href="https://www.eclipse.org/legal/termsofuse.php">Terms of Use</a></li>
+            <li><a href="https://www.eclipse.org/legal/copyright.php">Copyright Agent</a></li>
+            <li><a href="https://www.eclipse.org/legal/">Legal</a></li>
+          </ul>
+          <ul class="footer-links clearfix">
+            <li><a href="https://www.eclipse.org">Eclipse Home</a></li>
+            <li><a href="https://marketplace.eclipse.org/">Market Place</a></li>
+            <li><a href="https://www.planeteclipse.org/">Eclipse Planet</a></li>
+            <li><a href="https://www.eclipse.org/forums/index.php/f/27/">Xtext Forum</a></li>
+          </ul>
+        </div>
+        <div class="span6">
+          <h3 class="footer-links-header">Social Media</h3>
+          <ul class="footer-links clearfix">
+            <li>
+              <a href="https://twitter.com/xtendlang"><img src="http://localhost:1313/Xtext/xtend/images/Twitter-bird-darkgray.png" class="img-responsive" style="margin-right: 5px;height: 1em;" alt="Twitter icon">@xtendlang on Twitter</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="#" class="scrollup fadeOutRight animated" style="display: none;">ScrollUp</a>
+  <a href="https://dryicons.com/">Icons by https://dryicons.com</a>
+  
+  <script src="http://localhost:1313/Xtext/xtend/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/prettify.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/lang-xtend.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/jquery.prettyPhoto.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/jquery.easing.1.3.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/custom.js" type="text/javascript"></script>
+</footer>
+
+  </body>
+</html>

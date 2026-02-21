@@ -300,16 +300,16 @@ stage('Generate site') {
 ### Estimated Timeline: 5 days
 
 ### 11ty Migration Checklist
-- [ ] Initialize npm projects
-- [ ] Create eleventy.config.js for xtext-website
-- [ ] Create eleventy.config.js for xtend-website
-- [ ] Migrate global data from _config.yml
-- [ ] Set up collections (releasenotes, news, documentation)
-- [ ] Move layouts to _includes/
-- [ ] Test Liquid templates compatibility
-- [ ] Create Eclipse help config and layouts
-- [ ] Update Jenkinsfile
-- [ ] Test deployment
+- [x] ~~Initialize npm projects~~ (Not used - Hugo chosen)
+- [x] ~~Create eleventy.config.js for xtext-website~~ (Not used - Hugo chosen)
+- [x] ~~Create eleventy.config.js for xtend-website~~ (Not used - Hugo chosen)
+- [x] ~~Migrate global data from _config.yml~~ (Not used - Hugo chosen)
+- [x] ~~Set up collections (releasenotes, news, documentation)~~ (Not used - Hugo chosen)
+- [x] ~~Move layouts to _includes/~~ (Not used - Hugo chosen)
+- [x] ~~Test Liquid templates compatibility~~ (Not used - Hugo chosen)
+- [x] ~~Create Eclipse help config and layouts~~ (Not used - Hugo chosen)
+- [x] ~~Update Jenkinsfile~~ (Not used - Hugo chosen)
+- [x] ~~Test deployment~~ (Not used - Hugo chosen)
 - [ ] Update Eclipse help generation in xtext repo
 
 ---
@@ -516,20 +516,20 @@ stage('Generate site') {
 ### Estimated Timeline: 5 days
 
 ### Hugo Migration Checklist
-- [ ] Install Hugo
-- [ ] Create hugo.toml for xtext-website
-- [ ] Import Jekyll content
-- [ ] Create layouts (convert Liquid to Go templates)
-  - [ ] baseof.html
-  - [ ] single.html
-  - [ ] single.eclipse.html
-  - [ ] list.html
-  - [ ] partials (head, header, footer)
-- [ ] Migrate static assets
-- [ ] Create hugo.toml for xtend-website
-- [ ] Test builds
-- [ ] Update Jenkinsfile
-- [ ] Update Eclipse help generation in xtext repo
+- [x] Install Hugo
+- [x] Create hugo.toml for xtext-website
+- [x] Import Jekyll content
+- [x] Create layouts (convert Liquid to Go templates)
+  - [x] baseof.html
+  - [x] single.html
+  - [x] single.eclipse.html
+  - [x] list.html
+  - [x] partials (head, header, footer)
+- [x] Migrate static assets
+- [x] Create hugo.toml for xtend-website
+- [x] Test builds
+- [x] Update Jenkinsfile
+- [ ] Update Eclipse help generation in xtext repo (manual step)
 
 ---
 

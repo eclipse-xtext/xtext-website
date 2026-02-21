@@ -1,0 +1,33 @@
+{{ define "main" }}
+<div class="page-content">
+  <script>
+    function startSearch(event) {
+        if (event.keyCode == 13) {
+            var q = 'site:eclipse.dev/Xtext/xtend/documentation+' + event.target.value;
+            window.open('https://www.google.com/search?q=' + q, "_self");
+        }
+    }
+  </script>
+  <div class="wrapper">
+    <div id="page">  
+      <div class="inner">
+        <div id="maincontainer" class="container">
+          <span class="edit-on-github pull-right">
+            <a href="{{ .Site.Params.editRepo }}content/documentation/{{ .File.Path }}">Edit on Github</a>
+          </span>
+          <div class="span3" style="margin-left: 0px;">
+            <div class="search-bar">
+              <img src="{{ .Site.BaseURL }}images/search-gray.png"/>
+              <input type="search" id="google-search" onkeyup="startSearch(event);"/>
+            </div>
+            {{ partial "documentation-menu.html" . }}
+          </div>
+          <div class="span9 doc-contents">
+            {{ .Content }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}

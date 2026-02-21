@@ -1,0 +1,41 @@
+---
+title: Documentation
+part: Xtext Documentation
+---
+
+<div class="clearfix">
+	<div class="span9">
+		<h1>How to get started?</h1>
+		<p>If you are not quite sure yet whether Xtext&#x2122; is an appropriate solution for your task, we recommend to watch the presentation below, as it gives you a good overview of what Xtext&#x2122; can do. If you want to dive in and learn, 
+			you should start with one of the getting started tutorials on the left. Also having the book as an additional resource to the online documentation is  certainly a good idea.</p>
+	</div>
+	<div class="span9">
+		<h2>Presentation - DSL Development With Xtext&#x2122;</h2>
+	</div>
+	<div class="span5">
+		<p>An introduction and overview of Xtext&#x2122;, given in September 2015 at JavaZone in Oslo, Norway. In this presentation a rule-language for home automation is developed.</p>
+	</div>
+	<div class="span4">
+		<a href="https://vimeo.com/138873446">
+			<img src="/Xtext/images/video_thumb.png" alt="Xtext Development Sven Efftinge">
+		</a>
+	</div>
+	<div class="span9">
+		<h2>Book - Implementing DSLs with Xtext and Xtend - Second Edition</h2>
+	</div>
+	<div class="span5">
+		<p>Overview:
+			<ul>
+				<li>Learn to quickly develop a domain-specific language with Xtext&#x2122;
+				<li>Implement any aspect of a DSL using Xtend, a fully featured Java-like programming language
+				<li>Discover how to test a DSL implementation and how to customize runtime and IDE aspects of the DSL
+			</ul>
+			Order the book or read reviews on <a href="https://www.amazon.com/Implementing-Domain-Specific-Languages-Xtext/dp/1786464969">amazon.com</a>.
+		<p>
+	</div>
+	<div class="span4">
+		<a href="https://www.amazon.com/Implementing-Domain-Specific-Languages-Xtext/dp/1786464969">
+			<img src="images/book.jpg">
+		</a>
+	</div>
+</div>

@@ -1,0 +1,95 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+	<title>Xtext 2.11.0 Release Notes</title>
+	<link href="book.css" rel="stylesheet" type="text/css">
+	<link href="code.css" rel="stylesheet" type="text/css">
+	<link rel="home" href="index.html" title="">
+</head>
+<body>
+
+<p>Version 2.11.0 is the first release of Xtext after its big internal restructuring. The successful core of Xtext is used in many applications and projects around the world, as a result our main focus for 2.11 has been keeping the high quality and stability of the project while setting the course for a more sustainable future.</p>
+<h2 id="restructuring-and-build">Restructuring and Build</h2>
+<p>Xtext and Xtend used to be one big Git repository containing all sources for Eclipse, IDEA, Web integration etc. As of 2.11, we split that into multiple smaller repository, such that you can choose yourself which ones you need. These are</p>
+<ul>
+<li><a href="https://github.com/eclipse/xtext-core">xtext-core</a>: The core framework, <a href="https://github.com/Microsoft/vscode-languageserver-protocol">Language Server</a> support</li>
+<li><a href="https://github.com/eclipse/xtext-lib">xtext-lib</a>: Libraries for <a href="%7B%7Bsite.baseurl%7D%7D/documentation/305_xbase.html">Xbase</a> and <a href="https://eclipse.dev/Xtext/xtend">Xtend</a></li>
+<li><a href="https://github.com/eclipse/xtext-extras">xtext-extras</a>: Additional editor-independent features, mostly Java support</li>
+<li><a href="https://github.com/eclipse/xtext-eclipse">xtext-eclipse</a>: Plug-ins for <a href="https://eclipse.org">Eclipse</a></li>
+<li><a href="https://github.com/eclipse/xtext-idea">xtext-idea</a>: Plug-ins for <a href="https://www.jetbrains.com/idea/">IntelliJ IDEA</a></li>
+<li><a href="https://github.com/eclipse/xtext-web">xtext-web</a>: Support for <a href="https://eclipse.org/orion/">Orion</a>, <a href="https://ace.c9.io">Ace</a> and <a href="https://codemirror.net">CodeMirror</a></li>
+<li><a href="https://github.com/eclipse/xtext-maven">xtext-maven</a>: Support for <a href="https://maven.apache.org">Maven</a></li>
+<li><a href="https://github.com/eclipse/xtext-xtend">xtext-xtend</a>: The <a href="https://eclipse.dev/Xtext/xtend">Xtend</a> language</li>
+<li><a href="https://github.com/eclipse/xtext-umbrella">xtext-umbrella</a>: Common Eclipse features and P2 update sites</li>
+</ul>
+<p>In addition to that, we use Gradle now to build all non-Eclipse artifacts and Maven/Tycho for the Eclipse plug-ins. We have also set up a very sophisticated staged Jenkins build that allows to build from individual branches as well.</p>
+<h2 id="language-server-protocol">Language Server Protocol</h2>
+<p>With 2.11 the Xtext project supports the <a href="https://github.com/Microsoft/language-server-protocol">language server protocol</a> (LSP), which will allow users to host their languages in many different editors. So far LSP support for <a href="https://code.visualstudio.com/">VS Code</a>, the Eclipse IDE, <a href="https://www.eclipse.org/che/">Eclipse Che</a>, <a href="https://orionhub.org">Eclipse Orion</a>, and Emacs exists. Furthermore Microsoft&rsquo;s Monaco editor provides support and can be integrated in any JavaScript application.</p>
+<p>The LSP support in Xtext v2.11 is marked as provisional to leave open the possibility to further enhance the architecture and API. That said it is known to be used in commercial products already. Also in the long term the LSP support might replace the native <a href="%7B%7Bsite.baseurl%7D%7D/documentation/330_web_support.html">web-editor support</a>.</p>
+<p><img src="%7B%7Bsite.baseurl%7D%7D/images/releasenotes/2_11_vscode_example.png" alt=""></p>
+<h2 id="idea-support">IDEA Support</h2>
+<p>The IntelliJ IDEA integration of Xtext is currently lacking contributors. Therefore, unfortunately, the IDEA support has <strong>not</strong> been part of the 2.11 release. <a href="https://github.com/eclipse/xtext-idea/issues">Contributions are very welcome</a>!</p>
+<h2 id="important-changes">Important Changes</h2>
+<h3 id="execution-environment">Execution Environment</h3>
+<p>All Xtext plug-ins now require JavaSE-1.8 as execution environment. The minimal supported target platform is Eclipse Luna.</p>
+<h3 id="testing-projects">Testing Projects</h3>
+<p>There are new projects <code>org.eclipse.xtext.testing</code> for general testing utility and <code>org.eclipse.xtext.xbase.testing</code> for testing Xbase languages. These projects contain the platform-independent code from <code>org.eclipse.xtext.junit4</code> and <code>org.eclipse.xtext.xbase.junit</code>, respectively. The classes that have been copied to the new <code>testing</code> projects are now marked as deprecated in the old <code>junit</code> projects, but those can still be used for testing Eclipse UI features.</p>
+<h3 id="ide-guice-module">IDE Guice Module</h3>
+<p>Xtext uses <a href="%7B%7Bsite.baseurl%7D%7D/documentation/302_configuration.html#dependency-injection">dependency injection with Guice</a> for language-specific configuration. There are separated hierarchies of Guice modules that aim at different integration platforms: <a href="%7B%7Bsite.src.xtext%7D%7D/org.eclipse.xtext/src/org/eclipse/xtext/service/DefaultRuntimeModule.java">Runtime</a> (core services used by all language integrations), <a href="%7B%7Bsite.src.xtext%7D%7D/org.eclipse.xtext.ui/src/org/eclipse/xtext/ui/DefaultUiModule.java">Eclipse</a>, <a href="%7B%7Bsite.src.xtext_idea%7D%7D/org.eclipse.xtext.idea/src/org/eclipse/xtext/idea/DefaultIdeaModule.xtend">IDEA</a>, and <a href="%7B%7Bsite.src.xtext%7D%7D/org.eclipse.xtext.web/src/main/java/org/eclipse/xtext/web/server/DefaultWebModule.xtend">Web</a>. The 2.11 release introduces a new <a href="%7B%7Bsite.src.xtext%7D%7D/org.eclipse.xtext.ide/src/org/eclipse/xtext/ide/DefaultIdeModule.xtend">IDE</a> module hierarchy, which is used for generic editor and IDE features. This new module is employed by the <a href="%7B%7Bsite.baseurl%7D%7D/documentation/330_web_support.html">web-editor support</a> and the LSP support, but not by the Eclipse and IDEA integrations.</p>
+<p>The new IDE module brings reusability of many language-specific services, but the price for this is some API breakage. If you are already using the web-editor support, you&rsquo;ll need to make a few changes to your language configuration:</p>
+<ul>
+<li>Remove constructors from <code>&lt;Language Name&gt;WebModule</code>. ExecutorServices are now managed by the <a href="%7B%7Bsite.src.xtext%7D%7D/org.eclipse.xtext.ide/src/org/eclipse/xtext/ide/ExecutorServiceProvider.xtend">ExecutorServiceProvider</a> and disposed by the <a href="%7B%7Bsite.src.xtext%7D%7D/org.eclipse.xtext.util/src/org/eclipse/xtext/util/DisposableRegistry.xtend">DisposableRegistry</a>.</li>
+<li>Move custom bindings for generic IDE services from <code>&lt;Language Name&gt;WebModule</code> to the new <code>&lt;Language Name&gt;IdeModule</code> (e.g. content assist).</li>
+<li>Fix <code>&lt;Language Name&gt;WebSetup</code> and <code>&lt;Language Name&gt;Servlet</code>; if unsure how to do that, delete them, re-run the language generator workflow, and reapply any customizations you made.</li>
+</ul>
+<h2 id="xbase-features">Xbase Features</h2>
+<h3 id="improved-xbase-compiler">Improved Xbase Compiler</h3>
+<p>The Java code produced by the Xbase compiler is now <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=492072">less verbose and more readable</a>. For many situations Xbase does not produce synthetic variables anymore.</p>
+<p>For <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=501975">switch statements on Strings</a> an additional null guard is produced. This lead to NPEs when a null argument was passed to the switch statement.</p>
+<p><img src="%7B%7Bsite.baseurl%7D%7D/images/releasenotes/2_11_xbase-switch-nullguard.png" alt=""></p>
+<p>A for-loop over an array resulted in uncompilable Java code. This has been <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=440006">fixed</a>.</p>
+<h3 id="comparison-with-null">Comparison with null</h3>
+<p>For comparison expressions with <code>null</code> as argument it is more efficient to use the triple (not) equals operator <code>===</code> and <code>!==</code> instead of <code>==</code> and <code>!=</code>. While the &ldquo;normal&rdquo; operators will result in a call of <code>Objects.equal</code>, the triple equals operator can perform a direct comparison.</p>
+<p><img src="%7B%7Bsite.baseurl%7D%7D/images/releasenotes/2_11_xbase-compare-null-gen.png" alt=""></p>
+<p>For these situations <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=401012">a warning is produced</a> and <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=403018">a quickfix is offered</a>.</p>
+<p><img src="%7B%7Bsite.baseurl%7D%7D/images/releasenotes/2_11_xbase-compare-null-quickfix.png" alt=""></p>
+<h2 id="xtext-project-wizard">Xtext Project Wizard</h2>
+<h3 id="usability">Usability</h3>
+<p>We have examined the user experience with the New Xtext Project wizard and improved it with the input we gained from users. It was possible to enter invalid values for <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=481380">project names</a> and <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=481380">file extensions</a>, this is now checked.</p>
+<p>An usability test of the advanced configuration page revealed that especially less experienced users could had <a href="https://github.com/eclipse/xtext-eclipse/issues/119">issues with the dependencies between options</a>. From different proposals it turned out best from the user&rsquo;s perspective if mandatory options are automatically selected and disable. Further an information message is presented to the user about this action. The &lsquo;Generic IDE Support&rsquo; option gets an additional information hover.</p>
+<p><img src="%7B%7Bsite.baseurl%7D%7D/images/releasenotes/2_11_project-wizard-autoselect.png" alt=""></p>
+<p>The wizard&rsquo;s text messages have been revised and <a href="https://github.com/eclipse/xtext-eclipse/pull/157">made consistent</a>.</p>
+<h3 id="line-delimiter">Line Delimiter</h3>
+<p>The Xtext project wizard now <a href="https://github.com/eclipse/xtext-core/issues/101">considers the workspace default line delimiter</a> and configures the generated MWE2 workflow accordingly. As a result the artifacts produced by the Xtext generator will use the same line delimiter explicitly.</p>
+<h3 id="tycho-build-configuration">Tycho Build Configuration</h3>
+<p>For projects that are created with Eclipse plug-in and Maven as build system, the generated target definition is upgraded to <a href="https://github.com/eclipse/xtext-core/issues/79">use the Eclipse Neon repository</a>. Eclipse Tycho is <a href="https://github.com/eclipse/xtext-core/issues/76">configured with version 0.25.0</a> now.</p>
+<h2 id="example-projects">Example Projects</h2>
+<p>The provided example projects have been revised and use the new generator workflow, new project structure and new testing modules.</p>
+<h2 id="deprecated-components">Deprecated Components</h2>
+<h3 id="old-xtext-generator">Old Xtext Generator</h3>
+<p>With Xtext 2.9 a <a href="%7B%7Bsite.baseurl%7D%7D/releasenotes.html#/releasenotes/2015/11/16/version-2-9-0">new generator infrastructure was introduced</a>. In favor of this new generator <a href="https://github.com/eclipse/xtext-core/issues/58">the old generator has been deprecated</a>. Bugfixes will be done primarily for the new generator and most of them will not be backported, thus it is highly recommended to migrate your languages&rsquo; <code>.mwe2</code> workflows to use the new <a href="%7B%7Bsite.src.xtext%7D%7D/org.eclipse.xtext.xtext.generator/src/org/eclipse/xtext/xtext/generator/XtextGenerator.java"><code>org.eclipse.xtext.xtext.XtextGenerator</code></a> component.</p>
+<h3 id="running-the-language-generator-from-maven">Running the Language Generator from Maven</h3>
+<p>The Maven POM module <a href="https://repo1.maven.org/maven2/org/eclipse/xtext/org.eclipse.xtext.xtext/">org.eclipse.xtext.xtext</a>, which has been deprecated since 2015, is no longer published. If you use the old generator component, you should replace the <code>org.eclipse.xtext.xtext</code> dependency according to the <a href="https://repo1.maven.org/maven2/org/eclipse/xtext/org.eclipse.xtext.xtext/2.10.0/org.eclipse.xtext.xtext-2.10.0.pom">dependencies of that module</a>. The new generator component requires much fewer dependencies; a suitable configuration for it can be obtained by creating a new Maven project with the Xtext project wizard.</p>
+<h2 id="fixed-bugs">Fixed Bugs</h2>
+<h3 id="closed-memory-leaks">Closed Memory Leaks</h3>
+<p>The memory leak affected editors and <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=493784">downgraded performance while editing</a> resources for which JVM types are inferred (including Xtend).</p>
+<p>A second leak affected the <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=479328">Syntax Graph View</a> and slowed down the IDE.</p>
+<h3 id="performance">Performance</h3>
+<p>The Serializer was <a href="https://github.com/eclipse/xtext-core/issues/17">performing poor</a> for certain grammars. This has been fixed.</p>
+<h3 id="bug-lists">Bug Lists</h3>
+<p>In addition to the restructuring and the LSP support many bugs have been fixed:</p>
+<ul>
+<li>
+<p><a href="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&amp;chfield=resolution&amp;chfieldfrom=2016-06-22&amp;chfieldto=2017-01-24&amp;classification=Modeling&amp;classification=Tools&amp;columnlist=product%2Ccomponent%2Cassigned_to%2Cbug_status%2Cresolution%2Cshort_desc%2Cchangeddate%2Ckeywords&amp;f0=OP&amp;f1=OP&amp;f3=CP&amp;f4=CP&amp;known_name=Xtext%202.11&amp;list_id=15601548&amp;product=TMF&amp;product=Xtend&amp;query_based_on=Xtext%202.11&amp;query_format=advanced&amp;resolution=FIXED">Fixed Eclipse Bugzilla tickets</a></p>
+</li>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Aissue+milestone%3Arelease_v2.11+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Fixed GitHub issues</a></p>
+</li>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Apr+milestone%3Arelease_v2.11+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Closed Pull Requests</a></p>
+</li>
+</ul>
+
+
+</body>
+</html>

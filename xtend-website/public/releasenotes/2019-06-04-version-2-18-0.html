@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+  <head><script src="/Xtext/xtend/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=Xtext/xtend/livereload" data-no-instant defer></script>
+	<meta charset="UTF-8">
+	<title>Xtend - Xtend 2.18.0 Release Notes</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Xtend is a statically typed programming language sitting on top of Java.">
+	<meta name="author" content="Sven Efftinge">
+	<meta name="author" content="Miro Spoenemann">
+	
+	<link rel="shortcut icon" href="http://localhost:1313/Xtext/xtend/images/favicon.png">
+	
+	<link href="http://localhost:1313/Xtext/xtend/css/bootstrap.css" rel="stylesheet" type='text/css'>
+	<link href="http://localhost:1313/Xtext/xtend/css/bootstrap-responsive.css" rel="stylesheet" type='text/css'>
+	<link href="http://localhost:1313/Xtext/xtend/css/shield-responsive.css" rel="stylesheet" type='text/css'>
+	<link href='http://localhost:1313/Xtext/xtend/css/fonts.css' rel='stylesheet' type='text/css'>
+	<link href="http://localhost:1313/Xtext/xtend/css/prettyPhoto.css" rel="stylesheet" media="screen" type='text/css'>
+	<link href="http://localhost:1313/Xtext/xtend/css/prettify.css" type="text/css" rel="stylesheet"/>
+	<link href="http://localhost:1313/Xtext/xtend/css/style.css" rel="stylesheet" type='text/css'>
+</head>
+
+  <body>
+    <div class="navbar navbar-fixed-top" style="border-bottom: 1px solid #000;">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="http://localhost:1313/Xtext/xtend/index.html"></a>
+      <div class="nav-collapse collapse" style="height: 0px;">
+        <ul class="nav">
+          
+          <li><a href="/Xtext/xtend/download.html">Download</a></li>
+          
+          <li><a href="/Xtext/xtend/documentation/index.html">Documentation</a></li>
+          
+          <li><a href="/Xtext/xtend/community.html">Community</a></li>
+          
+          <li><a href="https://eclipse.dev/Xtext">Xtext</a></li>
+          
+          <li><a href="https://www.eclipse.org">Eclipse.org</a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+<p>Xtend 2.18.0 provides new language features (Ternary Expressions and Try-With-Resources) and some smaller improvements.</p>
+<h2 id="ternary-expressions">Ternary Expressions</h2>
+<p>Xtend now allows to use the ternary operator. This enables to assign conditional values to variables in the shortest possible way, as already well known from Java.</p>
+<pre tabindex="0"><code>val v = condition ? “thenValue” : “elseValue”
+</code></pre><p>If it is disapproved to use ternary expressions, it is possible to flag them with an error and convert them via quickfix into a traditional if-expression.</p>
+<pre tabindex="0"><code>val v = if(condition) “thenValue” else “elseValue”
+</code></pre><h2 id="try-with-resources">Try With Resources</h2>
+<p>Try statements are often used with resources, that have to be closed in the finally block. Xtend now supports the convenient try-with-resources expression. This closes the opened resources automatically at the end of the try block - without having to code that explicitly.</p>
+<pre tabindex="0"><code>def m() {
+    val resource = new StringReader(&#34;This \n is a text!&#34;);
+    try
+        return resource.read
+    finally
+        resource?.close     
+}
+</code></pre><p>Becomes:</p>
+<pre tabindex="0"><code>def m() {
+    try (val resource = new StringReader(&#34;This \n is a text!&#34;))
+        return resource.read
+}
+</code></pre><h2 id="eclipse-integration">Eclipse Integration</h2>
+<h3 id="new-quickfix-rename-class">New Quickfix: Rename Class</h3>
+<p>When an Xtend class name does not match the file name it is defined in then Xtend raises a warning. A new quickfix has been provided to rename the class according to the file name. (<a href="https://github.com/eclipse/xtext-xtend/issues/744">#744</a>)</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_18_Quickfix_RenameClass.gif" alt="Quickfix: Rename Class">{:height=&ldquo;50%&rdquo; width=&ldquo;50%&rdquo;}</p>
+<h3 id="quickfix-remove-unused-member-improved">Quickfix &ldquo;Remove Unused Member&rdquo; Improved</h3>
+<p>The quickfix &ldquo;Remove member&rdquo; for unused members was improved. Additionally to the member itself the quickfix will now also remove obsolete import statements and write accesses. (<a href="https://github.com/eclipse/xtext-xtend/issues/736">xtext-xtend</a>)</p>
+<h3 id="xtend-elements-wizards-in-project-explorer--navigator-view">Xtend Elements Wizards in Project Explorer / Navigator View</h3>
+<p>Context menu entries to trigger New Wizards for Xtend elements were only offered in the Package Explorer. These entries are now additionally offered in the context menu in the Project Explorer and Navigator views. (<a href="https://github.com/eclipse/xtext-xtend/issues/699">xtext-xtend#699</a>)</p>
+<h2 id="maven-integration">Maven Integration</h2>
+<p>When the goal <code>xtend-install-debug-info</code> is executed on empty source directories, a warning is raised by default:</p>
+<pre tabindex="0"><code>[WARNING] Directory &lt;SOURCE_DIR&gt; is empty. Can&#39;t process.
+</code></pre><p>This warning can now be suppressed by configure the new parameter <code>showEmptyDirWarning</code> to <code>false</code>. (<a href="https://github.com/eclipse/xtext-xtend/issues/787">xtext#787</a>)</p>
+<h2 id="xtend-compiler">Xtend Compiler</h2>
+<p>The Xtend batch compiler lookup order preferred classes in jars on the classpath before local classes that are on the source path. The order has been changed so that local classes are now first on the search path. (<a href="https://github.com/eclipse/xtext-xtend/issues/750">#750</a>)</p>
+<h2 id="credits">Credits</h2>
+<p>The Xtend Language project is thankful for the dedication of each committer and contributor. This release has been made possible by the following persons (in order of the number of contributed commits to this release):</p>
+<ul>
+<li>Christian Dietrich (itemis)</li>
+<li>Karsten Thoms (itemis)</li>
+<li>Sebastian Zarnekow (itemis)</li>
+<li>Arne Deutsch (itemis)</li>
+<li>Holger Schill (itemis)</li>
+<li>Eva Poell (itemis)</li>
+<li>Lorenzo Addazi <img src="https://img.shields.io/badge/-first%20time%20contributor-green.svg" alt=""></li>
+<li>Niko Stotz (Altran) <img src="https://img.shields.io/badge/-first%20time%20contributor-green.svg" alt=""></li>
+<li>Max Leuthäuser (itemis) <img src="https://img.shields.io/badge/-first%20time%20contributor-green.svg" alt=""></li>
+<li>Vivien Jovet (TORO Limited) <img src="https://img.shields.io/badge/-first%20time%20contributor-green.svg" alt=""></li>
+</ul>
+<h2 id="fixed-issues">Fixed Issues</h2>
+<p>As in every release cycle we were eagerly hunting down bugs, and reviewed and integrated plenty of contributions. More than 20 issues and almost 60 pull requests have made it into this release. For further details please refer to the following lists:</p>
+<ul>
+<li>
+<p><a href="https://github.com/search?q=is%3Aissue+milestone%3ARelease_2.18+is%3Aclosed+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues">Fixed GitHub issues</a></p>
+</li>
+<li>
+<p><a href="https://github.com/search?q=is%3Apr+milestone%3ARelease_2.18+is%3Aclosed+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues">Closed Pull Requests</a></p>
+</li>
+<li>
+<p><a href="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&amp;classification=Modeling&amp;classification=Tools&amp;columnlist=product%2Ccomponent%2Cassigned_to%2Cbug_status%2Cresolution%2Cshort_desc%2Cchangeddate%2Ckeywords&amp;f0=OP&amp;f1=OP&amp;f3=CP&amp;f4=CP&amp;known_name=Xtext%202.18&amp;list_id=16618269&amp;product=TMF&amp;product=Xtend&amp;query_based_on=Xtext%202.18&amp;query_format=advanced&amp;status_whiteboard=v2.18&amp;status_whiteboard_type=allwordssubstr">Fixed Eclipse Bugzilla tickets</a></p>
+</li>
+</ul>
+
+
+    <footer class="site-footer">
+  <div id="extra">
+    <div class="container inner-footer">
+      <div class="row">
+        <div class="span6">
+          <h3 class="footer-links-header">Quick Links</h3>
+          <ul class="footer-links clearfix">
+            <li><a href="https://www.eclipse.org/legal/privacy.php">Privacy Policy</a></li>
+            <li><a href="https://www.eclipse.org/legal/termsofuse.php">Terms of Use</a></li>
+            <li><a href="https://www.eclipse.org/legal/copyright.php">Copyright Agent</a></li>
+            <li><a href="https://www.eclipse.org/legal/">Legal</a></li>
+          </ul>
+          <ul class="footer-links clearfix">
+            <li><a href="https://www.eclipse.org">Eclipse Home</a></li>
+            <li><a href="https://marketplace.eclipse.org/">Market Place</a></li>
+            <li><a href="https://www.planeteclipse.org/">Eclipse Planet</a></li>
+            <li><a href="https://www.eclipse.org/forums/index.php/f/27/">Xtext Forum</a></li>
+          </ul>
+        </div>
+        <div class="span6">
+          <h3 class="footer-links-header">Social Media</h3>
+          <ul class="footer-links clearfix">
+            <li>
+              <a href="https://twitter.com/xtendlang"><img src="http://localhost:1313/Xtext/xtend/images/Twitter-bird-darkgray.png" class="img-responsive" style="margin-right: 5px;height: 1em;" alt="Twitter icon">@xtendlang on Twitter</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="#" class="scrollup fadeOutRight animated" style="display: none;">ScrollUp</a>
+  <a href="https://dryicons.com/">Icons by https://dryicons.com</a>
+  
+  <script src="http://localhost:1313/Xtext/xtend/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/prettify.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/lang-xtend.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/jquery.prettyPhoto.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/jquery.easing.1.3.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/custom.js" type="text/javascript"></script>
+</footer>
+
+  </body>
+</html>

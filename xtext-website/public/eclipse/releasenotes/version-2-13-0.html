@@ -1,0 +1,160 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+	<title>Xtext 2.13.0 Release Notes</title>
+	<link href="book.css" rel="stylesheet" type="text/css">
+	<link href="code.css" rel="stylesheet" type="text/css">
+	<link rel="home" href="index.html" title="">
+</head>
+<body>
+
+<h2 id="language-server-support">Language Server Support</h2>
+<h3 id="eclipse-new-project-wizard-language-server-build">Eclipse New Project Wizard: Language Server Build</h3>
+<p>The New Project Wizard allows now to build an executable distribution of language server. On the advanced page a new option was added which is enabled when a Build System was selected. The option allows the selection of a distribution type:</p>
+<ul>
+<li><strong>Regular</strong>: A batch script is created that is used to start the server. The DSL jars and all of its runtime dependencies are copied to the output folder.</li>
+<li><strong>Fat Jar</strong>: The language server is packaged in a single executable jar.</li>
+</ul>
+<p>Both Gradle and Maven are supported. When activated, the build script of the language&rsquo;s Generic IDE project is extended and the language server is packaged to the project&rsquo;s build</p>
+<p><img src="%7B%7Bsite.baseurl%7D%7D/images/releasenotes/2_13_project-wizard-ls.png" alt=""></p>
+<h2 id="eclipse-integration">Eclipse Integration</h2>
+<h3 id="configuration-error-detection">Configuration Error Detection</h3>
+<p>Invalid combinations of bundles are a frequent source of errors. This can be caused by an invalid mixture of Xtext&rsquo;s UI and runtime plugins, or by DSL plugins developed with a different version of Xtext than used in the environment where it fails.</p>
+<p>Although there can&rsquo;t be done anything to get the plugins working on an invalid environment, the resulting failure messages were not good for the user, leaving an impression of an unstable framework.</p>
+<p>When running in an error during the initial creation of Guice injectors in the DSL&rsquo;s UI or Xtext&rsquo;s Shared UI bundle, the error is catched and an analysis of the runtime environment is included in the failure message. This allows better analysis of the root cause.</p>
+<h3 id="multi-quickfixes">Multi-Quickfixes</h3>
+<p>These are quickfixes that allow to be applied to multiple markers at once.</p>
+<p>TBD</p>
+<h3 id="better-cancellation-in-refactorings">Better Cancellation in Refactorings</h3>
+<p>You can how hit the cancel dialog in refactorings and it will actually cancel at the next opportunity and not at the end only.</p>
+<h3 id="content-type-descriptor">Content Type Descriptor</h3>
+<p>Xtext UI projects provide a Content Type Descriptor by contributing to the <a href="https://help.eclipse.org/oxygen/index.jsp?topic=%2Forg.eclipse.platform.doc.isv%2Fguide%2Fruntime_content_contributing.htm"><code>org.eclipse.core.contenttype.contentTypes</code> extension point</a> to the <code>plugin.xml</code> file. This is affecting performance on text searches in Eclipse, since Eclipse can decide that a DSL file has no binary content based on the content type&rsquo;s base type. (<a href="https://github.com/eclipse/xtext-eclipse/issues/379">xtext-eclipse/issues/379</a>)</p>
+<pre tabindex="0"><code>&lt;extension point=&#34;org.eclipse.core.contenttype.contentTypes&#34;&gt;
+	&lt;content-type
+		base-type=&#34;org.eclipse.core.runtime.text&#34;
+		file-extensions=&#34;mydsl&#34;
+		id=&#34;org.eclipse.xtext.mydsl.MyDSL.contenttype&#34;
+		name=&#34;MyDSL File&#34;
+		priority=&#34;normal&#34;&gt;
+	&lt;/content-type&gt;
+&lt;/extension&gt;
+</code></pre><h2 id="new-api">New API</h2>
+<h3 id="emf-model-manipulation-api-incubating">EMF Model Manipulation API (incubating)</h3>
+<p>The <code>IChangeSerializer</code> is a new API to listen to changes that are made to the EMF model of an XtextResource and serialize them back to the document&rsquo;s text. It has a number of benefits to the old <code>XtextDocument.modify()</code> approach:</p>
+<ul>
+<li>Direct integration with the formatter, such that changes are automatically nicely formatted.</li>
+<li>Minimum text region changes resulting in less noise.</li>
+<li>Many points to hook into, e.g. for automatic update of an import section.</li>
+<li>More ways to optimize for a specific language and to tune performance.</li>
+<li>Independence from Eclipse-UI concepts like the <code>Document</code>. This makes it reusable in languages server implementations.</li>
+</ul>
+<p>You can use the <code>IChangeSerializer</code> for refactorings, semantic quickfixes, code lens etc. It still has a few limitations, e.g. it does not work with derived state models, that&rsquo;s why we keep it provisional for now.</p>
+<p>Nevertheless, we have added the following new features based on it:</p>
+<h3 id="rename-participants-for-eclipse-file-operations">Rename Participants for Eclipse File Operations</h3>
+<p>Some languages tie the model file name to the content, like the package declaration in Java. For such cases you might want to participate in operations on files or directories, like move, rename or paste, to adapt your models automatically. Based on the new <code>IChangeSerializer</code> we have implemented some generic file refactoring participants. You will get notified of such changes to react appropriately by registering your own <code>IResourceRelocationStrategy</code>.</p>
+<pre tabindex="0"><code>&lt;extension point=&#34;org.eclipse.xtext.ui.resourceRelocationStrategy&#34;&gt;
+   &lt;strategy class=&#34;mydsl.MydslExecutableExtensionFactory:mydsl.MydslResourceRelocationStrategy&#34;&gt;
+   &lt;/strategy&gt;
+&lt;/extension&gt;
+</code></pre><h3 id="alternative-rename-refactoring-for-xtext">Alternative Rename Refactoring for Xtext</h3>
+<p>By enabling <code>useChangeSerializer</code> flag in the workflow of your language</p>
+<pre tabindex="0"><code>Workflow {
+  component = XtextGenerator {
+    ...
+    language = StandardLanguage {
+      ...
+      renameRefactoring = {
+        useChangeSerializer = true
+      ...
+</code></pre><p>you will use an new, alternative rename refactoring for Eclipse based on the <code>IChangeSerializer</code>. This flag will also generate the binding for the <code>IRenameService</code> and thereby enable rename refactoring on your language server.</p>
+<h3 id="xbase-library-orgeclipsextextxbaselib">Xbase Library (<code>org.eclipse.xtext.xbase.lib</code>)</h3>
+<h4 id="no-arg-overloads-to-all-mutable-collection-literals">No-arg overloads to all mutable collection literals</h4>
+<p>Class <code>CollectionLiterals</code> was extended by no-arg methods for all mutable collection literals:</p>
+<ul>
+<li><code>newArrayList()</code></li>
+<li><code>newHashMap()</code></li>
+<li><code>newHashSet()</code></li>
+<li><code>newLinkedHashMap()</code></li>
+<li><code>newLinkedHashSet()</code></li>
+<li><code>newLinkedList()</code></li>
+</ul>
+<p>Xtext&rsquo;s code base was refactored to use these methods where appropriate. As a consequence Xtext requires at least version 2.13 of <code>org.eclipse.xtext.xbase.lib</code>. Therefore bundle manifests were refactored to constraint the library bundle&rsquo;s lower version. New projects will automatically add the version constraint to manifests.</p>
+<h4 id="flatmap-extension-method">flatMap extension method</h4>
+<p>A new convenience method <code>flatMap</code> has been added to <code>IterableExtensions</code> and <code>IteratorExtensions</code>, which combines <code>map</code> and <code>flatten</code>.</p>
+<pre tabindex="0"><code>@FinalFieldsConstructor
+@Accessors
+class Planet {
+	final String name
+	final List&lt;Moon&gt; moons
+}
+
+@FinalFieldsConstructor
+@Accessors
+class Moon {
+	final String name
+}
+
+
+class Planets {
+	def static void main (String[] args) {
+		
+		val Iterable&lt;Planet&gt; planets = #[
+			new Planet(&#34;Earth&#34;, #[new Moon (&#34;Moon&#34;)]),
+			new Planet(&#34;Mars&#34;, #[new Moon (&#34;Phobos&#34;), new Moon(&#34;Deimos&#34;)])
+		]
+		
+		val moonNames_old = planets.map[moons].flatten.map[name]
+		val moonNames_new = planets.flatMap[moons].map[name]
+	}
+}
+</code></pre><h2 id="tracing">Tracing</h2>
+<p>Tracing can now be used for debugging in generated Java code as well. The <code>@Traced</code> annotation now takes optionally a <code>useForDebugging=true</code>. The <code>@TracedAccessors</code> are now adds to the <code>._&lt;feature&gt;()</code> extension method a <code>._&lt;feature&gt;(useForDebugging)</code> extension method.</p>
+<h2 id="refactoring">Refactoring</h2>
+<h3 id="jdt-dependency-reduction">JDT Dependency Reduction</h3>
+<p>Xtext languages can be deployed in environments without JDT UI. In some use cases it was detected that this can still lead to runtime errors due to  (<code>NoClassDefFoundError</code>). Dependencies in the following bundles have been resolved:</p>
+<ul>
+<li><code>org.eclipse.xtext.builder</code> (<a href="https://github.com/eclipse/xtext-eclipse/issues/386">issue#386</a>)</li>
+<li><code>org.eclipse.xtext.xbase.ui</code> (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=509630">bug#509630</a>)</li>
+</ul>
+<p>We reduced usage of internal API which is subject for removal in JDT. Since older Xtext versions rely on this API, the API is kept by the JDT team for backwards compatibility of Xtext. (<a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=525462">bug#525462</a>)</p>
+<h3 id="improved-support-for-indentation-based-languages">Improved Support for Indentation Based Languages</h3>
+<p>Token placement for INDENT / DEDENT tokens have been improved. This improves content assist for indentation based languages. (<a href="https://github.com/eclipse/xtext-core/pull/366">issue#366</a>)</p>
+<h3 id="new-generator-infrastructure">New Generator Infrastructure</h3>
+<p>Xtext 2.9 introduced a new generator infrastructure. While new projects created with Xtext and the main languages in Xtext already used this generator, there were still some languages, especially test languages, that still used the deprecated old infrastructure. All languages are now migrated to the new generator.</p>
+<h2 id="an-eye-on-quality">An Eye on Quality</h2>
+<p>With every release we are working hard on fixing as many bugs as possible. Besides our Bugtrackers Eclipse Bugzilla and GitHub Issues the <a href="https://www.codetrails.com/error-analytics/">Automatic Error Reporting System</a> at Eclipse (AERI) is an incredible valuable source of information for us. It uncovers real problems by real users, and has made error reporting to Eclipse a no-brainer.</p>
+<p>As Xtext is a complex framework with an incredible flexibility, much can go wrong. Often these errors indicate ways of usage which we could not predict, or they show problems in custom DSLs. Sometimes they uncover also errors in code that we use. We are actively visiting the reports we get into EARI, with a focus on frequently occuring events and new ones.</p>
+<p>The Xtext team is proud that this continuous effort finally pays off. For the first time ever, we had several weeks with no new problem report. And fighting against the existing issues no a clear burn-down curve (see the Incidents Timeline). From all problems reported to AERI, we have just ~12% open, and the most frequent and urgent ones are solved.</p>
+<p><img src="%7B%7Bsite.baseurl%7D%7D/images/releasenotes/2_13_aeri_problem_status.png" alt="">
+<img src="%7B%7Bsite.baseurl%7D%7D/images/releasenotes/2_13_aeri_problem_resolution.png" alt="">
+<img src="%7B%7Bsite.baseurl%7D%7D/images/releasenotes/2_13_aeri_incidents_timeline.png" alt=""></p>
+<h2 id="improved-developer-contribution-support">Improved Developer Contribution Support</h2>
+<p>Setting up a developer workspace has never been so easy! We have reviewed and updated our Oomph Setup which allows you to create an Eclipse development environment for Xtext with a few clicks. Just get the <a href="https://www.eclipse.org/downloads/">Eclipse Installer</a>, go to Advanced Mode and select the Xtext subprojects you are working with. Let the Installer do the rest of the work while getting a fresh coffee.</p>
+<h3 id="execution-environment">Execution Environment</h3>
+<p>Minimal requirements are:</p>
+<ul>
+<li>Java 8</li>
+<li>Eclipse Luna</li>
+<li>EMF 2.10</li>
+<li>Guice 3.0</li>
+</ul>
+<p>Xtext has been tested also on Eclipse Oxygen.1a and Eclipse Photon M2.</p>
+<h2 id="some-words-on-java-9">Some words on Java 9</h2>
+<p>Java 9 Support in Eclipse Oxygen 1a and Xtext 2.13 is not yet in a perfect state. To be able to run mwe workflows you need either to remove <code>org.objectweb.asm</code> from the mwe classpath (adapting manifest or build.properties) or install ASM 6.0 from the latest Eclipse Orbit repositories. The Compilation of Xtext projects with Java 9 is terrible slow due to a know <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=526209">bug</a> in JDT. So using Xtext 2.13 and Java 9 in production should be considered thrice and is not recommended. Setting the compiler level to 1.8 mitigates the performance issue slightly.</p>
+<h2 id="fixed-issues">Fixed Issues</h2>
+<p>As in every release we are eagerly hunting down the bugs, review and integrate lots of contributions. 88 issues, 62 Pull Requests and 60 Bugzilla tickets have made it into this release. For further details please refer to the following lists:</p>
+<ul>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Aissue+milestone%3ARelease_2.13+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Fixed GitHub issues</a></p>
+</li>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Apr+milestone%3ARelease_2.13+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Closed Pull Requests</a></p>
+</li>
+<li>
+<p><a href="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&amp;classification=Modeling&amp;classification=Tools&amp;columnlist=product%2Ccomponent%2Cassigned_to%2Cbug_status%2Cresolution%2Cshort_desc%2Cchangeddate%2Ckeywords&amp;f0=OP&amp;f1=OP&amp;f3=CP&amp;f4=CP&amp;known_name=Xtext%202.13&amp;list_id=16618269&amp;product=TMF&amp;product=Xtend&amp;query_based_on=Xtext%202.13&amp;query_format=advanced&amp;status_whiteboard=v2.13&amp;status_whiteboard_type=allwordssubstr">Fixed Eclipse Bugzilla tickets</a></p>
+</li>
+</ul>
+
+
+</body>
+</html>

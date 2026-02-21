@@ -1,0 +1,51 @@
+baseURL = 'https://eclipse.dev/Xtext/xtend/'
+title = 'Xtend - Modernized Java'
+languageCode = 'en-us'
+uglyURLs = true
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.tableOfContents]
+    endLevel = 4
+    startLevel = 1
+
+[params]
+  description = "Xtend is a flexible and expressive dialect of Java, which compiles into readable Java 5 compatible source code."
+  [params.src]
+    xtext = "https://github.com/eclipse-xtext/xtext/tree/main"
+  [params.javadoc]
+    java = "https://docs.oracle.com/javase/11/docs/api"
+    guava = "https://guava.dev/releases/30.1-jre/api/docs/"
+  editRepo = "https://github.com/eclipse/xtext-website/tree/main/xtend-website/"
+
+[outputs]
+  home = ['html']
+  section = ['html']
+  page = ['html']
+
+[[menu.main]]
+  name = "Download"
+  url = "/download.html"
+  weight = 1
+
+[[menu.main]]
+  name = "Documentation"
+  url = "/documentation/index.html"
+  weight = 2
+
+[[menu.main]]
+  name = "Community"
+  url = "/community.html"
+  weight = 3
+
+[[menu.main]]
+  name = "Xtext"
+  url = "https://eclipse.dev/Xtext"
+  weight = 4
+
+[[menu.main]]
+  name = "Eclipse.org"
+  url = "https://www.eclipse.org"
+  weight = 5

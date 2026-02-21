@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head><script src="/Xtext/xtend/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=Xtext/xtend/livereload" data-no-instant defer></script>
+	<meta charset="UTF-8">
+	<title>Xtend - Xtend 2.15.0 Release Notes</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Xtend is a statically typed programming language sitting on top of Java.">
+	<meta name="author" content="Sven Efftinge">
+	<meta name="author" content="Miro Spoenemann">
+	
+	<link rel="shortcut icon" href="http://localhost:1313/Xtext/xtend/images/favicon.png">
+	
+	<link href="http://localhost:1313/Xtext/xtend/css/bootstrap.css" rel="stylesheet" type='text/css'>
+	<link href="http://localhost:1313/Xtext/xtend/css/bootstrap-responsive.css" rel="stylesheet" type='text/css'>
+	<link href="http://localhost:1313/Xtext/xtend/css/shield-responsive.css" rel="stylesheet" type='text/css'>
+	<link href='http://localhost:1313/Xtext/xtend/css/fonts.css' rel='stylesheet' type='text/css'>
+	<link href="http://localhost:1313/Xtext/xtend/css/prettyPhoto.css" rel="stylesheet" media="screen" type='text/css'>
+	<link href="http://localhost:1313/Xtext/xtend/css/prettify.css" type="text/css" rel="stylesheet"/>
+	<link href="http://localhost:1313/Xtext/xtend/css/style.css" rel="stylesheet" type='text/css'>
+</head>
+
+  <body>
+    <div class="navbar navbar-fixed-top" style="border-bottom: 1px solid #000;">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="http://localhost:1313/Xtext/xtend/index.html"></a>
+      <div class="nav-collapse collapse" style="height: 0px;">
+        <ul class="nav">
+          
+          <li><a href="/Xtext/xtend/download.html">Download</a></li>
+          
+          <li><a href="/Xtext/xtend/documentation/index.html">Documentation</a></li>
+          
+          <li><a href="/Xtext/xtend/community.html">Community</a></li>
+          
+          <li><a href="https://eclipse.dev/Xtext">Xtext</a></li>
+          
+          <li><a href="https://www.eclipse.org">Eclipse.org</a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+<p>This release focuses on stability, performance and the integration in Eclipse 2018-09.</p>
+<h2 id="minimal-required-target-platform">Minimal Required Target Platform</h2>
+<p>Xtext and Xtend 2.15 are built and tested against Eclipse Oxygen.3a and newer. Thus we recommend to use at least Eclipse Oxygen.3a or even better Eclipse 2018-09. For older versions of the Eclipse Platform we cannot guarantee backwards compatibility even though we carefully assess any changes that are made.</p>
+<h2 id="smarter-organize-imports">Smarter Organize Imports</h2>
+<p>In the past there were a couple of corner cases where organize imports did not yield the optimal result. It could even lead to broken code under certain conditions. We fixed these scenarios and organize imports now works nicely, even when multicatch or static extensions are involved.</p>
+<h2 id="improved-performance-of-the-gradle-build">Improved Performance of the Gradle Build</h2>
+<p>The Gradle build performance was greatly improved. Tasks that consumed lots of memory and even more CPU cycles could be fixed such that it&rsquo;s now way faster to build Xtend with Gradle.</p>
+<p>2.14:</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_15_xtext_core.png" alt="">{:height=&ldquo;50%&rdquo; width=&ldquo;50%&rdquo;}</p>
+<p>2.15:</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_15_xtext_core_fast.png" alt="">{:height=&ldquo;50%&rdquo; width=&ldquo;50%&rdquo;}</p>
+<h2 id="fixed-quickfixes">Fixed QuickFixes</h2>
+<p>In some cases, quick fixes broke existing code, this no longer happens.</p>
+<h2 id="improved-junit-support">Improved JUnit Support</h2>
+<p>Test methods must return void to be valid test cases. This is now statically checked by the Xtend validation.</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_15_junit_quickfix.png" alt="">{:height=&ldquo;50%&rdquo; width=&ldquo;50%&rdquo;}</p>
+<h2 id="new-api-iterableextensionsrejectclass">New API IterableExtensions.reject(Class)</h2>
+<p>An overloaded variant of <code>reject()</code> was added for convience, this allows type based rejection of elements from an iterable.</p>
+<h2 id="fixed-issues">Fixed Issues</h2>
+<p>As in every release cycle we were eagerly hunting down bugs, and reviewed and integrated plenty of contributions. More than a 100 issues and almost 300 pull requests have made it into this release. For further details please refer to the following lists:</p>
+<ul>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Aissue+milestone%3ARelease_2.15+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Fixed GitHub issues</a></p>
+</li>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Apr+milestone%3ARelease_2.15+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Closed Pull Requests</a></p>
+</li>
+<li>
+<p><a href="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&amp;classification=Modeling&amp;classification=Tools&amp;columnlist=product%2Ccomponent%2Cassigned_to%2Cbug_status%2Cresolution%2Cshort_desc%2Cchangeddate%2Ckeywords&amp;f0=OP&amp;f1=OP&amp;f3=CP&amp;f4=CP&amp;known_name=Xtext%202.15&amp;list_id=16618269&amp;product=TMF&amp;product=Xtend&amp;query_based_on=Xtext%202.15&amp;query_format=advanced&amp;status_whiteboard=v2.15&amp;status_whiteboard_type=allwordssubstr">Fixed Eclipse Bugzilla tickets</a></p>
+</li>
+</ul>
+
+
+    <footer class="site-footer">
+  <div id="extra">
+    <div class="container inner-footer">
+      <div class="row">
+        <div class="span6">
+          <h3 class="footer-links-header">Quick Links</h3>
+          <ul class="footer-links clearfix">
+            <li><a href="https://www.eclipse.org/legal/privacy.php">Privacy Policy</a></li>
+            <li><a href="https://www.eclipse.org/legal/termsofuse.php">Terms of Use</a></li>
+            <li><a href="https://www.eclipse.org/legal/copyright.php">Copyright Agent</a></li>
+            <li><a href="https://www.eclipse.org/legal/">Legal</a></li>
+          </ul>
+          <ul class="footer-links clearfix">
+            <li><a href="https://www.eclipse.org">Eclipse Home</a></li>
+            <li><a href="https://marketplace.eclipse.org/">Market Place</a></li>
+            <li><a href="https://www.planeteclipse.org/">Eclipse Planet</a></li>
+            <li><a href="https://www.eclipse.org/forums/index.php/f/27/">Xtext Forum</a></li>
+          </ul>
+        </div>
+        <div class="span6">
+          <h3 class="footer-links-header">Social Media</h3>
+          <ul class="footer-links clearfix">
+            <li>
+              <a href="https://twitter.com/xtendlang"><img src="http://localhost:1313/Xtext/xtend/images/Twitter-bird-darkgray.png" class="img-responsive" style="margin-right: 5px;height: 1em;" alt="Twitter icon">@xtendlang on Twitter</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="#" class="scrollup fadeOutRight animated" style="display: none;">ScrollUp</a>
+  <a href="https://dryicons.com/">Icons by https://dryicons.com</a>
+  
+  <script src="http://localhost:1313/Xtext/xtend/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/prettify.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/lang-xtend.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/jquery.prettyPhoto.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/jquery.easing.1.3.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/custom.js" type="text/javascript"></script>
+</footer>
+
+  </body>
+</html>

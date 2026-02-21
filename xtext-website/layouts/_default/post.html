@@ -1,0 +1,19 @@
+{{ define "main" }}
+<div class="page-content">
+  <div class="wrapper">
+    <div id="page">  
+    	<div class="inner">
+    		<br/><br/>
+    		<div id="maincontainer" class="container">
+    			<div class="span8 offset1">
+    				<h1>{{ .Title }}</h1>
+    				<h4>{{ .Date.Format "Jan 2, 2006" }}</h4>
+    				<br/>
+    				{{ .Content }}
+    			</div>
+    		</div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}

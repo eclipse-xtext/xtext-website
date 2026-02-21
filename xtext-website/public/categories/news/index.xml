@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>News on Xtext - Language Engineering Framework</title>
+    <link>https://eclipse.dev/Xtext/categories/news.html</link>
+    <description>Recent content in News on Xtext - Language Engineering Framework</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 11 Nov 2015 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://eclipse.dev/Xtext/categories/news/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Xtext 2.9 Release Candidate</title>
+      <link>https://eclipse.dev/Xtext/news/xtext-2.html</link>
+      <pubDate>Wed, 11 Nov 2015 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/news/xtext-2.html</guid>
+      <description>&lt;p&gt;A release candidate of the upcoming version of Xtext can now be tried and tested.&#xA;The Eclipse plugins are available through the milestone update site:&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://download.eclipse.org/modeling/tmf/xtext/updates/composite/milestones/&#34;&gt;https://download.eclipse.org/modeling/tmf/xtext/updates/composite/milestones/&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;The IntelliJ IDEA Plugins are available through this repository URL:&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://download.eclipse.org/modeling/tmf/xtext/idea/2.9.0.rc1/updatePlugins.xml&#34;&gt;https://download.eclipse.org/modeling/tmf/xtext/idea/2.9.0.rc1/updatePlugins.xml&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;You need to add that URL as a repository in IDEA and choose all three plugins (org.eclipse.xtext, org.eclipse.xtext.xtext and org.eclipse.xtend),&#xA;because IDEA doesn&amp;rsquo;t pull-in dependencies automatically.&lt;/p&gt;&#xA;&lt;h3 id=&#34;when-is-the-release&#34;&gt;When Is The Release?&lt;/h3&gt;&#xA;&lt;p&gt;If everything goes smoothly and noone reveals major issues in this release candidate (please try hard!),&#xA;we hope to get out the release on &lt;em&gt;December 1st&lt;/em&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext in IntelliJ IDEA - Preview</title>
+      <link>https://eclipse.dev/Xtext/news/xtext-2.html</link>
+      <pubDate>Fri, 02 Oct 2015 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/news/xtext-2.html</guid>
+      <description>&lt;p&gt;Today we&amp;rsquo;ve released a preview version for the upcoming IntelliJ IDEA support of Xtext.&#xA;With this it is now possible to &lt;em&gt;develop Xtext languages entirely in IDEA&lt;/em&gt; and due to the cool Gradle support in any other environment, too.&lt;/p&gt;&#xA;&lt;p&gt;The preview plugins for IntelliJ IDEA can be installed from the following repository location:&lt;/p&gt;&#xA;&lt;p&gt;&lt;a href=&#34;https://download.eclipse.org/modeling/tmf/xtext/idea/2.9.0.beta5/updatePlugins.xml&#34;&gt;https://download.eclipse.org/modeling/tmf/xtext/idea/2.9.0.beta5/updatePlugins.xml&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;You need to install all three plugins from this repository into the latest &lt;a href=&#34;https://www.jetbrains.com/idea/nextversion/&#34;&gt;IDEA 15 Preview&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;There is a &lt;a href=&#34;https://player.vimeo.com/video/141201249&#34;&gt;screencast on vimeo&lt;/a&gt; that shows what Xtext in IntellijJ IDEA looks like.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.9 Beta</title>
+      <link>https://eclipse.dev/Xtext/news/xtext-2.html</link>
+      <pubDate>Fri, 22 May 2015 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/news/xtext-2.html</guid>
+      <description>&lt;p&gt;(for download instructions, &lt;a href=&#34;#download-links&#34;&gt;see below&lt;/a&gt;)&lt;/p&gt;&#xA;&lt;p&gt;The main theme of our ongoing work in Xtext &amp;amp; Xtend 2.9 is to reach out to other tools and platforms. After seven years of development, Xtext has become the de facto standard for implementing programming languages and external domain specific languages and IDE support for Eclipse. A couple of months ago, we announced that we have now started to extract the IDE-related infrastructure from Eclipse, such that it can be used in other scenarios as well.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>XtextCON 2015 - Final Program Online</title>
+      <link>https://eclipse.dev/Xtext/news/xtextcon.html</link>
+      <pubDate>Tue, 31 Mar 2015 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/news/xtextcon.html</guid>
+      <description>&lt;p&gt;We are happy to announce the final program for XtextCON 2015. The conference now features 34 sessions with 27 speakers from different countries. Here is an excerpt of lately added sessions:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;em&gt;Oomph, Eclipse the Way You Want It&lt;/em&gt; (Ed Merks, Eike Stepper),&lt;/li&gt;&#xA;&lt;li&gt;&lt;em&gt;Xtext editors in JavaFX applications&lt;/em&gt; (Tom Schindl),&lt;/li&gt;&#xA;&lt;li&gt;&lt;em&gt;The Future of Xtext&lt;/em&gt; (Sven Efftinge, Sebastian Zarnekow)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;The conference also covers graphical diagramming topics, such as:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;em&gt;Enhancing Graphical Editors with Xtext&lt;/em&gt; (Miro Spönemann),&lt;/li&gt;&#xA;&lt;li&gt;&lt;em&gt;Lightweight Diagrams for Your DSLs&lt;/em&gt; (Christian Schneider),&lt;/li&gt;&#xA;&lt;li&gt;&lt;em&gt;Graphical Views with FXDiagram&lt;/em&gt; (Dr. Jan Köhnlein)&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;In addition to those technical sessions, there will be case studies from different industries, e.g.:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.8.0 Released</title>
+      <link>https://eclipse.dev/Xtext/news/xtext-2-8-0.html</link>
+      <pubDate>Wed, 11 Mar 2015 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/news/xtext-2-8-0.html</guid>
+      <description>&lt;p&gt;The team is proud to release Xtext &amp;amp; Xtend 2.8.0. The new release comes with over 260 bugfixes and enhancements, the runtime performance as well as the tool performance has been improved significantly. Version 2.8.0 is the best Xtext &amp;amp; Xtend ever! :-)&lt;/p&gt;&#xA;&lt;p&gt;For more details please have a look at the [release notes]({{ site.baseurl }}/releasenotes.html#/releasenotes/2015/03/11/version-2-8-0).&lt;/p&gt;&#xA;&lt;h3 id=&#34;intellij-support&#34;&gt;IntelliJ Support&lt;/h3&gt;&#xA;&lt;p&gt;In parallel to the 2.8.0 release we have been very busy with working on support for IntelliJ IDEA, which comes along nicely. We will announce a public BETA in a couple of weeks. Please stay tuned for this.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.7.0 Available</title>
+      <link>https://eclipse.dev/Xtext/news/xtext-2-7-0-available.html</link>
+      <pubDate>Wed, 03 Sep 2014 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/news/xtext-2-7-0-available.html</guid>
+      <description>&lt;p&gt;We proudly announce Xtext 2.7.0. The new version includes many improvements, new features and bugfixes. Also the crucial parts of the Xbase APIs have left the incubator status and are no longer considered provisional. More information about the changes in 2.7.0 can be found in the [release notes]({{ site.baseurl }}/releasenotes.html#/releasenotes/2014/09/02/version-2-7-0).&lt;/p&gt;&#xA;&lt;p&gt;Special thanks go to all those who contributed to this release: Anton Kosyakov, Dennis Huebner, Holger Schill, Jan Koehnlein, Jan Rosczak, Jörg Reichert, Knut Wannheden, Michael Vorburger, Moritz Eysholdt, Ralf Kretzschmar-Auer, Sebastian Zarnekow, Stefan Oehme, Stéphane Galland, Sven Efftinge, Thomas Fritsch, and Vladimir Piskarev.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.6.0 Available</title>
+      <link>https://eclipse.dev/Xtext/news/xtext-2-6-0-available.html</link>
+      <pubDate>Thu, 22 May 2014 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/news/xtext-2-6-0-available.html</guid>
+      <description>&lt;p&gt;We are happy to announce the 2.6.0 release of Xtext. It includes many bugfixes, improvements and new features. Have a look at the [release notes]({{ site.baseurl }}/releasenotes.html#/releasenotes/2014/05/21/version-2-6-0) for more details.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

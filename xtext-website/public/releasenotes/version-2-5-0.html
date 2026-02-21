@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="UTF-8">
+	<title>Xtext - Xtext 2.5.0 Release Notes</title>
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description"
+		content="The website of Eclipse Xtext, an open-source framework for development of programming languages and domain-specific languages">
+	<meta name="author" content="Sven Efftinge">
+	<meta name="author" content="Miro Spoenemann">
+	
+	
+	
+	
+	
+	<link rel="shortcut icon" href="https://eclipse.dev/Xtext/images/favicon.png">
+	
+	<link href="https://eclipse.dev/Xtext/css/bootstrap.css" rel="stylesheet" type='text/css'>
+	<link href="https://eclipse.dev/Xtext/css/bootstrap-responsive.css" rel="stylesheet" type='text/css'>
+	<link href="https://eclipse.dev/Xtext/css/shield-responsive.css" rel="stylesheet" type='text/css'>
+	<link href='https://eclipse.dev/Xtext/css/fonts.css' rel='stylesheet' type='text/css'>
+	<link href="https://eclipse.dev/Xtext/css/prettyPhoto.css" rel="stylesheet" media="screen" type='text/css'>
+	<link href="https://eclipse.dev/Xtext/css/prettify.css" type="text/css" rel="stylesheet"/>
+	<link href="https://eclipse.dev/Xtext/css/style.css" rel="stylesheet" type='text/css'>
+	
+	<link href="https://eclipse.dev/Xtext/css/coverflow.css" rel="stylesheet" type='text/css'>
+	
+
+	
+</head>
+
+  <body>
+    <header class="site-header">
+
+  
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse"
+          data-target=".nav-collapse"> <span class="icon-bar"></span> <span
+          class="icon-bar"></span> <span class="icon-bar"></span>
+        </a> <a class="brand" href="https://eclipse.dev/Xtext/index.html"></a>
+        <div class="nav-collapse collapse" style="height: 0px;">
+          <ul class="nav">
+            
+            <li ><a href="https://eclipse.dev/Xtext/download.html">Download</a></li>
+            <li ><a href="https://eclipse.dev/Xtext/documentation/index.html">Documentation</a></li>
+            <li ><a href="https://eclipse.dev/Xtext/community.html">Community</a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" href="#">Support &amp; Trainings<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="https://info.itemis.com/professional-xtext-support" target="_blank">itemis</a></li>
+                <li><a href="https://www.typefox.io/language-engineering/" target="_blank">TypeFox</a></li>
+              </ul>
+            </li>
+            <li ><a href="https://eclipse.dev/Xtext/xtend">Xtend</a></li>
+          </ul>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+
+</header>
+
+    
+<div class="page-content">
+  <div class="wrapper">
+    <div id="page">  
+    	<div class="inner">
+    		<br/><br/>
+    		<div id="maincontainer" class="container">
+    			<div class="span8 offset1">
+    				<h1>Xtext 2.5.0 Release Notes</h1>
+    				<h4>Dec 11, 2013</h4>
+    				<br/>
+    				<p>
+  Xtext 2.5.0 includes 
+  <a href="https://bugs.eclipse.org/bugs/buglist.cgi?f1=OP&list_id=7722745&f0=OP&status_whiteboard_type=allwordssubstr&f4=CP&query_format=advanced&j1=OR&f3=CP&status_whiteboard=v2.5&bug_status=RESOLVED&bug_status=VERIFIED&bug_status=CLOSED">more than 100 bug fixes and enhancements</a>.
+  Some of the more important enhancements are :
+</p>
+<section id="annotations_2_5" style="padding-top: 68px; margin-top: -68px;">
+  <h2>Better Maven Support</h2>
+  <p>
+    Xtext 2.5.0 comes with much improved support for integrating Xtext languages and the corresponding code generators in 
+  continuous integration builds. All the needed jars are available on Maven central now and we have added a dedicated Maven compiler plug-in that 
+  simulates the incremental build in a headless Java Maven build (no Tycho needed!). Please read the <a href="{{site.baseurl}}/documentation/302_configuration.html#continuous-integration">new section in the documentation</a> for more 
+  details on the new Maven support.
+  </p>
+	<pre class="prettyprint xml linenums">
+&lt;plugin&gt;
+  &lt;groupId&gt;org.eclipse.xtext&lt;/groupId&gt;
+  &lt;artifactId&gt;xtext-maven-plugin&lt;/artifactId&gt;
+  &lt;version&gt;2.5.0&lt;/version&gt;
+  &lt;executions&gt;
+    &lt;execution&gt;
+      &lt;goals&gt;
+        &lt;goal&gt;generate&lt;/goal&gt;
+      &lt;/goals&gt;
+    &lt;/execution&gt;
+  &lt;/executions&gt;
+  &lt;configuration&gt;
+    &lt;languages&gt;
+      &lt;language&gt;
+        &lt;setup&gt;my.mavenized.HeroLanguageStandaloneSetup&lt;/setup&gt;
+        &lt;outputConfigurations&gt;
+          &lt;outputConfiguration&gt;
+            &lt;outputDirectory&gt;src/main/generated-sources/xtend/&lt;/outputDirectory&gt;
+          &lt;/outputConfiguration&gt;
+        &lt;/outputConfigurations&gt;
+      &lt;/language&gt;
+    &lt;/languages&gt;
+  &lt;/configuration&gt;
+  &lt;dependencies&gt;
+    &lt;dependency&gt;
+      &lt;groupId&gt;my.mavenized.herolanguage&lt;/groupId&gt;
+      &lt;artifactId&gt;my.mavenized.herolanguage&lt;/artifactId&gt;
+      &lt;version&gt;1.0.0-SNAPSHOT&lt;/version&gt;
+    &lt;/dependency&gt;
+  &lt;/dependencies&gt;
+&lt;/plugin&gt;	
+	</pre>
+	        </section>
+	        <section id="compilerchecks" style="padding-top: 68px; margin-top: -68px;">
+	          <h2>Enhancements for Xbase</h2>
+	          <p>
+	            The Xbase language and compiler has been improved in many ways.
+	          </p>
+	          <h3>Full support for Annotations</h3>
+	          <p>
+	            Xbase now supports all annotation values and constant expressions in annotations.
+	          </p>
+	<pre class="prettyprint lang-xtend linenums">
+class MyEntity {
+  @Columns(#[@Column('id'), @Column(value = 'timestamp', length = 2 * 3 * 7)])
+  CompositeKey key
+}
+	</pre>
+	          <h3 id="ambiguous_methods">Method overload validation</h3>
+	          <p>
+	            Ambiguous method invocations are checked and reported with a detailled message.
+	            The compiler optionally detects valid but suspiciously overloaded methods
+	            that could be implemented by accident. This is especially handy when property access and 
+	            extension methods come into play.
+	          </p>
+	          <p>
+	            Here's an example how it is used within Xtend.
+	          </p>
+	<pre class="prettyprint lang-xtend linenums">
+class A {
+  def isCheck() {..}
+}
+class B extends A {
+  def m() {
+    /*
+     * Ambiguous feature call.
+     * The methods
+     * 	getCheck() in B and
+     * 	isCheck() in A
+     * both match.
+     */ 
+    this.check
+  }
+  def getCheck() {..}
+}
+	</pre>
+			  <em>Important note:</em>
+			  <p>
+			    You have to make sure to use the library in version 2.5 along with the introduced compiler checks.
+			  </p>
+	          <h3 id="discouraged_variable_names">Discouraged variable names</h3>
+	          <p>
+	            Some variable names are used implicitely by Xtend, for example the variable name 'self'.
+	            The compiler optionally reports if these names were picked manually.
+	          </p>
+	          <h3 id="improved_auto_casts">Auto casts</h3>
+	          <p>
+	            Xbase supported auto-casts right from the beginning with its powerful switch expression.
+	            In 2.5, the more familiar syntax with instance-of checks caught up and also applies automatic
+	            casts in if expressions and while loops. 
+	          </p>
+	<pre class="prettyprint lang-xtend linenums">
+if (c instanceof String) {
+  c.substring(42)
+}
+	</pre>
+	          <h3 id="switch_enum">Switch over enums</h3>
+	          <p>
+	            One of the few places where Xbase's syntax could be improved compared to Java, was a switch expression
+	            over enumeration values. Now it's no longer necessary to use a qualified name or static imports for the enum values but
+	            the literals are available automatically for the case guards.
+	          </p>
+	<pre class="prettyprint lang-xtend linenums">
+switch p {
+  case CLASS: 1
+  case RUNTIME: 2
+  case SOURCE: 3
+}
+	</pre> 
+	          <h3>Improved type inference with primitive values</h3>
+	          <p>
+	            The local type inference has been improved when primitive types are involved. Their wrapper
+	            types will be used in fewer cases which prevents unexpected exceptions at runtime.
+	            An optional compiler check can point to places where primitive defaults are used rather than
+	            explicit values.
+	          </p>
+	        </section>
+
+    			</div>
+    		</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <footer class="site-footer">
+  <div id="extra">
+    <div class="inner">
+      <div class="container">
+        <div class="row">
+          <div class="span6">
+            <h3 class="footer-links-header">Quick Links</h3>
+            <ul class="footer-links clearfix">
+              <li><a href="https://www.eclipse.org/legal/privacy.php">Privacy Policy</a></li>
+              <li><a href="https://www.eclipse.org/legal/termsofuse.php">Terms of Use</a></li>
+              <li><a href="https://www.eclipse.org/legal/copyright.php">Copyright Agent</a></li>
+              <li><a href="https://www.eclipse.org/legal/">Legal</a></li>
+            </ul>
+            <ul class="footer-links clearfix">
+              <li><a href="https://www.eclipse.org">Eclipse Home</a></li>
+              <li><a href="https://marketplace.eclipse.org/">Market Place</a></li>
+              <li><a href="https://www.planeteclipse.org/">Eclipse Planet</a></li>
+              <li><a href="https://www.eclipse.org/forums/index.php/f/27/">Xtext Forum</a></li>
+            </ul>
+            <br/><br/>
+            Xtext is a trademark of the Eclipse Foundation, Inc. and is used with permission
+            <br/><br/>
+            <img src="https://eclipse.dev/Xtext/images/eclipse-foundation-white-orange.svg" alt="Eclipse Foundation"/>
+          </div>
+          <div class="span6">
+            
+            <h3 class="footer-links-header">Social Media</h3>
+            <ul class="footer-links clearfix">
+              <li>
+                <a href="https://twitter.com/xtext"><img src="https://eclipse.dev/Xtext/images/Twitter-bird-darkgray.png" class="img-responsive" style="margin-right: 5px;height: 1em;" alt="Twitter icon">@xtext on Twitter</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="#" class="scrollup fadeOutRight animated" style="display: none;">ScrollUp</a>
+  
+  
+  
+  <script src="https://eclipse.dev/Xtext/js/jquery-1.11.3.min.js"></script>
+  <script src="https://eclipse.dev/Xtext/js/bootstrap.min.js"></script>
+  <script src="https://eclipse.dev/Xtext/js/jquery.easing.1.3.js" type="text/javascript"></script>
+  <script src="https://eclipse.dev/Xtext/js/jquery.prettyPhoto.js" type="text/javascript"></script>
+  <script src="https://eclipse.dev/Xtext/js/prettify.js" type="text/javascript"></script>
+  <script src="https://eclipse.dev/Xtext/js/lang-xtend.js" type="text/javascript"></script>
+  <script src="https://eclipse.dev/Xtext/js/lang-common.js" type="text/javascript"></script>
+  <script src="https://eclipse.dev/Xtext/js/custom.js" type="text/javascript"></script>
+  
+  
+  <script src="https://eclipse.dev/Xtext/js/coverflow.min.js" type="text/javascript"></script>
+  <script>
+      $(function() {
+        $('#coverflow').coverflow({
+          active : 1,
+          visibleAside: 2,
+          overlap : 0.5,
+          scale : 0.9,
+          angle : 20,
+          trigger : {
+            "itemfocus" : true,
+            "swipe" : true,
+            "mousewheel" : false
+          }
+        });
+        $('#coverflow :hidden').toggle();
+        $(window).resize(function() {
+          $('#coverflow').coverflow();
+        });
+      });
+
+  </script>
+</footer>
+
+  </body>
+</html>

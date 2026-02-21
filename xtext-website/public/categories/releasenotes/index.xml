@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Releasenotes on Xtext - Language Engineering Framework</title>
+    <link>https://eclipse.dev/Xtext/categories/releasenotes.html</link>
+    <description>Recent content in Releasenotes on Xtext - Language Engineering Framework</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 24 Nov 2025 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://eclipse.dev/Xtext/categories/releasenotes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Xtext 2.41.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-41-0.html</link>
+      <pubDate>Mon, 24 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-41-0.html</guid>
+      <description>&lt;h2 id=&#34;call-to-action-secure-the-future-maintenance-of-xtext&#34;&gt;Call to Action: Secure the future maintenance of Xtext&lt;/h2&gt;&#xA;&lt;p&gt;As you might have recognized, the number of people contributing to Xtext on a regular basis has declined over the past years and so has the number of contributions. At the same time the amount of work for basic maintenance has stayed the same or even increased with the new release cadence of Java and the Eclipse simultaneous release. Briefly: The future maintenance of Xtext is at risk, at least in the current form and as part of the Eclipse Simrel. If you care, please join the discussion in &lt;a href=&#34;https://github.com/eclipse-xtext/xtext/issues/1721&#34;&gt;https://github.com/eclipse-xtext/xtext/issues/1721&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.40.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-40-0.html</link>
+      <pubDate>Mon, 25 Aug 2025 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-40-0.html</guid>
+      <description>&lt;h2 id=&#34;call-to-action-secure-the-future-maintenance-of-xtext&#34;&gt;Call to Action: Secure the future maintenance of Xtext&lt;/h2&gt;&#xA;&lt;p&gt;As you might have recognized, the number of people contributing to Xtext on a regular basis has declined over the past years and so has the number of contributions. At the same time the amount of work for basic maintenance has stayed the same or even increased with the new release cadence of Java and the Eclipse simultaneous release. Briefly: The future maintenance of Xtext is at risk, at least in the current form and as part of the Eclipse Simrel. If you care, please join the discussion in &lt;a href=&#34;https://github.com/eclipse-xtext/xtext/issues/1721&#34;&gt;https://github.com/eclipse-xtext/xtext/issues/1721&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.39.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-39-0.html</link>
+      <pubDate>Tue, 27 May 2025 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-39-0.html</guid>
+      <description>&lt;h2 id=&#34;call-to-action-secure-the-future-maintenance-of-xtext&#34;&gt;Call to Action: Secure the future maintenance of Xtext&lt;/h2&gt;&#xA;&lt;p&gt;As you might have recognized, the number of people contributing to Xtext on a regular basis has declined over the past years and so has the number of contributions. At the same time the amount of work for basic maintenance has stayed the same or even increased with the new release cadence of Java and the Eclipse simultaneous release. Briefly: The future maintenance of Xtext is at risk, at least in the current form and as part of the Eclipse Simrel. If you care, please join the discussion in &lt;a href=&#34;https://github.com/eclipse-xtext/xtext/issues/1721&#34;&gt;https://github.com/eclipse-xtext/xtext/issues/1721&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.38.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-38-0.html</link>
+      <pubDate>Wed, 26 Feb 2025 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-38-0.html</guid>
+      <description>&lt;h2 id=&#34;call-to-action-secure-the-future-maintenance-of-xtext&#34;&gt;Call to Action: Secure the future maintenance of Xtext&lt;/h2&gt;&#xA;&lt;p&gt;As you might have recognized, the number of people contributing to Xtext on a regular basis has declined over the past years and so has the number of contributions. At the same time the amount of work for basic maintenance has stayed the same or even increased with the new release cadence of Java and the Eclipse simultaneous release. Briefly: The future maintenance of Xtext is at risk, at least in the current form and as part of the Eclipse Simrel. If you care, please join the discussion in &lt;a href=&#34;https://github.com/eclipse-xtext/xtext/issues/1721&#34;&gt;https://github.com/eclipse-xtext/xtext/issues/1721&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.37.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-37-0.html</link>
+      <pubDate>Tue, 19 Nov 2024 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-37-0.html</guid>
+      <description>&lt;h2 id=&#34;call-to-action-secure-the-future-maintenance-of-xtext&#34;&gt;Call to Action: Secure the future maintenance of Xtext&lt;/h2&gt;&#xA;&lt;p&gt;As you might have recognized, the number of people contributing to Xtext on a regular basis has declined over the past years and so has the number of contributions. At the same time the amount of work for basic maintenance has stayed the same or even increased with the new release cadence of Java and the Eclipse simultaneous release. Briefly: The future maintenance of Xtext is at risk, at least in the current form and as part of the Eclipse Simrel. If you care, please join the discussion in &lt;a href=&#34;https://github.com/eclipse-xtext/xtext/issues/1721&#34;&gt;https://github.com/eclipse-xtext/xtext/issues/1721&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.36.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-36-0.html</link>
+      <pubDate>Sun, 25 Aug 2024 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-36-0.html</guid>
+      <description>&lt;p&gt;Xtext 2.36.0 &amp;hellip;&lt;/p&gt;&#xA;&lt;h2 id=&#34;call-to-action-secure-the-future-maintenance-of-xtext&#34;&gt;Call to Action: Secure the future maintenance of Xtext&lt;/h2&gt;&#xA;&lt;p&gt;As you might have recognized, the number of people contributing to Xtext on a regular basis has declined over the past years and so has the number of contributions. At the same time the amount of work for basic maintenance has stayed the same or even increased with the new release cadence of Java and the Eclipse simultaneous release. Briefly: The future maintenance of Xtext is at risk, at least in the current form and as part of the Eclipse Simrel. If you care, please join the discussion in &lt;a href=&#34;https://github.com/eclipse-xtext/xtext/issues/1721&#34;&gt;https://github.com/eclipse-xtext/xtext/issues/1721&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.35.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-35-0.html</link>
+      <pubDate>Tue, 28 May 2024 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-35-0.html</guid>
+      <description>&lt;p&gt;Xtext 2.35.0 &amp;hellip;&lt;/p&gt;&#xA;&lt;h2 id=&#34;call-to-action-secure-the-future-maintenance-of-xtext&#34;&gt;Call to Action: Secure the future maintenance of Xtext&lt;/h2&gt;&#xA;&lt;p&gt;As you might have recognized, the number of people contributing to Xtext on a regular basis has declined over the past years and so has the number of contributions. At the same time the amount of work for basic maintenance has stayed the same or even increased with the new release cadence of Java and the Eclipse simultaneous release. Briefly: The future maintenance of Xtext is at risk, at least in the current form and as part of the Eclipse Simrel. If you care, please join the discussion in &lt;a href=&#34;https://github.com/eclipse-xtext/xtext/issues/1721&#34;&gt;https://github.com/eclipse-xtext/xtext/issues/1721&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.34.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-34-0.html</link>
+      <pubDate>Tue, 27 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-34-0.html</guid>
+      <description>&lt;p&gt;Xtext 2.34.0 is a maintenance release.&lt;/p&gt;&#xA;&lt;h2 id=&#34;call-to-action-secure-the-future-maintenance-of-xtext&#34;&gt;Call to Action: Secure the future maintenance of Xtext&lt;/h2&gt;&#xA;&lt;p&gt;As you might have recognized, the number of people contributing to Xtext on a regular basis has declined over the past years and so has the number of contributions. At the same time the amount of work for basic maintenance has stayed the same or even increased with the new release cadence of Java and the Eclipse simultaneous release. Briefly: The future maintenance of Xtext is at risk, at least in the current form and as part of the Eclipse Simrel. If you care, please join the discussion in &lt;a href=&#34;https://github.com/eclipse-xtext/xtext/issues/1721&#34;&gt;https://github.com/eclipse-xtext/xtext/issues/1721&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.33.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-33-0.html</link>
+      <pubDate>Mon, 20 Nov 2023 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-33-0.html</guid>
+      <description>&lt;p&gt;Xtext 2.33.0 is a maintenance release.&lt;/p&gt;&#xA;&lt;h2 id=&#34;call-to-action-secure-the-future-maintenance-of-xtext&#34;&gt;Call to Action: Secure the future maintenance of Xtext&lt;/h2&gt;&#xA;&lt;p&gt;As you might have recognized, the number of people contributing to Xtext on a regular basis has declined over the past years and so has the number of contributions. At the same time the amount of work for basic maintenance has stayed the same or even increased with the new release cadence of Java and the Eclipse simultaneous release. Briefly: The future maintenance of Xtext is at risk, at least in the current form and as part of the Eclipse Simrel. If you care, please join the discussion in &lt;a href=&#34;https://github.com/eclipse-xtext/xtext/issues/1721&#34;&gt;https://github.com/eclipse-xtext/xtext/issues/1721&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.32.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-32-0.html</link>
+      <pubDate>Sun, 27 Aug 2023 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-32-0.html</guid>
+      <description>&lt;p&gt;Xtext 2.32.0 is a maintenance release.&lt;/p&gt;&#xA;&lt;h2 id=&#34;call-to-action-secure-the-future-maintenance-of-xtext&#34;&gt;Call to Action: Secure the future maintenance of Xtext&lt;/h2&gt;&#xA;&lt;p&gt;As you might have recognized, the number of people contributing to Xtext on a regular basis has declined over the past years and so has the number of contributions. At the same time the amount of work for basic maintenance has stayed the same or even increased with the new release cadence of Java and the Eclipse simultaneous release. Briefly: The future maintenance of Xtext is at risk, at least in the current form and as part of the Eclipse Simrel. If you care, please join the discussion in &lt;a href=&#34;https://github.com/eclipse-xtext/xtext/issues/1721&#34;&gt;https://github.com/eclipse-xtext/xtext/issues/1721&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.31.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-31-0.html</link>
+      <pubDate>Mon, 29 May 2023 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-31-0.html</guid>
+      <description>&lt;p&gt;Xtext 2.31.0 is a maintenance release.&lt;/p&gt;&#xA;&lt;h2 id=&#34;call-to-action-secure-the-future-maintenance-of-xtext&#34;&gt;Call to Action: Secure the future maintenance of Xtext&lt;/h2&gt;&#xA;&lt;p&gt;As you might have recognized, the number of people contributing to Xtext on a regular basis has declined over the past years and so has the number of contributions. At the same time the amount of work for basic maintenance has stayed the same or even increased with the new release cadence of Java and the Eclipse simultaneous release. Briefly: The future maintenance of Xtext is at risk, at least in the current form and as part of the Eclipse Simrel. If you care, please join the discussion in &lt;a href=&#34;https://github.com/eclipse-xtext/xtext/issues/1721&#34;&gt;https://github.com/eclipse-xtext/xtext/issues/1721&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.30.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-30-0.html</link>
+      <pubDate>Sun, 26 Feb 2023 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-30-0.html</guid>
+      <description>&lt;p&gt;Xtext 2.30.0 is a maintenance release.&lt;/p&gt;&#xA;&lt;h2 id=&#34;call-to-action-secure-the-future-maintenance-of-xtext&#34;&gt;Call to Action: Secure the future maintenance of Xtext&lt;/h2&gt;&#xA;&lt;p&gt;As you might have recognized, the number of people contributing to Xtext on a regular basis has declined over the past years and so has the number of contributions. At the same time the amount of work for basic maintenance has stayed the same or even increased with the new release cadence of Java and the Eclipse simultaneous release. Briefly: The future maintenance of Xtext is at risk, at least in the current form and as part of the Eclipse Simrel. If you care, please join the discussion in &lt;a href=&#34;https://github.com/eclipse-xtext/xtext/issues/1721&#34;&gt;https://github.com/eclipse-xtext/xtext/issues/1721&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.29.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-29-0.html</link>
+      <pubDate>Mon, 21 Nov 2022 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-29-0.html</guid>
+      <description>&lt;p&gt;Xtext 2.29.0 is a maintenance release.&lt;/p&gt;&#xA;&lt;h2 id=&#34;call-to-action-secure-the-future-maintenance-of-xtext&#34;&gt;Call to Action: Secure the future maintenance of Xtext&lt;/h2&gt;&#xA;&lt;p&gt;As you might have recognized, the number of people contributing to Xtext on a regular basis has declined over the past years and so has the number of contributions. At the same time the amount of work for basic maintenance has stayed the same or even increased with the new release cadence of Java and the Eclipse simultaneous release. Briefly: The future maintenance of Xtext is at risk, at least in the current form and as part of the Eclipse Simrel. If you care, please join the discussion in &lt;a href=&#34;https://github.com/eclipse-xtext/xtext/issues/1721&#34;&gt;https://github.com/eclipse-xtext/xtext/issues/1721&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.28.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-28-0.html</link>
+      <pubDate>Mon, 29 Aug 2022 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-28-0.html</guid>
+      <description>&lt;p&gt;Xtext 2.28.0 is a maintenance release.&lt;/p&gt;&#xA;&lt;h2 id=&#34;call-to-action-secure-the-future-maintenance-of-xtext&#34;&gt;Call to Action: Secure the future maintenance of Xtext&lt;/h2&gt;&#xA;&lt;p&gt;As you might have recognized, the number of people contributing to Xtext on a regular basis has declined over the past years and so has the number of contributions. At the same time the amount of work for basic maintenance has stayed the same or even increased with the new release cadence of Java and the Eclipse simultaneous release. Briefly: The future maintenance of Xtext is at risk, at least in the current form and as part of the Eclipse Simrel. If you care, please join the discussion in &lt;a href=&#34;https://github.com/eclipse-xtext/xtext/issues/1721&#34;&gt;https://github.com/eclipse-xtext/xtext/issues/1721&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.27.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-27-0.html</link>
+      <pubDate>Mon, 30 May 2022 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-27-0.html</guid>
+      <description>&lt;p&gt;Xtext 2.27.0 is a maintenance release.&lt;/p&gt;&#xA;&lt;h2 id=&#34;call-to-action-secure-the-future-maintenance-of-xtext&#34;&gt;Call to Action: Secure the future maintenance of Xtext&lt;/h2&gt;&#xA;&lt;p&gt;As you might have recognized, the number of people contributing to Xtext on a regular basis has declined over the past years and so has the number of contributions. At the same time the amount of work for basic maintenance has stayed the same or even increased with the new release cadence of Java and the Eclipse simultaneous release. Briefly: The future maintenance of Xtext is at risk, at least in the current form and as part of the Eclipse Simrel. If you care, please join the discussion in &lt;a href=&#34;https://github.com/eclipse-xtext/xtext/issues/1721&#34;&gt;https://github.com/eclipse-xtext/xtext/issues/1721&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.26.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-26-0.html</link>
+      <pubDate>Mon, 28 Feb 2022 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-26-0.html</guid>
+      <description>&lt;p&gt;Xtext 2.26.0 is a maintenance release.&lt;/p&gt;&#xA;&lt;h2 id=&#34;call-to-action-secure-the-future-maintenance-of-xtext&#34;&gt;Call to Action: Secure the future maintenance of Xtext&lt;/h2&gt;&#xA;&lt;p&gt;As you might have recognized, the number of people contributing to Xtext on a regular basis has declined over the past years and so has the number of contributions. At the same time the amount of work for basic maintenance has stayed the same or even increased with the new release cadence of Java and the Eclipse simultaneous release. Briefly: The future maintenance of Xtext is at risk, at least in the current form and as part of the Eclipse Simrel. If you care, please join the discussion in &lt;a href=&#34;https://github.com/eclipse-xtext/xtext/issues/1721&#34;&gt;https://github.com/eclipse-xtext/xtext/issues/1721&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.25.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-25-0.html</link>
+      <pubDate>Tue, 02 Mar 2021 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-25-0.html</guid>
+      <description>&lt;p&gt;Xtext 2.25.0 is a maintenance release.&lt;/p&gt;&#xA;&lt;h2 id=&#34;call-to-action-secure-the-future-maintenance-of-xtext&#34;&gt;Call to Action: Secure the future maintenance of Xtext&lt;/h2&gt;&#xA;&lt;p&gt;As you might have recognized, the number of people contributing to Xtext on a regular basis has declined over the past years and so has the number of contributions. At the same time the amount of work for basic maintenance has stayed the same or even increased with the new release cadence of Java and the Eclipse simultaneous release. Briefly: The future maintenance of Xtext is at risk, at least in the current form and as part of the Eclipse Simrel. If you care, please join the discussion in &lt;a href=&#34;https://github.com/eclipse-xtext/xtext/issues/1721&#34;&gt;https://github.com/eclipse-xtext/xtext/issues/1721&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.24.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-24-0.html</link>
+      <pubDate>Tue, 01 Dec 2020 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-24-0.html</guid>
+      <description>&lt;p&gt;Xtext 2.24.0 is a maintenance release.&lt;/p&gt;&#xA;&lt;h2 id=&#34;call-to-action-secure-the-future-maintenance-of-xtext&#34;&gt;Call to Action: Secure the future maintenance of Xtext&lt;/h2&gt;&#xA;&lt;p&gt;As you might have recognized, the number of people contributing to Xtext on a regular basis has declined over the past years and so has the number of contributions. At the same time the amount of work for basic maintenance has stayed the same or even increased with the new release cadence of Java and the Eclipse simultaneous release. Briefly: The future maintenance of Xtext is at risk. If you care, please join the discussion in &lt;a href=&#34;https://github.com/eclipse-xtext/xtext/issues/1721&#34;&gt;https://github.com/eclipse-xtext/xtext/issues/1721&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.23.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-23-0.html</link>
+      <pubDate>Tue, 01 Sep 2020 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-23-0.html</guid>
+      <description>&lt;p&gt;Xtext 2.23.0 is a maintenance release.&lt;/p&gt;&#xA;&lt;h2 id=&#34;call-to-action-secure-the-future-maintenance-of-xtext&#34;&gt;Call to Action: Secure the future maintenance of Xtext&lt;/h2&gt;&#xA;&lt;p&gt;As you might have recognized, the number of people contributing to Xtext on a regular basis has declined over the past years and so has the number of contributions. At the same time the amount of work for basic maintenance has stayed the same or even increased with the new release cadence of Java and the Eclipse simultaneous release. Briefly: The future maintenance of Xtext is at risk. If you care, please join the discussion in &lt;a href=&#34;https://github.com/eclipse-xtext/xtext/issues/1721&#34;&gt;https://github.com/eclipse-xtext/xtext/issues/1721&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.22.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-22-0.html</link>
+      <pubDate>Tue, 02 Jun 2020 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-22-0.html</guid>
+      <description>&lt;p&gt;Xtext 2.22.0 is mainly a maintenance release.&lt;/p&gt;&#xA;&lt;h2 id=&#34;call-to-action-secure-the-future-maintenance-of-xtext&#34;&gt;Call to Action: Secure the future maintenance of Xtext&lt;/h2&gt;&#xA;&lt;p&gt;As you might have recognized, the number of people contributing to Xtext on a regular basis has declined over the past years and so has the number of contributions. At the same time the amount of work for basic maintenance has stayed the same or even increased with the new release cadence of Java and the Eclipse simultaneous release. Briefly: The future maintenance of Xtext is at risk. If you care, please join the discussion in &lt;a href=&#34;https://github.com/eclipse-xtext/xtext/issues/1721&#34;&gt;https://github.com/eclipse-xtext/xtext/issues/1721&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.21.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-21-0.html</link>
+      <pubDate>Tue, 03 Mar 2020 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-21-0.html</guid>
+      <description>&lt;p&gt;Xtext 2.21 is mainly a maintenance release with a focus on internal improvements to enable more people to contribute and only a few new features. The internal usage of Xtend was reduced where it is not beneficial. This improves build performance and lowers the barrier for new contributors. Also all the tests that were failing on Windows only were adapted, such that developing Xtext on Windows machines is now more satisfying.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.20.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-20-0.html</link>
+      <pubDate>Tue, 03 Dec 2019 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-20-0.html</guid>
+      <description>&lt;p&gt;Xtext 2.20.0 is mainly a maintenance release.&lt;/p&gt;&#xA;&lt;h2 id=&#34;eclipse-integration&#34;&gt;Eclipse Integration&lt;/h2&gt;&#xA;&lt;h3 id=&#34;egit-minimal-version&#34;&gt;EGit minimal version&lt;/h3&gt;&#xA;&lt;p&gt;Xtext requires to use EGit 4.1 or newer now. We have removed a workaround that prevented an endless build loop caused by EGit &lt;a href=&#34;https://bugs.eclipse.org/bugs/show_bug.cgi?id=474003&#34;&gt;Bug#474003&lt;/a&gt;. Since we expect that no clients are still using Xtext &amp;gt;= 2.20 together with the ancient EGit version, we felt safe to finally remove this workaround.&lt;/p&gt;&#xA;&lt;h3 id=&#34;new-project-wizard--new-file-wizard-improvements&#34;&gt;New Project Wizard / New File Wizard improvements&lt;/h3&gt;&#xA;&lt;p&gt;The &lt;code&gt;New Project Wizard&lt;/code&gt; / &lt;code&gt;New File Wizard&lt;/code&gt; generator fragments have been extended by the &lt;code&gt;generateToolbarButton&lt;/code&gt; option. Setting this option to &lt;code&gt;true&lt;/code&gt; adds new project wizard / new file wizard buttons to the toolbar. Furthermore, the New Project Wizard templates provide an API to&#xA;register images that can be used in the template descriptions. All these wizard improvements are demonstrated by the Statemachine example shipped by the Xtext framework.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.19.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-19-0.html</link>
+      <pubDate>Tue, 03 Sep 2019 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-19-0.html</guid>
+      <description>&lt;p&gt;Xtext 2.19.0 is mainly a maintenance release.&lt;/p&gt;&#xA;&lt;h2 id=&#34;lsp-integration&#34;&gt;LSP Integration&lt;/h2&gt;&#xA;&lt;p&gt;Xtext 2.19 now uses LSP4J version 0.8.0 / Language Server Protocol version 3.14.0. This allows you to consume Xtext Language Servers through WebSocket.&lt;/p&gt;&#xA;&lt;h2 id=&#34;classgraph&#34;&gt;Classgraph&lt;/h2&gt;&#xA;&lt;p&gt;We use Classgraph to scan the classpath. This allows us to provide Standlone Content Assist proposals (LSP/WEB) not only when the application runs with Java 8 but with Java 11, too.&lt;/p&gt;&#xA;&lt;h2 id=&#34;upgrades&#34;&gt;Upgrades&lt;/h2&gt;&#xA;&lt;p&gt;Xtext now uses Guava 27.1.0. The new version will be picked up automatically if you make use of the Xtext BOM or consume Xtext from its P2 repository.&#xA;The MWE(2) version was updated to 2.11.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.18.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-18-0.html</link>
+      <pubDate>Tue, 04 Jun 2019 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-18-0.html</guid>
+      <description>&lt;p&gt;Xtext 2.18.0 is mainly a maintenance release.&lt;/p&gt;&#xA;&lt;h2 id=&#34;eclipse-integration&#34;&gt;Eclipse Integration&lt;/h2&gt;&#xA;&lt;h3 id=&#34;search-references-result-page-new-context-actions&#34;&gt;Search References Result Page: New Context Actions&lt;/h3&gt;&#xA;&lt;p&gt;The results of the &lt;em&gt;Search References&lt;/em&gt; action can now be copied to the clipboard. Further an action has been added to remove search results from the view. Both actions are available from the context menu and by common keyboard shortcuts.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;%7B%7Bsite.baseurl%7D%7D/images/releasenotes/2_18_SearchReferencesResultActions.png&#34; alt=&#34;Search References Result Page: New Context Actions&#34;&gt;{:height=&amp;ldquo;50%&amp;rdquo; width=&amp;ldquo;50%&amp;rdquo;}&lt;/p&gt;&#xA;&lt;h3 id=&#34;new-quickfix-on-empty-keywords&#34;&gt;New Quickfix on Empty Keywords&lt;/h3&gt;&#xA;&lt;p&gt;Grammar rules with empty keyword statements (&lt;code&gt;&#39;&#39;&lt;/code&gt;) are raising errors already. Two new quickfixes have been added that can be used to resolve these errors:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.17.1 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-17-1.html</link>
+      <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-17-1.html</guid>
+      <description>&lt;p&gt;This is a hotfix release. Here is the list of fixed issues:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;There was a &lt;a href=&#34;https://bugs.eclipse.org/bugs/show_bug.cgi?id=545343&#34;&gt;bug&lt;/a&gt; in the Xtext Builder that leads to non Xtext projects being built by Xtext.&lt;/li&gt;&#xA;&lt;li&gt;The &lt;a href=&#34;https://github.com/eclipse/xtext-core/issues/1059&#34;&gt;LSP4J&lt;/a&gt; version in Xtext 2.17.0 did not match the one in Eclipse 2019-03. Upgraded to LSP4J 0.7.0.&lt;/li&gt;&#xA;&lt;li&gt;The &lt;a href=&#34;https://github.com/eclipse/xtext-xtend/issues/750&#34;&gt;Xtend Batch Compiler&lt;/a&gt; preferred classes found on the classpath over local classes.&lt;/li&gt;&#xA;&lt;/ul&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.17.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-17-0.html</link>
+      <pubDate>Tue, 05 Mar 2019 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-17-0.html</guid>
+      <description>&lt;p&gt;This release focuses on the compatibility with Java 11 &amp;amp; Eclipse 2019-03, stability, performance and technical debt reduction.&lt;/p&gt;&#xA;&lt;h2 id=&#34;bom&#34;&gt;BOM&lt;/h2&gt;&#xA;&lt;p&gt;Xtext 2.17 introduces a new artifact, a &lt;a href=&#34;https://maven.apache.org/guides/introduction/introduction-to-dependency-mechanism.html#Importing_Dependencies&#34;&gt;Maven BOM (&lt;em&gt;bill of materials&lt;/em&gt;)&lt;/a&gt;. Basically it is an artifact with packaging type &lt;code&gt;pom&lt;/code&gt;, which defines dependencies by a &lt;code&gt;&amp;lt;dependencyManagement&amp;gt;&lt;/code&gt; section. A BOM is consumed by client projects also by &lt;code&gt;&amp;lt;dependencyManagement&amp;gt;&lt;/code&gt; and using the BOM artifact with scope &lt;code&gt;import&lt;/code&gt; there.&lt;/p&gt;&#xA;&lt;p&gt;The BOM declares all dependencies that are used by Xtext and has the coordinates&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.16.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-16-0.html</link>
+      <pubDate>Tue, 04 Dec 2018 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-16-0.html</guid>
+      <description>&lt;p&gt;This release focuses on stability, performance and the compatibility with Eclipse 2018-12.&lt;/p&gt;&#xA;&lt;h2 id=&#34;java-11-preparation&#34;&gt;Java 11 preparation&lt;/h2&gt;&#xA;&lt;p&gt;Java 11 has been released in September 2018 and &lt;a href=&#34;https://github.com/eclipse-xtext/xtext/issues/1182&#34;&gt;Xtext is in preparation&lt;/a&gt; for full support. Xtext relies on plenty of different components, each of which need to work with Java 11. So far, not all of these are available themselves. Other parties have released new versions that could not be integrated yet. As a result we had to reschedule Java 11 support for Xtext 2.17. However, some preparational work has already been included into Xtext 2.16:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.15.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-15-0.html</link>
+      <pubDate>Tue, 04 Sep 2018 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-15-0.html</guid>
+      <description>&lt;p&gt;This release focusses on stability, performance and the integration in Eclipse 2018-09.&lt;/p&gt;&#xA;&lt;h2 id=&#34;minimal-required-target-platform&#34;&gt;Minimal Required Target Platform&lt;/h2&gt;&#xA;&lt;p&gt;Xtext and Xtend 2.15 are built and tested against Eclipse Oxygen 3a and newer. Thus we recommend to use at least Eclipse Oxygen 3a or even better Eclipse 2018-09. For older versions of the Eclipse Platform we cannot guarantee backwards compatibility even though we carefully assess any changes that are made.&lt;/p&gt;&#xA;&lt;h2 id=&#34;support-for-designated-test-source-folders&#34;&gt;Support for designated test source folders&lt;/h2&gt;&#xA;&lt;p&gt;Recently Eclipse started to support Java projects with additional source folders that are specifically used for test sources. The project layout thus is more flexible and can be aligned with Maven or Gradle defaults. Test folders are highlighted in the UI and the class path for test sources and non-test sources are separated. This ensures that production code does not reference any test code. The Xtext new project wizard now ensures that new projects mark their source folders appropriately.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.14.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-14-0.html</link>
+      <pubDate>Wed, 23 May 2018 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-14-0.html</guid>
+      <description>&lt;p&gt;While the Xtext project has paid more attention on bug fixing for the past release, Xtext 2.14 is bringing a whole bunch of new features. This version is part of the Eclipse Photon (4.8) simultaneous release. An important focus was to keep up with the fast development pace of important technologies that Xtext is building on. Since its past release, Java 9 and 10 came out. Build technologies like Maven Tycho and Gradle were changed to support that, too. The Language Server Protocol is evolving rapidly. JUnit 5 is adopted by IDEs and build systems. And Xtext is now ready for all of them!&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.13.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-13-0.html</link>
+      <pubDate>Fri, 20 Oct 2017 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-13-0.html</guid>
+      <description>&lt;h2 id=&#34;language-server-support&#34;&gt;Language Server Support&lt;/h2&gt;&#xA;&lt;h3 id=&#34;eclipse-new-project-wizard-language-server-build&#34;&gt;Eclipse New Project Wizard: Language Server Build&lt;/h3&gt;&#xA;&lt;p&gt;The New Project Wizard allows now to build an executable distribution of language server. On the advanced page a new option was added which is enabled when a Build System was selected. The option allows the selection of a distribution type:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;&lt;strong&gt;Regular&lt;/strong&gt;: A batch script is created that is used to start the server. The DSL jars and all of its runtime dependencies are copied to the output folder.&lt;/li&gt;&#xA;&lt;li&gt;&lt;strong&gt;Fat Jar&lt;/strong&gt;: The language server is packaged in a single executable jar.&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Both Gradle and Maven are supported. When activated, the build script of the language&amp;rsquo;s Generic IDE project is extended and the language server is packaged to the project&amp;rsquo;s build&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.12.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-12-0.html</link>
+      <pubDate>Fri, 26 May 2017 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-12-0.html</guid>
+      <description>&lt;p&gt;Xtext 2.12.0 brings several bug fixes and a new API for tracing generated code.&lt;/p&gt;&#xA;&lt;h2 id=&#34;new-tracing-api-for-generators&#34;&gt;New Tracing API for Generators&lt;/h2&gt;&#xA;&lt;p&gt;The new API in the &lt;code&gt;org.eclipse.xtext.generator.trace&lt;/code&gt; package allows to generate text files along with trace files. These trace files can be used by generic UI such as the &amp;ldquo;Open Generated File&amp;rdquo; action as well as domain-specific features such as debugging. It&amp;rsquo;s very easy to add such tracing information to a code generator, e.g. with &lt;a href=&#34;https://www.eclipse.dev/Xtext/xtend/documentation/203_xtend_expressions.html#templates&#34;&gt;Xtend templates&lt;/a&gt;:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.11.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-11-0.html</link>
+      <pubDate>Tue, 24 Jan 2017 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-11-0.html</guid>
+      <description>&lt;p&gt;Version 2.11.0 is the first release of Xtext after its big internal restructuring. The successful core of Xtext is used in many applications and projects around the world, as a result our main focus for 2.11 has been keeping the high quality and stability of the project while setting the course for a more sustainable future.&lt;/p&gt;&#xA;&lt;h2 id=&#34;restructuring-and-build&#34;&gt;Restructuring and Build&lt;/h2&gt;&#xA;&lt;p&gt;Xtext and Xtend used to be one big Git repository containing all sources for Eclipse, IDEA, Web integration etc. As of 2.11, we split that into multiple smaller repository, such that you can choose yourself which ones you need. These are&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.10.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-10-0.html</link>
+      <pubDate>Wed, 25 May 2016 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-10-0.html</guid>
+      <description>&lt;p&gt;This is a bugfix release. &lt;a href=&#34;https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;amp;bug_status=VERIFIED&amp;amp;bug_status=CLOSED&amp;amp;f0=OP&amp;amp;f1=OP&amp;amp;f3=CP&amp;amp;f4=CP&amp;amp;j1=OR&amp;amp;list_id=15981214&amp;amp;query_format=advanced&amp;amp;status_whiteboard=v2.10&amp;amp;status_whiteboard_type=allwordssubstr&#34;&gt;Here&lt;/a&gt; is the list of the fixed bugs.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.9.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-9-0.html</link>
+      <pubDate>Mon, 16 Nov 2015 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-9-0.html</guid>
+      <description>&lt;p&gt;Version 2.9.0 is the first release of Xtext to ship with support for IntelliJ and the Web. Additionally, the &amp;ldquo;New Project Wizard&amp;rdquo; does now offer to create Maven or Gradle build support for your new project. Advanced uses may appreciate two new features in the Xtext grammar language.&lt;/p&gt;&#xA;&lt;p&gt;The release ships with over 240 bugfixes and enhancements. The full bugzilla log can be found &lt;a href=&#34;https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;amp;bug_status=VERIFIED&amp;amp;bug_status=CLOSED&amp;amp;f0=OP&amp;amp;f1=OP&amp;amp;f3=CP&amp;amp;f4=CP&amp;amp;j1=OR&amp;amp;list_id=11172029&amp;amp;query_format=advanced&amp;amp;status_whiteboard=v2.9&amp;amp;status_whiteboard_type=allwordssubstr&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;The following features have been added in particular.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.8.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-8-0.html</link>
+      <pubDate>Wed, 11 Mar 2015 00:00:00 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-8-0.html</guid>
+      <description>&lt;p&gt;Version 2.8.0 comes with over 260 bugfixes and enhancements, the runtime performance as well as the tool performance has been improved significantly. The full bugzilla log can be found &lt;a href=&#34;https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;amp;bug_status=VERIFIED&amp;amp;bug_status=CLOSED&amp;amp;f0=OP&amp;amp;f1=OP&amp;amp;f3=CP&amp;amp;f4=CP&amp;amp;j1=OR&amp;amp;list_id=11172029&amp;amp;query_format=advanced&amp;amp;status_whiteboard=v2.8&amp;amp;status_whiteboard_type=allwordssubstr&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;The following features have been added in particular.&lt;/p&gt;&#xA;&lt;h2 id=&#34;whitespace-aware-languages&#34;&gt;Whitespace-Aware Languages&lt;/h2&gt;&#xA;&lt;p&gt;Xtext 2.8 supports languages in which whitespace is used to specify the structure, e.g. using indentation to delimit code blocks as in &lt;a href=&#34;https://www.python.org&#34;&gt;Python&lt;/a&gt;. This is done through &lt;em&gt;synthetic tokens&lt;/em&gt; defined in the grammar:&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.7.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-7-0.html</link>
+      <pubDate>Tue, 02 Sep 2014 09:30:28 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-7-0.html</guid>
+      <description>&lt;p&gt;&#xA;  Version 2.7 got many new features, bug fixes and performance improvements (&lt;a href=&#34;https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&amp;status_whiteboard=v2.7&#34;&gt;full bugzilla list&lt;/a&gt;). The most noteworthy changes are :&#xA;&lt;/p&gt;&#xA;      &#xA;&lt;section id=&#34;inferrer_api&#34; style=&#34;padding-top: 68px; margin-top: -68px;&#34;&gt;&#xA;  &lt;h2&gt;Published Inferrer API of Xbase&lt;/h2&gt;&#xA;  &lt;p&gt;&#xA;     The JVM model inferrer API, which is the heart of Xbase, has been finalized and is now public. We took the opportunity to simplify it in some places. Have a look at the &lt;a href=&#34;https://github.com/xtext-dev/seven-languages-xtext/tree/xtext_2.7&#34;&gt;updated seven languages example&lt;/a&gt; for idiomatic usage of the API.&#xA;  &lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.6.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-6-0.html</link>
+      <pubDate>Wed, 21 May 2014 09:30:28 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-6-0.html</guid>
+      <description>&lt;p&gt;&#xA;  Version 2.6 got many bug fixes and performance improvements (&lt;a href=&#34;https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&amp;status_whiteboard=v2.6&#34;&gt;full bugzilla list&lt;/a&gt;). The new features are:&#xA;&lt;/p&gt;&#xA;            &#xA;&lt;section id=&#34;todo_tags&#34; style=&#34;padding-top: 68px; margin-top: -68px;&#34;&gt;&#xA;&lt;h2&gt;Task Tags&lt;/h2&gt;&#xA;&lt;p&gt;TODO, FIXME, and XXX markers in comments are now recognized by the IDE as task markers.&#xA;It will be enabled for all Xtext languages, without any further ado (not even a rebuild is required). &#xA;To get an corresponding preference page for configuraing the kind of Task markers, a special generator fragment is available.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Xtext 2.5.0 Release Notes</title>
+      <link>https://eclipse.dev/Xtext/releasenotes/version-2-5-0.html</link>
+      <pubDate>Wed, 11 Dec 2013 09:30:28 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/releasenotes/version-2-5-0.html</guid>
+      <description>&lt;p&gt;&#xA;  Xtext 2.5.0 includes &#xA;  &lt;a href=&#34;https://bugs.eclipse.org/bugs/buglist.cgi?f1=OP&amp;list_id=7722745&amp;f0=OP&amp;status_whiteboard_type=allwordssubstr&amp;f4=CP&amp;query_format=advanced&amp;j1=OR&amp;f3=CP&amp;status_whiteboard=v2.5&amp;bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&#34;&gt;more than 100 bug fixes and enhancements&lt;/a&gt;.&#xA;  Some of the more important enhancements are :&#xA;&lt;/p&gt;&#xA;&lt;section id=&#34;annotations_2_5&#34; style=&#34;padding-top: 68px; margin-top: -68px;&#34;&gt;&#xA;  &lt;h2&gt;Better Maven Support&lt;/h2&gt;&#xA;  &lt;p&gt;&#xA;    Xtext 2.5.0 comes with much improved support for integrating Xtext languages and the corresponding code generators in &#xA;  continuous integration builds. All the needed jars are available on Maven central now and we have added a dedicated Maven compiler plug-in that &#xA;  simulates the incremental build in a headless Java Maven build (no Tycho needed!). Please read the &lt;a href=&#34;{{site.baseurl}}/documentation/302_configuration.html#continuous-integration&#34;&gt;new section in the documentation&lt;/a&gt; for more &#xA;  details on the new Maven support.&#xA;  &lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

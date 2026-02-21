@@ -1,0 +1,65 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+	<title>Xtext 2.36.0 Release Notes</title>
+	<link href="book.css" rel="stylesheet" type="text/css">
+	<link href="code.css" rel="stylesheet" type="text/css">
+	<link rel="home" href="index.html" title="">
+</head>
+<body>
+
+<p>Xtext 2.36.0 &hellip;</p>
+<h2 id="call-to-action-secure-the-future-maintenance-of-xtext">Call to Action: Secure the future maintenance of Xtext</h2>
+<p>As you might have recognized, the number of people contributing to Xtext on a regular basis has declined over the past years and so has the number of contributions. At the same time the amount of work for basic maintenance has stayed the same or even increased with the new release cadence of Java and the Eclipse simultaneous release. Briefly: The future maintenance of Xtext is at risk, at least in the current form and as part of the Eclipse Simrel. If you care, please join the discussion in <a href="https://github.com/eclipse-xtext/xtext/issues/1721">https://github.com/eclipse-xtext/xtext/issues/1721</a>.</p>
+<h2 id="relevant-changes">Relevant changes</h2>
+<ul>
+<li>Xbase based languages &amp; Xtend now require a target &gt;= Java 8.</li>
+</ul>
+<h3 id="ui-testing">UI Testing</h3>
+<p>The <code>AbstractLinkedEditingIntegrationTest.waitForDisplay()</code> method has been deprecated in favor of the inherited <code>AbstractWorkbenchTest.waitForEventProcessing()</code> method. Both methods are doing the same, only the method names are different. For a long term we would like to clean up the duplicated code and completely remove the deprecated method.</p>
+<h2 id="upgrades">Upgrades</h2>
+<ul>
+<li>Guava is now on 33.3</li>
+<li>MWE2 was updated to 2.19.0</li>
+<li>Classgraph is on 4.8.174</li>
+<li>Gradle is on 8.10</li>
+<li>RequireJS on 2.3.7</li>
+<li>Tycho on 4.0.8</li>
+</ul>
+<h2 id="deprecations">Deprecations</h2>
+<h2 id="removals">Removals</h2>
+<p>The long time deprecated <code>org.eclipse.xtext.junit4</code> and <code>org.eclipse.xtext.xbase.junit</code> have been removed.
+The projects <code>org.eclipse.xtext.testing</code>, <code>org.eclipse.xtext.ui.testing</code>, <code>org.eclipse.xtext.xbase.testing</code> and <code>org.eclipse.xtext.xbase.ui.testing</code> already provide replacements for the above deprecated projects.
+Note that the old base class <code>AbstractXtextTests</code> is now part of <code>org.eclipse.xtext.testing</code>.</p>
+<h2 id="credits">Credits</h2>
+<p>The Xtext project is thankful for the dedication of each committer and contributor. This release has been made possible by the following persons (in order of the number of contributed commits to this release).</p>
+<ul>
+<li>Christian Dietrich</li>
+<li>Lorenzo Bettini</li>
+<li>Sebastian Zarnekow</li>
+<li>Hannes Wellmann</li>
+<li>Martin Jobst</li>
+<li>Tamas Miklossy</li>
+<li>Daniel Pressnitz</li>
+<li>Ed Merks</li>
+<li>Frank Benoit</li>
+<li>Mehmet Emin Karaman</li>
+<li>Tommaso Fonda</li>
+</ul>
+<h2 id="fixed-issues">Fixed Issues</h2>
+<p>As in every release cycle we were eagerly hunting down bugs, and reviewed and integrated plenty of contributions. For further details please refer to the following lists:</p>
+<ul>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Aissue+milestone%3ARelease_2.36+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Fixed GitHub issues</a></p>
+</li>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Apr+milestone%3ARelease_2.36+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Closed Pull Requests</a></p>
+</li>
+<li>
+<p><a href="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&amp;classification=Modeling&amp;classification=Tools&amp;columnlist=product%2Ccomponent%2Cassigned_to%2Cbug_status%2Cresolution%2Cshort_desc%2Cchangeddate%2Ckeywords&amp;f0=OP&amp;f1=OP&amp;f3=CP&amp;f4=CP&amp;known_name=Xtext%202.31&amp;list_id=16618269&amp;product=TMF&amp;product=Xtend&amp;query_based_on=Xtext%202.31&amp;query_format=advanced&amp;status_whiteboard=v2.36&amp;status_whiteboard_type=allwordssubstr">Fixed Eclipse Bugzilla tickets</a></p>
+</li>
+</ul>
+
+
+</body>
+</html>

@@ -62,14 +62,14 @@ spec:
         echo 'Building..'
         dir ('git-repo/xtext-website') {
           sh '''
-            # generate things in _site
-            bundle exec jekyll build
+            # generate things in public
+            hugo
           '''
         }
         dir ('git-repo/xtend-website') {
           sh '''
-            # generate things in _site
-            bundle exec jekyll build --destination ../xtext-website/_site/xtend
+            # generate things into xtext-website/public/xtend
+            hugo --destination ../xtext-website/public/xtend
           '''
         }
         }
@@ -81,7 +81,7 @@ spec:
           sh '''
             git config user.name "genie-xtext"
             git config user.email "xtext-bot@eclipse.org"
-            cp -r $WORKSPACE/git-repo/xtext-website/_site/* .
+            cp -r $WORKSPACE/git-repo/xtext-website/public/* .
             git diff
             git add --all :/ && git commit -m "Generated from commit: https://github.com/eclipse-xtext/xtext-website/commit/$GIT_COMMIT"
             git status
@@ -91,7 +91,7 @@ spec:
         //   sh '''
         //     git config user.name "genie-xtext"
         //     git config user.email "xtext-bot@eclipse.org"
-        //     cp -r $WORKSPACE/git-repo/xtend-website/_site/* .
+        //     cp -r $WORKSPACE/git-repo/xtend-website/public/* .
         //     git diff
         //     git add --all :/ && git commit -m "Generated from commit: https://github.com/eclipse/xtext/commit/$GIT_COMMIT"
         //     git status

@@ -1,0 +1,71 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+	<title>Xtext 2.38.0 Release Notes</title>
+	<link href="book.css" rel="stylesheet" type="text/css">
+	<link href="code.css" rel="stylesheet" type="text/css">
+	<link rel="home" href="index.html" title="">
+</head>
+<body>
+
+<h2 id="call-to-action-secure-the-future-maintenance-of-xtext">Call to Action: Secure the future maintenance of Xtext</h2>
+<p>As you might have recognized, the number of people contributing to Xtext on a regular basis has declined over the past years and so has the number of contributions. At the same time the amount of work for basic maintenance has stayed the same or even increased with the new release cadence of Java and the Eclipse simultaneous release. Briefly: The future maintenance of Xtext is at risk, at least in the current form and as part of the Eclipse Simrel. If you care, please join the discussion in <a href="https://github.com/eclipse-xtext/xtext/issues/1721">https://github.com/eclipse-xtext/xtext/issues/1721</a>.</p>
+<h2 id="relevant-changes">Relevant changes</h2>
+<ul>
+<li>
+<p>A new class, <code>TemporaryFolder,</code> has been added to the bundle <code>org.eclipse.xtext.testing</code>, meant to replace the class <code>TemporaryFolder</code>, now deprecated, in <code>org.eclipse.xtext.xbase.testing</code>. Clients should update to the new class: the deprecated one will be removed in the future.</p>
+</li>
+<li>
+<p>Our project wizard for Maven/Tycho projects now generates this dependency for the <code>exec-maven-plugin</code> configuration for running the MWE2 workflow:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-xml" data-lang="xml"><span style="display:flex;"><span><span style="color:#f92672">&lt;dependency&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;groupId&gt;</span>org.eclipse.xtext<span style="color:#f92672">&lt;/groupId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;artifactId&gt;</span>org.eclipse.xtext.xtext.generator.dependencies<span style="color:#f92672">&lt;/artifactId&gt;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&lt;version&gt;</span>${xtextVersion}<span style="color:#f92672">&lt;/version&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/dependency&gt;</span>
+</span></span></code></pre></div><p>to avoid possible problems with EMF/Platform dependencies (e.g., <code>NoSuchMethodError</code>) due to misaligned transitive dependencies.
+This replaces the previously generated dependency <code>xtext-antlr-generator</code>, which is included in the new dependency.
+For existing projects, we suggest to perform such a change manually.
+The <code>org.eclipse.xtext.xtext.generator.dependencies</code> bundle was introduced in the previous release.</p>
+</li>
+<li>
+<p>A new method was introduced, <code>IResourcesSetupUtil.waitForJdtIndex</code>, that blocks until the JDT index finishes its indexing. This is now automatically called from <code>waitForBuild</code>, <code>cleanBuild</code> and <code>fullBuild</code>. This new mechanism removed flaky UI tests from our builds.</p>
+</li>
+</ul>
+<h2 id="breaking-changes">Breaking changes</h2>
+<p>Xtext now requires Java 17 as the minimal Java version and 2024-03 as the minimal target platform.</p>
+<h2 id="upgrades">Upgrades</h2>
+<h2 id="deprecations">Deprecations</h2>
+<ul>
+<li>The method <code>IResourcesSetupUtil.isAutobuild(boolean)</code> has been deprecated and will be removed in a future release; its parameter was never used. The new method <code>IResourcesSetupUtil.isAutobuild()</code> should be used instead.</li>
+<li>The class <code>TargetPlatformUtil</code> and its method <code>setTargetPlatform</code> have been deprecated: with recent versions of Tycho and PDE, they are not needed anymore.</li>
+</ul>
+<h2 id="removals">Removals</h2>
+<h2 id="credits">Credits</h2>
+<p>The Xtext project is thankful for the dedication of each committer and contributor. This release has been made possible by the following persons (in order of the number of contributed commits to this release).</p>
+<ul>
+<li>Lorenzo Bettini</li>
+<li>Christian Dietrich</li>
+<li>Sebastian Zarnekow</li>
+<li>Mehmet Emin Karaman</li>
+<li>Rubén Porras Campo</li>
+<li>Martin Jobst</li>
+<li>Tommaso Fonda</li>
+<li>Ed Merks</li>
+</ul>
+<h2 id="fixed-issues">Fixed Issues</h2>
+<p>As in every release cycle we were eagerly hunting down bugs, and reviewed and integrated plenty of contributions. For further details please refer to the following lists:</p>
+<ul>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Aissue+milestone%3ARelease_2.38+is%3Aclosed+repo%3Aeclipse-xtext%2Fxtext&amp;type=issues&amp;ref=searchresults">Fixed GitHub issues</a></p>
+</li>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Apr+milestone%3ARelease_2.38+is%3Aclosed+repo%3Aeclipse-xtext%2Fxtext&amp;type=pullrequests&amp;ref=searchresults">Closed Pull Requests</a></p>
+</li>
+<li>
+<p><a href="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&amp;classification=Modeling&amp;classification=Tools&amp;columnlist=product%2Ccomponent%2Cassigned_to%2Cbug_status%2Cresolution%2Cshort_desc%2Cchangeddate%2Ckeywords&amp;f0=OP&amp;f1=OP&amp;f3=CP&amp;f4=CP&amp;known_name=Xtext%202.38&amp;list_id=16618269&amp;product=TMF&amp;product=Xtend&amp;query_based_on=Xtext%202.38&amp;query_format=advanced&amp;status_whiteboard=v2.38&amp;status_whiteboard_type=allwordssubstr">Fixed Eclipse Bugzilla tickets</a></p>
+</li>
+</ul>
+
+
+</body>
+</html>

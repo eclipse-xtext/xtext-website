@@ -1,0 +1,39 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+	<title>Xtext 2.9.0 Release Notes</title>
+	<link href="book.css" rel="stylesheet" type="text/css">
+	<link href="code.css" rel="stylesheet" type="text/css">
+	<link rel="home" href="index.html" title="">
+</head>
+<body>
+
+<p>Version 2.9.0 is the first release of Xtext to ship with support for IntelliJ and the Web. Additionally, the &ldquo;New Project Wizard&rdquo; does now offer to create Maven or Gradle build support for your new project. Advanced uses may appreciate two new features in the Xtext grammar language.</p>
+<p>The release ships with over 240 bugfixes and enhancements. The full bugzilla log can be found <a href="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&amp;f0=OP&amp;f1=OP&amp;f3=CP&amp;f4=CP&amp;j1=OR&amp;list_id=11172029&amp;query_format=advanced&amp;status_whiteboard=v2.9&amp;status_whiteboard_type=allwordssubstr">here</a>.</p>
+<p>The following features have been added in particular.</p>
+<h2 id="develop-your-xtext-language-in-intellij-idea">Develop your Xtext Language in IntelliJ IDEA</h2>
+<p>Xtext not only lets you develop an IDEA plug-in for your language but you can also do the language development itself entirely within Jetbrains popular IDE.
+Check out <a href="https://blogs.itemis.com/xtext/get-started-with-xtext-and-intellij-idea-in-5-minutes">this tutorial</a> to learn how this works.</p>
+<h2 id="run-your-xtext-smart-editor-in-the-web">Run your Xtext Smart Editor in the Web</h2>
+<p>With Xtext you can now also have rich text editors for you language in the Web.
+With Version 2.9.0 we already support three different javascript editor frameworks. For more details read the corresponding <a href="https://www.eclipse.dev/Xtext/documentation/310_web_integration.html">section in the documentation</a>.</p>
+<h2 id="new-xtext-project-wizard">New Xtext Project Wizard</h2>
+<p>A new wizard to produce a readily configured Xtext project has been developed. It is used in both IntelliJ and Eclipse and allows the user to</p>
+<ul>
+<li>decide which target editors your want (Eclipse, Web, IntelliJ)</li>
+<li>what build system you prefer (Maven or Gradle)</li>
+<li>tell the project layout. I.e. whether you want Maven-style src/main/java or the standard src/ folder scheme.</li>
+<li>and whether you want testing support</li>
+</ul>
+<h2 id="new-xtext-code-generator">New Xtext Code Generator</h2>
+<p>We have entirely rewritten the code generator that produces the various artifacts from grammars. It is now simpler to configure and at the same time supports the various new options, the new Xtext wizard provides.</p>
+<h2 id="enhanced-gradle-and-maven-support">Enhanced Gradle and Maven Support</h2>
+<p>The Maven and Gradle plugins have been overhauled and improved. Additionally we added full support to run, build and test IntelliJ IDEA plugins from Gradle.</p>
+<h2 id="incremental-standalonebuilder">Incremental Standalonebuilder</h2>
+<p>The Eclipse builder always worked incrementally. We have now written one that is Eclipse-independent and is used from within IntelliJ as well as a Gradle Deamon.</p>
+<h2 id="grammar-language-enhancements">Grammar Language Enhancements</h2>
+<p>New features in the grammar language allow to reduce duplicate grammar information. Fragments are a way to inline similar productions in different rules, while parameters can be used to call turn off parts of a production. More details can be found <a href="https://zarnekow.blogspot.de/2015/10/the-xtext-grammar-learned-new-tricks.html">here</a>.</p>
+
+
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="UTF-8">
+	<title>Xtend - Documentation</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Xtend is a statically typed programming language sitting on top of Java.">
+	<meta name="author" content="Sven Efftinge">
+	<meta name="author" content="Miro Spoenemann">
+	
+	<link rel="shortcut icon" href="https://eclipse.dev/Xtext/xtend/images/favicon.png">
+	
+	<link href="https://eclipse.dev/Xtext/xtend/css/bootstrap.css" rel="stylesheet" type='text/css'>
+	<link href="https://eclipse.dev/Xtext/xtend/css/bootstrap-responsive.css" rel="stylesheet" type='text/css'>
+	<link href="https://eclipse.dev/Xtext/xtend/css/shield-responsive.css" rel="stylesheet" type='text/css'>
+	<link href='https://eclipse.dev/Xtext/xtend/css/fonts.css' rel='stylesheet' type='text/css'>
+	<link href="https://eclipse.dev/Xtext/xtend/css/prettyPhoto.css" rel="stylesheet" media="screen" type='text/css'>
+	<link href="https://eclipse.dev/Xtext/xtend/css/prettify.css" type="text/css" rel="stylesheet"/>
+	<link href="https://eclipse.dev/Xtext/xtend/css/style.css" rel="stylesheet" type='text/css'>
+</head>
+
+  <body>
+    <div class="navbar navbar-fixed-top" style="border-bottom: 1px solid #000;">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="https://eclipse.dev/Xtext/xtend/index.html"></a>
+      <div class="nav-collapse collapse" style="height: 0px;">
+        <ul class="nav">
+          
+          <li><a href="/Xtext/xtend/download.html">Download</a></li>
+          
+          <li><a href="/Xtext/xtend/documentation/index.html">Documentation</a></li>
+          
+          <li><a href="/Xtext/xtend/community.html">Community</a></li>
+          
+          <li><a href="https://eclipse.dev/Xtext">Xtext</a></li>
+          
+          <li><a href="https://www.eclipse.org">Eclipse.org</a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+<div class="page-content">
+  <script>
+    function startSearch(event) {
+        if (event.keyCode == 13) {
+            var q = 'site:eclipse.dev/Xtext/xtend/documentation+' + event.target.value;
+            window.open('https://www.google.com/search?q=' + q, "_self");
+        }
+    }
+  </script>
+  <div class="wrapper">
+    <div id="page">  
+      <div class="inner">
+        <div id="maincontainer" class="container">
+          <span class="edit-on-github pull-right">
+            <a href="content/documentation/documentation/index.md">Edit on Github</a>
+          </span>
+          <div class="span3" style="margin-left: 0px;">
+            <div class="search-bar">
+              <img src="https://eclipse.dev/Xtext/xtend/images/search-gray.png"/>
+              <input type="search" id="google-search" onkeyup="startSearch(event);"/>
+            </div>
+            <ul id="nav-outline">
+	<li>&nbsp;</li>
+	<li style="color : #333;">Getting Started</li>
+	<li><a href="https://eclipse.dev/Xtext/xtend/documentation/101_gettingstarted.html">Hello World</a></li>
+	<li><a href="https://eclipse.dev/Xtext/xtend/documentation/102_moviesexample.html">The Movies Example</a></li>
+	<li>&nbsp;</li>
+	<li style="color : #333;">Reference Documentation</li>
+	<li><a href="https://eclipse.dev/Xtext/xtend/documentation/201_types.html">Java Interoperability</a></li>
+	<li><a href="https://eclipse.dev/Xtext/xtend/documentation/202_xtend_classes_members.html">Classes and Members</a></li>
+	<li><a href="https://eclipse.dev/Xtext/xtend/documentation/203_xtend_expressions.html">Expressions</a></li>
+	<li><a href="https://eclipse.dev/Xtext/xtend/documentation/204_activeannotations.html">Active Annotations</a></li>
+</ul>
+
+          </div>
+          <div class="span9 doc-contents">
+            <h1 id="introduction">Introduction</h1>
+<p>Xtend is a statically-typed programming language which translates to comprehensible Java source code. Syntactically and semantically Xtend has its roots in the Java programming language but improves on many aspects:</p>
+<ul>
+<li><strong><a href="202_xtend_classes_members.html#extension-methods">Extension methods</a></strong> - enhance closed types with new functionality</li>
+<li><strong><a href="203_xtend_expressions.html#lambdas">Lambda Expressions</a></strong> - concise syntax for anonymous function literals</li>
+<li><strong><a href="204_activeannotations.html">ActiveAnnotations</a></strong> - annotation processing on steroids</li>
+<li><strong><a href="203_xtend_expressions.html#operators">Operator overloading</a></strong> - make your libraries even more expressive</li>
+<li><strong><a href="203_xtend_expressions.html#switch-expression">Powerful switch expressions</a></strong> - type based switching with implicit casts</li>
+<li><strong><a href="202_xtend_classes_members.html#polymorphic-dispatch">Multiple dispatch</a></strong> - a.k.a. polymorphic method invocation</li>
+<li><strong><a href="203_xtend_expressions.html#templates">Template expressions</a></strong> - with intelligent white space handling</li>
+<li><strong><a href="203_xtend_expressions.html">No statements</a></strong> - everything is an expression</li>
+<li><strong><a href="203_xtend_expressions.html#property-access">Properties</a></strong> - shorthands for accessing and defining getters and setter</li>
+<li><strong>Type inference</strong> - you rarely need to write down type signatures anymore</li>
+<li><strong>Full support for Java generics</strong> - including all conformance and conversion rules</li>
+<li><strong>Translates to Java</strong> not bytecode - understand what is going on and use your code for platforms such as Android or GWT</li>
+</ul>
+<p>Unlike other JVM languages Xtend has <a href="201_types.html">zero interoperability issues</a> with Java: Everything you write interacts with Java exactly as expected. At the same time Xtend is much more concise, readable and expressive. Xtend&rsquo;s small library is just a thin layer that provides useful utilities and extensions on top of the Java Development Kit (JDK).</p>
+<p>Of course, you can call Xtend methods from Java, too, in a completely transparent way. Furthermore, Xtend provides a modern Eclipse-based IDE closely integrated with the Eclipse Java Development Tools (JDT), including features like call-hierarchies, rename refactoring, debugging and many more.</p>
+<hr>
+<p><strong><a href="101_gettingstarted.html">Next Chapter: Hello World</a></strong></p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <footer class="site-footer">
+  <div id="extra">
+    <div class="container inner-footer">
+      <div class="row">
+        <div class="span6">
+          <h3 class="footer-links-header">Quick Links</h3>
+          <ul class="footer-links clearfix">
+            <li><a href="https://www.eclipse.org/legal/privacy.php">Privacy Policy</a></li>
+            <li><a href="https://www.eclipse.org/legal/termsofuse.php">Terms of Use</a></li>
+            <li><a href="https://www.eclipse.org/legal/copyright.php">Copyright Agent</a></li>
+            <li><a href="https://www.eclipse.org/legal/">Legal</a></li>
+          </ul>
+          <ul class="footer-links clearfix">
+            <li><a href="https://www.eclipse.org">Eclipse Home</a></li>
+            <li><a href="https://marketplace.eclipse.org/">Market Place</a></li>
+            <li><a href="https://www.planeteclipse.org/">Eclipse Planet</a></li>
+            <li><a href="https://www.eclipse.org/forums/index.php/f/27/">Xtext Forum</a></li>
+          </ul>
+        </div>
+        <div class="span6">
+          <h3 class="footer-links-header">Social Media</h3>
+          <ul class="footer-links clearfix">
+            <li>
+              <a href="https://twitter.com/xtendlang"><img src="https://eclipse.dev/Xtext/xtend/images/Twitter-bird-darkgray.png" class="img-responsive" style="margin-right: 5px;height: 1em;" alt="Twitter icon">@xtendlang on Twitter</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="#" class="scrollup fadeOutRight animated" style="display: none;">ScrollUp</a>
+  <a href="https://dryicons.com/">Icons by https://dryicons.com</a>
+  
+  <script src="https://eclipse.dev/Xtext/xtend/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+  <script src="https://eclipse.dev/Xtext/xtend/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="https://eclipse.dev/Xtext/xtend/js/prettify.js" type="text/javascript"></script>
+  <script src="https://eclipse.dev/Xtext/xtend/js/lang-xtend.js" type="text/javascript"></script>
+  <script src="https://eclipse.dev/Xtext/xtend/js/jquery.prettyPhoto.js" type="text/javascript"></script>
+  <script src="https://eclipse.dev/Xtext/xtend/js/jquery.easing.1.3.js" type="text/javascript"></script>
+  <script src="https://eclipse.dev/Xtext/xtend/js/custom.js" type="text/javascript"></script>
+</footer>
+
+  </body>
+</html>

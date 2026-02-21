@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html>
+  <head><script src="/Xtext/xtend/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=Xtext/xtend/livereload" data-no-instant defer></script>
+	<meta charset="UTF-8">
+	<title>Xtend - Release Notes</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Xtend is a statically typed programming language sitting on top of Java.">
+	<meta name="author" content="Sven Efftinge">
+	<meta name="author" content="Miro Spoenemann">
+	
+	<link rel="shortcut icon" href="http://localhost:1313/Xtext/xtend/images/favicon.png">
+	
+	<link href="http://localhost:1313/Xtext/xtend/css/bootstrap.css" rel="stylesheet" type='text/css'>
+	<link href="http://localhost:1313/Xtext/xtend/css/bootstrap-responsive.css" rel="stylesheet" type='text/css'>
+	<link href="http://localhost:1313/Xtext/xtend/css/shield-responsive.css" rel="stylesheet" type='text/css'>
+	<link href='http://localhost:1313/Xtext/xtend/css/fonts.css' rel='stylesheet' type='text/css'>
+	<link href="http://localhost:1313/Xtext/xtend/css/prettyPhoto.css" rel="stylesheet" media="screen" type='text/css'>
+	<link href="http://localhost:1313/Xtext/xtend/css/prettify.css" type="text/css" rel="stylesheet"/>
+	<link href="http://localhost:1313/Xtext/xtend/css/style.css" rel="stylesheet" type='text/css'>
+</head>
+
+  <body>
+    <div class="navbar navbar-fixed-top" style="border-bottom: 1px solid #000;">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="http://localhost:1313/Xtext/xtend/index.html"></a>
+      <div class="nav-collapse collapse" style="height: 0px;">
+        <ul class="nav">
+          
+          <li><a href="/Xtext/xtend/download.html">Download</a></li>
+          
+          <li><a href="/Xtext/xtend/documentation/index.html">Documentation</a></li>
+          
+          <li><a href="/Xtext/xtend/community.html">Community</a></li>
+          
+          <li><a href="https://eclipse.dev/Xtext">Xtext</a></li>
+          
+          <li><a href="https://www.eclipse.org">Eclipse.org</a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+<div id="page">  
+	<div class="inner">
+		<div class="container">
+			<br/>
+			<div> 
+				<h3>Table of Contents</h3>
+				<ul>
+					
+					<li><p><a href="#2017-01-24-version-2-11-0">Xtend 2.11.0 Release Notes &mdash; Jan 1, 0001</a></p></li>
+					
+					<li><p><a href="#2018-05-23-version-2-14-0">Xtend 2.14.0 Release Notes &mdash; Jan 1, 0001</a></p></li>
+					
+					<li><p><a href="#2018-09-04-version-2-15-0">Xtend 2.15.0 Release Notes &mdash; Jan 1, 0001</a></p></li>
+					
+					<li><p><a href="#2018-12-04-version-2-16-0">Xtend 2.16.0 Release Notes &mdash; Jan 1, 0001</a></p></li>
+					
+					<li><p><a href="#2019-03-05-version-2-17-0">Xtend 2.17.0 Release Notes &mdash; Jan 1, 0001</a></p></li>
+					
+					<li><p><a href="#2019-04-03-version-2-17-1">Xtend 2.17.1 Release Notes &mdash; Jan 1, 0001</a></p></li>
+					
+					<li><p><a href="#2019-06-04-version-2-18-0">Xtend 2.18.0 Release Notes &mdash; Jan 1, 0001</a></p></li>
+					
+					<li><p><a href="#2019-09-03-version-2-19-0">Xtend 2.19.0 Release Notes &mdash; Jan 1, 0001</a></p></li>
+					
+					<li><p><a href="#2019-12-03-version-2-20-0">Xtend 2.20.0 Release Notes &mdash; Jan 1, 0001</a></p></li>
+					
+					<li><p><a href="#2020-03-03-version-2-21-0">Xtend 2.21.0 Release Notes &mdash; Jan 1, 0001</a></p></li>
+					
+				</ul>
+			</div>
+			
+			<hr/>
+			<section id="2017-01-24-version-2-11-0">
+				<h1>Xtend 2.11.0 Release Notes<small>&nbsp;&nbsp;Jan 1, 0001</small></h1>
+				<br/>
+				<p>Xtend version 2.11 comes with a new source repository and plenty of improvements and bug fixes.</p>
+<h2 id="new-source-repository">New Source Repository</h2>
+<p>The Xtend code base has been moved to a dedicated repository <a href="https://github.com/eclipse/xtext-xtend">xtext-xtend</a> in the course of the restructuring of Xtext (see the <a href="https://www.eclipse.dev/Xtext/releasenotes.html">Xtext 2.11.0 Release Notes</a>).</p>
+<h2 id="the-xtend-language-and-library">The Xtend Language and Library</h2>
+<h3 id="string-concatenation-performance-improvements">String Concatenation Performance Improvements</h3>
+<p>The performance of string concatenation, e.g. as used for rich strings, <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=427909">has been improved</a>. This change has important consequences for working with Xtend: you should make sure that you use consistent versions of Xtend in your host IDE and your target platform in order to avoid <a href="https://github.com/eclipse/xtext-xtend/issues/122">compatibility problems</a>.</p>
+<h3 id="improved-compiler">Improved Compiler</h3>
+<p>The Java code produced by the Xtend compiler is now <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=492072">less verbose and more readable</a>. For many situations Xtend does not produce synthetic variables anymore.</p>
+<p>For <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=501975">switch statements on Strings</a> an additional null guard is produced. This lead to NPEs when a null argument was passed to the switch statement.</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_11_xbase-switch-nullguard.png" alt=""></p>
+<p>A for-loop over an array resulted in uncompilable Java code. This has been <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=440006">fixed</a>.</p>
+<h3 id="comparison-with-null">Comparison with null</h3>
+<p>For comparison expressions with <code>null</code> as argument it is more efficient to use the triple (not) equals operator <code>===</code> and <code>!==</code> instead of <code>==</code> and <code>!=</code>. While the &ldquo;normal&rdquo; operators will result in a call of <code>Objects.equal</code>, the triple equals operator can perform a direct comparison.</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_11_xbase-compare-null-gen.png" alt=""></p>
+<p>For these situations <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=401012">a warning is produced</a> and <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=403018">a quickfix is offered</a>.</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_11_xbase-compare-null-quickfix.png" alt=""></p>
+<h2 id="new-class-wizard">New Class Wizard</h2>
+<p>The New Xtend Class wizard has an option to create a main method.</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_11_xtend-new-main-class.png" alt=""></p>
+
+			</section>
+			
+			<hr/>
+			<section id="2018-05-23-version-2-14-0">
+				<h1>Xtend 2.14.0 Release Notes<small>&nbsp;&nbsp;Jan 1, 0001</small></h1>
+				<br/>
+				<h2 id="java-9-and-10-support">Java 9 and 10 Support</h2>
+<p>Xtext and Xtend 2.14 are able to compile with and against Java 10. Here are a few notes on the Support</p>
+<ul>
+<li>There is no native support for Java 9/10 module visibilities but we fall back to jdt/javac on that topic.</li>
+</ul>
+<h2 id="compiler">Compiler</h2>
+<h3 id="avoid-generation-of-unnecessary-exception-variables">Avoid generation of unnecessary exception variables</h3>
+<p>When an exception variable is not used within a catch block, the transpiled Java code contained an unused variable.</p>
+<p>Considering the following Xtend snippet:</p>
+<pre tabindex="0"><code>try {
+  ... some code ...
+} catch (SomeException e) {
+  // do nothing with &#34;e&#34;
+}
+</code></pre><p>The catch block was transpiled to:</p>
+<pre tabindex="0"><code>catch (final Throwable _t) {
+  if (_t instanceof SomeException) {
+    final SomeException e = (SomeException)_t;
+  } else {
+    throw Exceptions.sneakyThrow(_t);
+  }
+}
+</code></pre><p>Xtend will now avoid the generation of the variable when it is not used within the catch block:</p>
+<pre tabindex="0"><code>catch (final Throwable _t) {
+  if (_t instanceof SomeException) {
+  } else {
+    throw Exceptions.sneakyThrow(_t);
+  }
+}
+</code></pre><h3 id="multi-catch-support">Multi-Catch Support</h3>
+<p>With Xtend 2.14 the exception handling supports multi-catch clauses.</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_14_0_xtend-multi-catch-new.png" alt=""></p>
+<p>The multi-catch clause can handle an arbitrary number of exceptions separated by &ldquo;|&rdquo;.
+Within the catch block, the intersection exception type of the exceptions caught by the multi-catch statement is available for further processing.
+Multi-catch support leads to semantically rich and more concise catch statements.</p>
+<h3 id="multi-type-guard-support">Multi-Type Guard Support</h3>
+<p>The type guard feature in switch statements is enhanced by support for testing multiple types in one case statement.</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_14_0_xtend-multi-type-guard-new.png" alt=""></p>
+<p>As for the multi-catch statements the different types handled by a single case statement are separated by &ldquo;|&rdquo;.
+The intersection type of the types specified in the multi-type guard statement is available within the case block.</p>
+<h2 id="unnecessary-modifiers-validation">Unnecessary Modifiers Validation</h2>
+<p>Xtend detects unnecessary modifiers in code, e.g. the <code>public</code> modifier on types. By default issues of this kind are raised as warnings, the severity level is configurable.</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_14_unnecessary_modifier.png" alt=""></p>
+<p>For convenient resolution of these issues a quick fix has been added.</p>
+<h2 id="eclipse-integration">Eclipse Integration</h2>
+<h3 id="organize-imports">Organize Imports</h3>
+<p>The Organize Imports feature has been improved to consider inner types properly.</p>
+<h2 id="links">Links</h2>
+<ul>
+<li><a href="https://blogs.itemis.com/en/xtend-2-14-unnecessary-modifiers-validation">&ldquo;Unnecessary modifiers validation&rdquo; blog post</a></li>
+</ul>
+<h2 id="fixed-issues">Fixed Issues</h2>
+<p>As in every release we are eagerly hunting down the bugs, review and integrate lots of contributions. 88 issues, 62 Pull Requests and 20 Bugzilla tickets have made it into this release. For further details please refer to the following lists:</p>
+<ul>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Aissue+milestone%3ARelease_2.14+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Fixed GitHub issues</a></p>
+</li>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Apr+milestone%3ARelease_2.14+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Closed Pull Requests</a></p>
+</li>
+<li>
+<p><a href="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&amp;classification=Modeling&amp;classification=Tools&amp;columnlist=product%2Ccomponent%2Cassigned_to%2Cbug_status%2Cresolution%2Cshort_desc%2Cchangeddate%2Ckeywords&amp;f0=OP&amp;f1=OP&amp;f3=CP&amp;f4=CP&amp;known_name=Xtext%202.14&amp;list_id=16618269&amp;product=TMF&amp;product=Xtend&amp;query_based_on=Xtext%202.14&amp;query_format=advanced&amp;status_whiteboard=v2.14&amp;status_whiteboard_type=allwordssubstr">Fixed Eclipse Bugzilla tickets</a></p>
+</li>
+</ul>
+
+			</section>
+			
+			<hr/>
+			<section id="2018-09-04-version-2-15-0">
+				<h1>Xtend 2.15.0 Release Notes<small>&nbsp;&nbsp;Jan 1, 0001</small></h1>
+				<br/>
+				<p>This release focuses on stability, performance and the integration in Eclipse 2018-09.</p>
+<h2 id="minimal-required-target-platform">Minimal Required Target Platform</h2>
+<p>Xtext and Xtend 2.15 are built and tested against Eclipse Oxygen.3a and newer. Thus we recommend to use at least Eclipse Oxygen.3a or even better Eclipse 2018-09. For older versions of the Eclipse Platform we cannot guarantee backwards compatibility even though we carefully assess any changes that are made.</p>
+<h2 id="smarter-organize-imports">Smarter Organize Imports</h2>
+<p>In the past there were a couple of corner cases where organize imports did not yield the optimal result. It could even lead to broken code under certain conditions. We fixed these scenarios and organize imports now works nicely, even when multicatch or static extensions are involved.</p>
+<h2 id="improved-performance-of-the-gradle-build">Improved Performance of the Gradle Build</h2>
+<p>The Gradle build performance was greatly improved. Tasks that consumed lots of memory and even more CPU cycles could be fixed such that it&rsquo;s now way faster to build Xtend with Gradle.</p>
+<p>2.14:</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_15_xtext_core.png" alt="">{:height=&ldquo;50%&rdquo; width=&ldquo;50%&rdquo;}</p>
+<p>2.15:</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_15_xtext_core_fast.png" alt="">{:height=&ldquo;50%&rdquo; width=&ldquo;50%&rdquo;}</p>
+<h2 id="fixed-quickfixes">Fixed QuickFixes</h2>
+<p>In some cases, quick fixes broke existing code, this no longer happens.</p>
+<h2 id="improved-junit-support">Improved JUnit Support</h2>
+<p>Test methods must return void to be valid test cases. This is now statically checked by the Xtend validation.</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_15_junit_quickfix.png" alt="">{:height=&ldquo;50%&rdquo; width=&ldquo;50%&rdquo;}</p>
+<h2 id="new-api-iterableextensionsrejectclass">New API IterableExtensions.reject(Class)</h2>
+<p>An overloaded variant of <code>reject()</code> was added for convience, this allows type based rejection of elements from an iterable.</p>
+<h2 id="fixed-issues">Fixed Issues</h2>
+<p>As in every release cycle we were eagerly hunting down bugs, and reviewed and integrated plenty of contributions. More than a 100 issues and almost 300 pull requests have made it into this release. For further details please refer to the following lists:</p>
+<ul>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Aissue+milestone%3ARelease_2.15+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Fixed GitHub issues</a></p>
+</li>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Apr+milestone%3ARelease_2.15+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Closed Pull Requests</a></p>
+</li>
+<li>
+<p><a href="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&amp;classification=Modeling&amp;classification=Tools&amp;columnlist=product%2Ccomponent%2Cassigned_to%2Cbug_status%2Cresolution%2Cshort_desc%2Cchangeddate%2Ckeywords&amp;f0=OP&amp;f1=OP&amp;f3=CP&amp;f4=CP&amp;known_name=Xtext%202.15&amp;list_id=16618269&amp;product=TMF&amp;product=Xtend&amp;query_based_on=Xtext%202.15&amp;query_format=advanced&amp;status_whiteboard=v2.15&amp;status_whiteboard_type=allwordssubstr">Fixed Eclipse Bugzilla tickets</a></p>
+</li>
+</ul>
+
+			</section>
+			
+			<hr/>
+			<section id="2018-12-04-version-2-16-0">
+				<h1>Xtend 2.16.0 Release Notes<small>&nbsp;&nbsp;Jan 1, 0001</small></h1>
+				<br/>
+				<p>This release focuses on stability, performance and the compatibility with Eclipse 2018-12.</p>
+<h2 id="hover-and-hyperlink-on-links-in-javadoc-comments">Hover and Hyperlink on links in Javadoc comments</h2>
+<p>Inside Xtend source files, hovering over a link inside a Javadoc will now display the Javadoc comments in a hover pop-up. F3 is also supported on these links.</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_16_hover_javadoc_link.png" alt="Hover Example"></p>
+<h2 id="triple-equals-quickfix-is-now-a-multifix">Triple-equals quickfix is now a multifix</h2>
+<p>Warnings of the type <code>The operator '!=' should be replaced by '!==' when null is one of the arguments.</code> could only be fixed one by one. The quickfix has been extended to allow fixing multiple issues at once.</p>
+<h2 id="deprecation-of-gwt">Deprecation of GWT</h2>
+<p>We will no longer maintain the GWT versions of Xbase and Xtend Lib. The corresponding jars will be no longer published with future versions of Xtext (likely from 2.17 on).</p>
+<h2 id="outlook-for-217">Outlook for 2.17</h2>
+<p>Java 11 Support, a Maven BOM and a new MWE version are planned for 2.17.</p>
+<h2 id="fixed-issues">Fixed Issues</h2>
+<p>As in every release cycle we were eagerly hunting down bugs, and reviewed and integrated plenty of contributions. More than 90 issues and almost 300 pull requests have made it into this release. For further details please refer to the following lists:</p>
+<ul>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Aissue+milestone%3ARelease_2.16+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Fixed GitHub issues</a></p>
+</li>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Apr+milestone%3ARelease_2.16+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Closed Pull Requests</a></p>
+</li>
+<li>
+<p><a href="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&amp;classification=Modeling&amp;classification=Tools&amp;columnlist=product%2Ccomponent%2Cassigned_to%2Cbug_status%2Cresolution%2Cshort_desc%2Cchangeddate%2Ckeywords&amp;f0=OP&amp;f1=OP&amp;f3=CP&amp;f4=CP&amp;known_name=Xtext%202.16&amp;list_id=16618269&amp;product=TMF&amp;product=Xtend&amp;query_based_on=Xtext%202.16&amp;query_format=advanced&amp;status_whiteboard=v2.16&amp;status_whiteboard_type=allwordssubstr">Fixed Eclipse Bugzilla tickets</a></p>
+</li>
+</ul>
+
+			</section>
+			
+			<hr/>
+			<section id="2019-03-05-version-2-17-0">
+				<h1>Xtend 2.17.0 Release Notes<small>&nbsp;&nbsp;Jan 1, 0001</small></h1>
+				<br/>
+				<p>This release focuses on the compatibility with Java 11 &amp; Eclipse 2019-03, stability, performance and technical debt reduction.</p>
+<h2 id="java-11">Java 11</h2>
+<p>Xtend is now fully compliant with Java 11. Java 11 can be chosen as runtime VM and as target version for the compiler.</p>
+<h2 id="xtend-maven-plugin">xtend-maven-plugin</h2>
+<h3 id="bom-managed-dependencies">BOM Managed Dependencies</h3>
+<p>One major pain point with past releases was that the xtend-maven-plugin used ranged dependencies. This lead sometimes to <a href="https://github.com/eclipse-xtext/xtext/issues/1231">problems with the plugin execution</a>, which had to be worked around by clients by explicit dependency management.</p>
+<p>Solving this problem was one of the main motivations behind the <a href="https://www.eclipse.dev/Xtext/releasenotes.html#/releasenotes/2019/03/05/version-2-17-0">introduction of the new Maven BOM</a>. With this BOM all external dependencies of Xtext and its Maven plugins are managed in compatible versions without room for interpretation of dependency version ranges.</p>
+<h3 id="upgrade-to-maven-3-api">Upgrade to Maven 3 API</h3>
+<p>The <code>xtext-maven-plugin</code> has been refactored to use the latest Maven 3 API. The most significant internal change is that all doclet based configurations have been changed to use Maven 3 annotation API.</p>
+<h3 id="faster-startup">Faster Startup</h3>
+<p>The plugin was using version ranges for some of its dependencies, especially Google Guava. Resolving the metadata of these ranged dependencies lead to a short time delay on execution of the plugin. All used dependency versions have been pinned to a single version, which speeds up the plugin execution.</p>
+<h3 id="resolve-usage-of-deprecated-api">Resolve Usage of Deprecated API</h3>
+<p>The plugin has been refactored to resolve all usages of deprecated API from Eclipse Platform and m2e bundles. (<a href="https://github.com/eclipse/xtext-xtend/issues/647">to issue</a>)</p>
+<h2 id="quickfixes">Quickfixes</h2>
+<h3 id="quickfix-for-unused-private-member">Quickfix for &lsquo;unused private member&rsquo;</h3>
+<p>The <em>unused private member</em> issue can now be resolved by a quickfix. The quickfix is capable to resolve multiple selected issues at once when selected from the <em>Problems</em> view. (<a href="https://github.com/eclipse/xtext-xtend/issues/671">details</a>)</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_17_Xtend-quickfix-remove-unused-member.gif" alt="Quickfix for &lsquo;unused private member&rsquo;">{:height=&ldquo;50%&rdquo; width=&ldquo;50%&rdquo;}</p>
+<h3 id="quickfix-to-add-the-abstract-modifier">Quickfix to Add the Abstract Modifier</h3>
+<p>If a class is named something like &lsquo;AbstractFoo&rsquo; but is not declared abstract. A warning is raised and can be resolved via quickfix insertion of the abstract modifier. (<a href="https://github.com/eclipse/xtext-xtend/issues/719">details</a>)</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_17_Xtend-quickfix-add-abstract-modifier-bc-classname.gif" alt="Quickfix to add the abstract modifier">{:height=&ldquo;50%&rdquo; width=&ldquo;50%&rdquo;}</p>
+<h2 id="static-member-favorites">Static Member Favorites</h2>
+<p>Annoyed by typing <code>org.junit.Assert.assertEquals</code> to use static methods? Wouldn’t it be cool having all your favorite static methods at hand and let the language do the import automatically? In JDT this feature is known as Static Member Favorites and it comes with a preference page, where you can configure which class’s methods should be visible. Besides wildcard imports you could make a single method visible - it’s up to you.</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_17_Xtend-static-favorites_1.gif" alt="Use favorites for static import">{:height=&ldquo;50%&rdquo; width=&ldquo;50%&rdquo;}</p>
+<p>We thought it’s a good idea to reuse the already defined JDT preferences in Xtend. Since this release Xtend supports Static Member Favorites like Java does - but a bit more.</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_17_Xtend-static-favorites_2.png" alt="Invoke content assist static import">{:height=&ldquo;50%&rdquo; width=&ldquo;50%&rdquo;}</p>
+<p>In Xtend we have <em>extension methods</em>. Here the first parameter becomes the implicit receiver. The visible static methods are analysed to fit as an extension method and then gets imported like that.</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_17_Xtend-static-favorites_3.png" alt="Invoke content assist static import">{:height=&ldquo;50%&rdquo; width=&ldquo;50%&rdquo;}</p>
+<h2 id="deprecations">Deprecations</h2>
+<h3 id="deprecation-of-android-archetype">Deprecation of Android Archetype</h3>
+<p>The Maven archetype <code>org.eclipse.xtend.maven.android.archetype</code> has been deprecated with this version and is no longer published.</p>
+<h3 id="deprecation-of-gwt-related-artifacts">Deprecation of GWT related artifacts</h3>
+<p>The bundles <code>org.eclipse.xtend.lib.gwt</code> and <code>org.eclipse.xtext.xbase.lib.gwt</code> are now deprecated. They are subject for removal in one of the next releases.</p>
+<h2 id="credits">Credits</h2>
+<p>The Xtend Language project is thankful for the dedication of each committer and contributor. This release has been made possible by the following persons (in order of the number of contributed commits to this release):</p>
+<ul>
+<li>Christian Dietrich (itemis)</li>
+<li>Karsten Thoms (itemis)</li>
+<li>Holger Schill (itemis)</li>
+<li>Tamas Miklossy (itemis)</li>
+<li>Sebastian Zarnekow (itemis)</li>
+<li>Arne Deutsch (itemis)</li>
+<li>Prajwal Gowda (itemis) <img src="https://img.shields.io/badge/-first%20time%20contributor-green.svg" alt=""></li>
+<li>Eva Poell (itemis) <img src="https://img.shields.io/badge/-first%20time%20contributor-green.svg" alt=""></li>
+<li>Stéphane Galland</li>
+</ul>
+<h2 id="fixed-issues">Fixed Issues</h2>
+<p>As in every release cycle we were eagerly hunting down bugs, and reviewed and integrated plenty of contributions. More than 18 issues and almost 50 pull requests have made it into this release. For further details please refer to the following lists:</p>
+<ul>
+<li>
+<p><a href="https://github.com/search?q=is%3Aissue+milestone%3ARelease_2.17+is%3Aclosed+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues">Fixed GitHub issues</a></p>
+</li>
+<li>
+<p><a href="https://github.com/search?q=is%3Apr+milestone%3ARelease_2.17+is%3Aclosed+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues">Closed Pull Requests</a></p>
+</li>
+<li>
+<p><a href="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&amp;classification=Modeling&amp;classification=Tools&amp;columnlist=product%2Ccomponent%2Cassigned_to%2Cbug_status%2Cresolution%2Cshort_desc%2Cchangeddate%2Ckeywords&amp;f0=OP&amp;f1=OP&amp;f3=CP&amp;f4=CP&amp;known_name=Xtext%202.17&amp;list_id=16618269&amp;product=TMF&amp;product=Xtend&amp;query_based_on=Xtext%202.17&amp;query_format=advanced&amp;status_whiteboard=v2.17&amp;status_whiteboard_type=allwordssubstr">Fixed Eclipse Bugzilla tickets</a></p>
+</li>
+</ul>
+
+			</section>
+			
+			<hr/>
+			<section id="2019-04-03-version-2-17-1">
+				<h1>Xtend 2.17.1 Release Notes<small>&nbsp;&nbsp;Jan 1, 0001</small></h1>
+				<br/>
+				<p>This is a hotfix release. Here is the list of fixed issues:</p>
+<ul>
+<li>There was a <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=545343">bug</a> in the Xtext Builder that leads to non Xtext projects being built by Xtext.</li>
+<li>The <a href="https://github.com/eclipse/xtext-core/issues/1059">LSP4J</a> version in Xtext 2.17.0 did not match the one in Eclipse 2019-03. Upgraded to LSP4J 0.7.0.</li>
+<li>The <a href="https://github.com/eclipse/xtext-xtend/issues/750">Xtend Batch Compiler</a> preferred classes found on the classpath over local classes.</li>
+</ul>
+
+			</section>
+			
+			<hr/>
+			<section id="2019-06-04-version-2-18-0">
+				<h1>Xtend 2.18.0 Release Notes<small>&nbsp;&nbsp;Jan 1, 0001</small></h1>
+				<br/>
+				<p>Xtend 2.18.0 provides new language features (Ternary Expressions and Try-With-Resources) and some smaller improvements.</p>
+<h2 id="ternary-expressions">Ternary Expressions</h2>
+<p>Xtend now allows to use the ternary operator. This enables to assign conditional values to variables in the shortest possible way, as already well known from Java.</p>
+<pre tabindex="0"><code>val v = condition ? “thenValue” : “elseValue”
+</code></pre><p>If it is disapproved to use ternary expressions, it is possible to flag them with an error and convert them via quickfix into a traditional if-expression.</p>
+<pre tabindex="0"><code>val v = if(condition) “thenValue” else “elseValue”
+</code></pre><h2 id="try-with-resources">Try With Resources</h2>
+<p>Try statements are often used with resources, that have to be closed in the finally block. Xtend now supports the convenient try-with-resources expression. This closes the opened resources automatically at the end of the try block - without having to code that explicitly.</p>
+<pre tabindex="0"><code>def m() {
+    val resource = new StringReader(&#34;This \n is a text!&#34;);
+    try
+        return resource.read
+    finally
+        resource?.close     
+}
+</code></pre><p>Becomes:</p>
+<pre tabindex="0"><code>def m() {
+    try (val resource = new StringReader(&#34;This \n is a text!&#34;))
+        return resource.read
+}
+</code></pre><h2 id="eclipse-integration">Eclipse Integration</h2>
+<h3 id="new-quickfix-rename-class">New Quickfix: Rename Class</h3>
+<p>When an Xtend class name does not match the file name it is defined in then Xtend raises a warning. A new quickfix has been provided to rename the class according to the file name. (<a href="https://github.com/eclipse/xtext-xtend/issues/744">#744</a>)</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_18_Quickfix_RenameClass.gif" alt="Quickfix: Rename Class">{:height=&ldquo;50%&rdquo; width=&ldquo;50%&rdquo;}</p>
+<h3 id="quickfix-remove-unused-member-improved">Quickfix &ldquo;Remove Unused Member&rdquo; Improved</h3>
+<p>The quickfix &ldquo;Remove member&rdquo; for unused members was improved. Additionally to the member itself the quickfix will now also remove obsolete import statements and write accesses. (<a href="https://github.com/eclipse/xtext-xtend/issues/736">xtext-xtend</a>)</p>
+<h3 id="xtend-elements-wizards-in-project-explorer--navigator-view">Xtend Elements Wizards in Project Explorer / Navigator View</h3>
+<p>Context menu entries to trigger New Wizards for Xtend elements were only offered in the Package Explorer. These entries are now additionally offered in the context menu in the Project Explorer and Navigator views. (<a href="https://github.com/eclipse/xtext-xtend/issues/699">xtext-xtend#699</a>)</p>
+<h2 id="maven-integration">Maven Integration</h2>
+<p>When the goal <code>xtend-install-debug-info</code> is executed on empty source directories, a warning is raised by default:</p>
+<pre tabindex="0"><code>[WARNING] Directory &lt;SOURCE_DIR&gt; is empty. Can&#39;t process.
+</code></pre><p>This warning can now be suppressed by configure the new parameter <code>showEmptyDirWarning</code> to <code>false</code>. (<a href="https://github.com/eclipse/xtext-xtend/issues/787">xtext#787</a>)</p>
+<h2 id="xtend-compiler">Xtend Compiler</h2>
+<p>The Xtend batch compiler lookup order preferred classes in jars on the classpath before local classes that are on the source path. The order has been changed so that local classes are now first on the search path. (<a href="https://github.com/eclipse/xtext-xtend/issues/750">#750</a>)</p>
+<h2 id="credits">Credits</h2>
+<p>The Xtend Language project is thankful for the dedication of each committer and contributor. This release has been made possible by the following persons (in order of the number of contributed commits to this release):</p>
+<ul>
+<li>Christian Dietrich (itemis)</li>
+<li>Karsten Thoms (itemis)</li>
+<li>Sebastian Zarnekow (itemis)</li>
+<li>Arne Deutsch (itemis)</li>
+<li>Holger Schill (itemis)</li>
+<li>Eva Poell (itemis)</li>
+<li>Lorenzo Addazi <img src="https://img.shields.io/badge/-first%20time%20contributor-green.svg" alt=""></li>
+<li>Niko Stotz (Altran) <img src="https://img.shields.io/badge/-first%20time%20contributor-green.svg" alt=""></li>
+<li>Max Leuthäuser (itemis) <img src="https://img.shields.io/badge/-first%20time%20contributor-green.svg" alt=""></li>
+<li>Vivien Jovet (TORO Limited) <img src="https://img.shields.io/badge/-first%20time%20contributor-green.svg" alt=""></li>
+</ul>
+<h2 id="fixed-issues">Fixed Issues</h2>
+<p>As in every release cycle we were eagerly hunting down bugs, and reviewed and integrated plenty of contributions. More than 20 issues and almost 60 pull requests have made it into this release. For further details please refer to the following lists:</p>
+<ul>
+<li>
+<p><a href="https://github.com/search?q=is%3Aissue+milestone%3ARelease_2.18+is%3Aclosed+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues">Fixed GitHub issues</a></p>
+</li>
+<li>
+<p><a href="https://github.com/search?q=is%3Apr+milestone%3ARelease_2.18+is%3Aclosed+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues">Closed Pull Requests</a></p>
+</li>
+<li>
+<p><a href="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&amp;classification=Modeling&amp;classification=Tools&amp;columnlist=product%2Ccomponent%2Cassigned_to%2Cbug_status%2Cresolution%2Cshort_desc%2Cchangeddate%2Ckeywords&amp;f0=OP&amp;f1=OP&amp;f3=CP&amp;f4=CP&amp;known_name=Xtext%202.18&amp;list_id=16618269&amp;product=TMF&amp;product=Xtend&amp;query_based_on=Xtext%202.18&amp;query_format=advanced&amp;status_whiteboard=v2.18&amp;status_whiteboard_type=allwordssubstr">Fixed Eclipse Bugzilla tickets</a></p>
+</li>
+</ul>
+
+			</section>
+			
+			<hr/>
+			<section id="2019-09-03-version-2-19-0">
+				<h1>Xtend 2.19.0 Release Notes<small>&nbsp;&nbsp;Jan 1, 0001</small></h1>
+				<br/>
+				<p>Xtend 2.19.0 is mainly a maintenance release.</p>
+<h2 id="fixes">Fixes</h2>
+<ul>
+<li>The <code>Delegate</code> Active Annotation now uses a stable order.</li>
+<li>Improved <code>@Override</code> annotations in generated code.</li>
+<li>Improved ambigous constructor calls.</li>
+</ul>
+<h2 id="upgrades">Upgrades</h2>
+<p>Xtend now uses Guava 27.1.0. The new version will be picked up automatically if you make use of the Xtext BOM or consume Xtend from its P2 repository.</p>
+<h2 id="infrastructure">Infrastructure</h2>
+<p>Xtend is built now on the new Kubernetes based CBI infrastructure <a href="https://wiki.eclipse.org/CBI/Jenkins_Migration_FAQ">JIRO</a>.</p>
+<h2 id="credits">Credits</h2>
+<p>The Xtend Language project is thankful for the dedication of each committer and contributor. This release has been made possible by the following persons (in order of the number of contributed commits to this release):</p>
+<ul>
+<li>Christian Dietrich (itemis)</li>
+<li>Karsten Thoms (itemis)</li>
+<li>Nico Prediger (itemis)</li>
+<li>Sebastian Zarnekow (itemis)</li>
+<li>Tamas Miklossy (itemis)</li>
+</ul>
+<h2 id="fixed-issues">Fixed Issues</h2>
+<p>As in every release cycle we were eagerly hunting down bugs, and reviewed and integrated plenty of contributions. 5 issues and 62 pull requests have made it into this release. For further details please refer to the following lists:</p>
+<ul>
+<li>
+<p><a href="https://github.com/search?q=is%3Aissue+milestone%3ARelease_2.19+is%3Aclosed+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues">Fixed GitHub issues</a></p>
+</li>
+<li>
+<p><a href="https://github.com/search?q=is%3Apr+milestone%3ARelease_2.19+is%3Aclosed+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues">Closed Pull Requests</a></p>
+</li>
+<li>
+<p><a href="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&amp;classification=Modeling&amp;classification=Tools&amp;columnlist=product%2Ccomponent%2Cassigned_to%2Cbug_status%2Cresolution%2Cshort_desc%2Cchangeddate%2Ckeywords&amp;f0=OP&amp;f1=OP&amp;f3=CP&amp;f4=CP&amp;known_name=Xtext%202.19&amp;list_id=16618269&amp;product=TMF&amp;product=Xtend&amp;query_based_on=Xtext%202.19&amp;query_format=advanced&amp;status_whiteboard=v2.19&amp;status_whiteboard_type=allwordssubstr">Fixed Eclipse Bugzilla tickets</a></p>
+</li>
+</ul>
+
+			</section>
+			
+			<hr/>
+			<section id="2019-12-03-version-2-20-0">
+				<h1>Xtend 2.20.0 Release Notes<small>&nbsp;&nbsp;Jan 1, 0001</small></h1>
+				<br/>
+				<p>Xtend 2.20.0 is mainly a maintenance release with a small number of usability improvements</p>
+<h2 id="eclipse-integration">Eclipse Integration</h2>
+<h3 id="new-refactoring-import-static-method-and-import-static-extension-method">New Refactoring: Import Static Method and Import Static Extension Method</h3>
+<p>Two refactoring commands have been added which can add as static or static <strong>extension</strong> import the selected static method call and update all the occurrences in the document. The refactoring commands can be triggered from the <code>Refactoring &gt; Import Static | Import Static Extension</code> context menu in the Xtend editor or using <code>M1+Shift+M</code> and <code>M1+Shift+Alt+M</code> key shortcuts. (<a href="https://github.com/eclipse/xtext-xtend/issues/751">#751</a>)</p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_20_refactoring_import_static_method.gif" alt="Refactoring: Import Static Method">{:height=&ldquo;50%&rdquo; width=&ldquo;50%&rdquo;}</p>
+<h3 id="improved-junit-test-case-recognitionexecution">Improved JUnit test case recognition/execution</h3>
+<p>The Xtend IDE has been improved to recognize and execute all JUnit test cases (implemented in Xtend) event if the cursor is currently located before/after the test class definition.</p>
+<h3 id="new-quick-fix-add-junit-4-or-5-to-the-classpath">New Quick Fix: Add JUnit 4 or 5 to the classpath</h3>
+<p>A quick fix was added which adds the necessary libraries for JUnit 4 or 5 to the classpath. The quick fix will show on import errors starting with <code>org.junit.jupiter</code> (for JUnit 5) or <code>org.junit</code> (for JUnit 4). It works both for plug-in projects and regular Java projects. (<a href="https://github.com/eclipse/xtext-xtend/issues/919">#919</a></p>
+<p><img src="/Xtext/xtend/images/releasenotes/2_20_quickfix_add_junit4_classpath.gif" alt="Quick Fix: Add JUnit 4 to Classpath">{:height=&ldquo;50%&rdquo; width=&ldquo;50%&rdquo;}
+<img src="/Xtext/xtend/images/releasenotes/2_20_quickfix_add_junit5_classpath.gif" alt="Quick Fix: Add JUnit 5 to Classpath">{:height=&ldquo;50%&rdquo; width=&ldquo;50%&rdquo;}</p>
+<h2 id="credits">Credits</h2>
+<p>The Xtend Language project is thankful for the dedication of each committer and contributor. This release has been made possible by the following persons (in order of the number of contributed commits to this release):</p>
+<ul>
+<li>Christian Dietrich (itemis)</li>
+<li>Sebastian Zarnekow (independent)</li>
+<li>Karsten Thoms (itemis)</li>
+<li>Tamas Miklossy (itemis)</li>
+<li>Vivien Jovet (TORO Limited)</li>
+</ul>
+<h2 id="fixed-issues">Fixed Issues</h2>
+<p>As in every release cycle we were eagerly hunting down bugs, and reviewed and integrated plenty of contributions. For further details please refer to the following lists:</p>
+<ul>
+<li>
+<p><a href="https://github.com/search?q=is%3Aissue+milestone%3ARelease_2.20+is%3Aclosed+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues">Fixed GitHub issues</a></p>
+</li>
+<li>
+<p><a href="https://github.com/search?q=is%3Apr+milestone%3ARelease_2.20+is%3Aclosed+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues">Closed Pull Requests</a></p>
+</li>
+<li>
+<p><a href="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&amp;classification=Modeling&amp;classification=Tools&amp;columnlist=product%2Ccomponent%2Cassigned_to%2Cbug_status%2Cresolution%2Cshort_desc%2Cchangeddate%2Ckeywords&amp;f0=OP&amp;f1=OP&amp;f3=CP&amp;f4=CP&amp;known_name=Xtext%202.20&amp;list_id=16618269&amp;product=TMF&amp;product=Xtend&amp;query_based_on=Xtext%202.20&amp;query_format=advanced&amp;status_whiteboard=v2.20&amp;status_whiteboard_type=allwordssubstr">Fixed Eclipse Bugzilla tickets</a></p>
+</li>
+</ul>
+
+			</section>
+			
+			<hr/>
+			<section id="2020-03-03-version-2-21-0">
+				<h1>Xtend 2.21.0 Release Notes<small>&nbsp;&nbsp;Jan 1, 0001</small></h1>
+				<br/>
+				<p>Xtend 2.21.0 is a maintenance release with some usability improvements.</p>
+<h2 id="license-change">License Change</h2>
+<p>In compliance with general requirements by the Eclipse Foundation the license for Xtext &amp; Xtend has been changed to <a href="https://www.eclipse.org/legal/epl-2.0/">EPL 2.0</a>.</p>
+<h2 id="xtend-compiler">Xtend Compiler</h2>
+<h3 id="unnecessary-modifiers">Unnecessary modifiers</h3>
+<p>The Xtend compiler has been improved to avoid generating unnecessary modifiers. No modifier is produced in these contexts:</p>
+<ul>
+<li><code>static</code> modifier for nested types within interfaces</li>
+<li><code>public</code> modifier for interface members</li>
+<li><code>abstract</code> modifier for operations within interfaces</li>
+</ul>
+<p>Example:</p>
+<pre tabindex="0"><code>interface FooItf {
+  def void bar ()
+  static class FooItfImpl implements FooItf {
+    override void bar () {}
+  }
+}
+</code></pre><p>Old compilation result:</p>
+<pre tabindex="0"><code>public interface FooItf {
+  public static class FooItfImpl implements FooItf {
+    @Override
+    public void bar () {
+    }
+  }
+
+  public abstract void bar();
+}
+</code></pre><p>New compilation result:</p>
+<pre tabindex="0"><code>public interface FooItf {
+  class FooItfImpl implements FooItf {
+    @Override
+    void bar () {
+    }
+  }
+
+  void bar();
+}
+</code></pre><h2 id="credits">Credits</h2>
+<p>The Xtend Language project is thankful for the dedication of each committer and contributor. This release has been made possible by the following persons (in order of the number of contributed commits to this release):</p>
+<ul>
+<li>Christian Dietrich (itemis)</li>
+<li>Karsten Thoms (Karakun)</li>
+<li>Arne Deutsch (itemis)</li>
+<li>Nico Prediger (itemis)</li>
+<li>Sven Efftinge (TypeFox)</li>
+</ul>
+<h2 id="fixed-issues">Fixed Issues</h2>
+<p>As in every release cycle we were eagerly hunting down bugs, and reviewed and integrated plenty of contributions. For further details please refer to the following lists:</p>
+<ul>
+<li>
+<p><a href="https://github.com/search?q=is%3Aissue+milestone%3ARelease_2.21+is%3Aclosed+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues">Fixed GitHub issues</a></p>
+</li>
+<li>
+<p><a href="https://github.com/search?q=is%3Apr+milestone%3ARelease_2.21+is%3Aclosed+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues">Closed Pull Requests</a></p>
+</li>
+<li>
+<p><a href="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&amp;classification=Modeling&amp;classification=Tools&amp;columnlist=product%2Ccomponent%2Cassigned_to%2Cbug_status%2Cresolution%2Cshort_desc%2Cchangeddate%2Ckeywords&amp;f0=OP&amp;f1=OP&amp;f3=CP&amp;f4=CP&amp;known_name=Xtext%202.21&amp;list_id=16618269&amp;product=TMF&amp;product=Xtend&amp;query_based_on=Xtext%202.21&amp;query_format=advanced&amp;status_whiteboard=v2.21&amp;status_whiteboard_type=allwordssubstr">Fixed Eclipse Bugzilla tickets</a></p>
+</li>
+</ul>
+
+			</section>
+			
+		</div>
+	</div>
+</div>
+
+    <footer class="site-footer">
+  <div id="extra">
+    <div class="container inner-footer">
+      <div class="row">
+        <div class="span6">
+          <h3 class="footer-links-header">Quick Links</h3>
+          <ul class="footer-links clearfix">
+            <li><a href="https://www.eclipse.org/legal/privacy.php">Privacy Policy</a></li>
+            <li><a href="https://www.eclipse.org/legal/termsofuse.php">Terms of Use</a></li>
+            <li><a href="https://www.eclipse.org/legal/copyright.php">Copyright Agent</a></li>
+            <li><a href="https://www.eclipse.org/legal/">Legal</a></li>
+          </ul>
+          <ul class="footer-links clearfix">
+            <li><a href="https://www.eclipse.org">Eclipse Home</a></li>
+            <li><a href="https://marketplace.eclipse.org/">Market Place</a></li>
+            <li><a href="https://www.planeteclipse.org/">Eclipse Planet</a></li>
+            <li><a href="https://www.eclipse.org/forums/index.php/f/27/">Xtext Forum</a></li>
+          </ul>
+        </div>
+        <div class="span6">
+          <h3 class="footer-links-header">Social Media</h3>
+          <ul class="footer-links clearfix">
+            <li>
+              <a href="https://twitter.com/xtendlang"><img src="http://localhost:1313/Xtext/xtend/images/Twitter-bird-darkgray.png" class="img-responsive" style="margin-right: 5px;height: 1em;" alt="Twitter icon">@xtendlang on Twitter</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="#" class="scrollup fadeOutRight animated" style="display: none;">ScrollUp</a>
+  <a href="https://dryicons.com/">Icons by https://dryicons.com</a>
+  
+  <script src="http://localhost:1313/Xtext/xtend/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/prettify.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/lang-xtend.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/jquery.prettyPhoto.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/jquery.easing.1.3.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/custom.js" type="text/javascript"></script>
+</footer>
+
+  </body>
+</html>

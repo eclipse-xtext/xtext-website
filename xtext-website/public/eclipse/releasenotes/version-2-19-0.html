@@ -1,0 +1,85 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+	<title>Xtext 2.19.0 Release Notes</title>
+	<link href="book.css" rel="stylesheet" type="text/css">
+	<link href="code.css" rel="stylesheet" type="text/css">
+	<link rel="home" href="index.html" title="">
+</head>
+<body>
+
+<p>Xtext 2.19.0 is mainly a maintenance release.</p>
+<h2 id="lsp-integration">LSP Integration</h2>
+<p>Xtext 2.19 now uses LSP4J version 0.8.0 / Language Server Protocol version 3.14.0. This allows you to consume Xtext Language Servers through WebSocket.</p>
+<h2 id="classgraph">Classgraph</h2>
+<p>We use Classgraph to scan the classpath. This allows us to provide Standlone Content Assist proposals (LSP/WEB) not only when the application runs with Java 8 but with Java 11, too.</p>
+<h2 id="upgrades">Upgrades</h2>
+<p>Xtext now uses Guava 27.1.0. The new version will be picked up automatically if you make use of the Xtext BOM or consume Xtext from its P2 repository.
+The MWE(2) version was updated to 2.11.</p>
+<h2 id="gradle">Gradle</h2>
+<p>We made building Xtext projects and Xtext itself Gradle 6.0 ready and thus future-proof.</p>
+<h2 id="maven-tycho">Maven Tycho</h2>
+<p>For our integration of Eclipse Tycho based builds with Eclipse Orbit we now make use of the new Orbit Simrel Alias <a href="https://download.eclipse.org/tools/orbit/downloads/2019-09">https://download.eclipse.org/tools/orbit/downloads/2019-09</a> instead of our own solution <a href="https://download.eclipse.org/modeling/tmf/xtext/updates/orbit/2019-09">https://download.eclipse.org/modeling/tmf/xtext/updates/orbit/2019-09</a>.</p>
+<h2 id="infrastructure">Infrastructure</h2>
+<p>Xtend now is built on the new Kubernetes based CBI infrastructure <a href="https://wiki.eclipse.org/CBI/Jenkins_Migration_FAQ">JIRO</a>.</p>
+<h2 id="more-upgrades">More Upgrades</h2>
+<p>Xtext always follows the latest releases of the software it relies on. The following software upgrades have been considered for this release:</p>
+<ul>
+<li>Latest supported Eclipse Platform 4.13 (a.k.a. 2019-09)</li>
+<li>Eclipse MWE 2.11</li>
+<li>Guava 27.1</li>
+<li>LSP4J 0.8</li>
+<li>jquery 3.4.1</li>
+<li>node 10.16.0</li>
+<li>Maven Plugins:
+<ul>
+<li>maven-compiler-plugin 3.8.1</li>
+<li>maven-source-plugin 3.1.0</li>
+</ul>
+</li>
+<li>Gradle 5.5</li>
+<li>Gradle Plugins:
+<ul>
+<li>com.github.johnrengelman.shadow 5.1.0</li>
+<li>io.spring.dependency-management 1.0.8.RELEASE</li>
+<li>de.esoco.gwt 1.0.9</li>
+<li>org.ajoberstar.grgit 3.1.1</li>
+</ul>
+</li>
+</ul>
+<h2 id="deprecations">Deprecations</h2>
+<h3 id="generator-fragments">Generator Fragments</h3>
+<p>The generator fragments</p>
+<ul>
+<li><code>org.eclipse.xtext.generator.adapter.FragmentAdapter</code></li>
+<li><code>org.eclipse.xtext.generator.parser.antlr.XtextAntlrGeneratorComparisonFragment</code></li>
+</ul>
+<p>have been marked deprecated. They are in the already deprecated bundle <code>org.eclipse.xtext.generator</code>. There is currently no replacement for this fragment in the new <code>org.eclipse.xtext.xtext.generator</code> bundle.</p>
+<h2 id="credits">Credits</h2>
+<p>The Xtext project is thankful for the dedication of each committer and contributor. This release has been made possible by the following persons (in order of the number of contributed commits to this release to <a href="https://github.com/eclipse/xtext#repositories">all repositories</a> except <a href="https://github.com/eclipse/xtext-xtend">xtext-xtend</a>):</p>
+<ul>
+<li>Christian Dietrich (itemis)</li>
+<li>Karsten Thoms (itemis)</li>
+<li>Nico Prediger (itemis)</li>
+<li>Sebastian Zarnekow (itemis)</li>
+<li>Tamas Miklossy (itemis)</li>
+<li>Lorenzo Addazi (Mälardalen University Sweden)</li>
+<li>Marcus Mews (NumberFour)</li>
+</ul>
+<h2 id="fixed-issues">Fixed Issues</h2>
+<p>As in every release cycle we were eagerly hunting down bugs, and reviewed and integrated plenty of contributions. 85 issues and 330 pull requests have made it into this release. For further details please refer to the following lists:</p>
+<ul>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Aissue+milestone%3ARelease_2.19+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Fixed GitHub issues</a></p>
+</li>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Apr+milestone%3ARelease_2.19+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Closed Pull Requests</a></p>
+</li>
+<li>
+<p><a href="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&amp;classification=Modeling&amp;classification=Tools&amp;columnlist=product%2Ccomponent%2Cassigned_to%2Cbug_status%2Cresolution%2Cshort_desc%2Cchangeddate%2Ckeywords&amp;f0=OP&amp;f1=OP&amp;f3=CP&amp;f4=CP&amp;known_name=Xtext%202.19&amp;list_id=16618269&amp;product=TMF&amp;product=Xtend&amp;query_based_on=Xtext%202.19&amp;query_format=advanced&amp;status_whiteboard=v2.19&amp;status_whiteboard_type=allwordssubstr">Fixed Eclipse Bugzilla tickets</a></p>
+</li>
+</ul>
+
+
+</body>
+</html>

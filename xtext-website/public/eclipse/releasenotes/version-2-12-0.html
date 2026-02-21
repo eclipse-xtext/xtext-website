@@ -1,0 +1,62 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+	<title>Xtext 2.12.0 Release Notes</title>
+	<link href="book.css" rel="stylesheet" type="text/css">
+	<link href="code.css" rel="stylesheet" type="text/css">
+	<link rel="home" href="index.html" title="">
+</head>
+<body>
+
+<p>Xtext 2.12.0 brings several bug fixes and a new API for tracing generated code.</p>
+<h2 id="new-tracing-api-for-generators">New Tracing API for Generators</h2>
+<p>The new API in the <code>org.eclipse.xtext.generator.trace</code> package allows to generate text files along with trace files. These trace files can be used by generic UI such as the &ldquo;Open Generated File&rdquo; action as well as domain-specific features such as debugging. It&rsquo;s very easy to add such tracing information to a code generator, e.g. with <a href="https://www.eclipse.dev/Xtext/xtend/documentation/203_xtend_expressions.html#templates">Xtend templates</a>:</p>
+<pre tabindex="0"><code class="language-xtend" data-lang="xtend">class MyDslGenerator extends AbstractGenerator {
+	
+	@TracedAccessors(MyDslFactory)
+	static class MyDslTraceExtensions {}
+	
+	@Inject extension MyDslTraceExtensions
+
+	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		val m = resource.contents.head as Model
+		
+		fsa.generateTracedFile(&#34;foo/Bar.txt&#34;, m, &#39;&#39;&#39;
+			// generated
+			«FOR c : m.types»
+				«generateClass(c)»
+			«ENDFOR»
+		&#39;&#39;&#39;)
+	}
+	
+	@Traced def generateClass(ClassDeclaration it) &#39;&#39;&#39;
+		class «_name» {
+			«FOR m : members»
+				«generateMember(m)»
+			«ENDFOR»
+		}
+	&#39;&#39;&#39;
+	
+	@Traced def dispatch generateMember(Operation it) &#39;&#39;&#39;
+		«_name»(«FOR it : parameter»«_name» : «_type[name.name]»«ENDFOR») : «_type[name.name]»
+	&#39;&#39;&#39;
+	
+	@Traced def dispatch generateMember(Property it) &#39;&#39;&#39;
+		«_name» : «_type[name.name]»
+	&#39;&#39;&#39;
+	
+}
+</code></pre><p>Here <code>_name</code> and <code>_type</code> are <a href="https://www.eclipse.dev/Xtext/xtend/documentation/202_xtend_classes_members.html#extension-methods">extension methods</a> that are generated for the metamodel of the specific language. They generate text and trace it to the respective part of the DSL source. You can find the <a href="https://github.com/TypeFox/tracing_codegen">full example project on GitHub</a>.</p>
+<h2 id="bug-lists">Bug Lists</h2>
+<ul>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Aissue+milestone%3ARelease_2.12+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Fixed GitHub issues</a></p>
+</li>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Apr+milestone%3ARelease_2.12+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Closed Pull Requests</a></p>
+</li>
+</ul>
+
+
+</body>
+</html>

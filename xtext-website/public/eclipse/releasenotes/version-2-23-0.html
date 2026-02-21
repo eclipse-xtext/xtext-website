@@ -1,0 +1,80 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+	<title>Xtext 2.23.0 Release Notes</title>
+	<link href="book.css" rel="stylesheet" type="text/css">
+	<link href="code.css" rel="stylesheet" type="text/css">
+	<link rel="home" href="index.html" title="">
+</head>
+<body>
+
+<p>Xtext 2.23.0 is a maintenance release.</p>
+<h2 id="call-to-action-secure-the-future-maintenance-of-xtext">Call to Action: Secure the future maintenance of Xtext</h2>
+<p>As you might have recognized, the number of people contributing to Xtext on a regular basis has declined over the past years and so has the number of contributions. At the same time the amount of work for basic maintenance has stayed the same or even increased with the new release cadence of Java and the Eclipse simultaneous release. Briefly: The future maintenance of Xtext is at risk. If you care, please join the discussion in <a href="https://github.com/eclipse-xtext/xtext/issues/1721">https://github.com/eclipse-xtext/xtext/issues/1721</a>.</p>
+<h2 id="xtext-xtend-eclipse-and-java-11">Xtext, Xtend, Eclipse, and Java 11</h2>
+<p>The Eclipse Platform and Java Development Tools have decided to migrate to Java 11 with the new 2020-09 (4.17) release. Xtext and Xtend depend on these projects both for the integration into Eclipse as well as in the LSP and standalone mode. Xtext 2.23 still works with Java 8, but if you want to work with Xtext in Eclipse 2020-09 (4.17) you have to start your Tycho builds with Java 11 as well as launch your Runtime Eclipse Applications with Java 11.</p>
+<p>We decided to follow suit to close a window of opportunity for hard to find bugs. Therefore, the version 2.24 of Xtext and Xtend which is due along with Eclipse 2020-12 will be the first release that depends on Java 11. Please feel encouraged to join the discussion in <a href="https://github.com/eclipse-xtext/xtext/issues/1804">https://github.com/eclipse-xtext/xtext/issues/1804</a> if you have any concerns, general comments or other suggestions.</p>
+<h2 id="ui-testing">UI Testing</h2>
+<p>The AbstractCodeMiningTest and the AbstractMultiQuickfixTest base classes have been added to the org.eclipse.xtext.ui.testing package to provide a convenient way to test the code mining and multi-quickfix capabilities. The Xtext example projects and the Xtend code base have been extended by concrete test cases to demonstrate the usage of these framework classes.</p>
+<h2 id="junit-5">Junit 5</h2>
+<p><code>InjectionExtension</code> now supports the Junit 5 <code>@Nested</code> tests.</p>
+<h2 id="core-api">Core API</h2>
+<p>A protected method to get at the lazy proxy information of a LazyLinkingResource was added to enable subclasses to work with these.</p>
+<h2 id="eclipse-integration">Eclipse Integration</h2>
+<h3 id="quickfix-improvements">Quickfix improvements</h3>
+<p>Convert a terminal fragment to a terminal rule. It resolves the following errors:</p>
+<ul>
+<li>A rule call in the parser rule points to a terminal fragment.</li>
+<li>A hidden token in the grammar definition or a parser rule points to a terminal fragment.</li>
+</ul>
+<p>Remove illegal hidden token definition. It resolves the following errors:</p>
+<ul>
+<li>The hidden-token points to a parser rule, terminal fragment, or an enum rule.</li>
+</ul>
+<p>Create a new rule definition. It resolves the following errors:</p>
+<ul>
+<li>An undefined parser rule is cross-referenced.</li>
+<li>An undefined enum, terminal, or a terminal fragment is cross-referenced.</li>
+</ul>
+<p>(<a href="https://github.com/eclipse/xtext-eclipse/issues/1448">xtext-eclipse#1448</a>)</p>
+<h3 id="eclipse-api">Eclipse API</h3>
+<p>The class org.eclipse.xtext.ui.editor.reconciler.TemplatePositionUpdater is now public to be usable for clients.</p>
+<h2 id="upgrades">Upgrades</h2>
+<ul>
+<li>Eclipse platform dependencies where updated (e.g org.eclipse.core.runtime:3.17.100 to 3.18.0).</li>
+</ul>
+<h2 id="credits">Credits</h2>
+<p>The Xtext project is thankful for the dedication of each committer and contributor. This release has been made possible by the following persons (in order of the number of contributed commits to this release to <a href="https://github.com/eclipse/xtext#repositories">all repositories</a> except <a href="https://github.com/eclipse/xtext-xtend">xtext-xtend</a>):</p>
+<ul>
+<li>Christian Dietrich (itemis)</li>
+<li>Nico Prediger (itemis)</li>
+<li>Sebastian Zarnekow (independent)</li>
+<li>Karsten Thoms (Karakun)</li>
+<li>Tamas Miklossy (itemis)</li>
+<li>Arne Deutsch (itemis)</li>
+<li>Jan Koehnlein (TypeFox)</li>
+<li>Neeraj Bhusare (Zafin)</li>
+<li>Titouan Vervack (Sigasi)</li>
+<li>Hendrik Eeckhaut (Sigasi)</li>
+<li>Frank Benoit (ETAS) <img src="https://img.shields.io/badge/-first%20time%20contributor-green.svg" alt=""></li>
+<li>Aaron R Miller <img src="https://img.shields.io/badge/-first%20time%20contributor-green.svg" alt=""></li>
+<li>Ivan Nieves <img src="https://img.shields.io/badge/-first%20time%20contributor-green.svg" alt=""></li>
+<li>Stéphane Galland (Université de Technologie de Belfort)</li>
+</ul>
+<h2 id="fixed-issues">Fixed Issues</h2>
+<p>As in every release cycle we were eagerly hunting down bugs, and reviewed and integrated plenty of contributions. For further details please refer to the following lists:</p>
+<ul>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Aissue+milestone%3ARelease_2.23+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Fixed GitHub issues</a></p>
+</li>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Apr+milestone%3ARelease_2.23+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Closed Pull Requests</a></p>
+</li>
+<li>
+<p><a href="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&amp;classification=Modeling&amp;classification=Tools&amp;columnlist=product%2Ccomponent%2Cassigned_to%2Cbug_status%2Cresolution%2Cshort_desc%2Cchangeddate%2Ckeywords&amp;f0=OP&amp;f1=OP&amp;f3=CP&amp;f4=CP&amp;known_name=Xtext%202.23&amp;list_id=16618269&amp;product=TMF&amp;product=Xtend&amp;query_based_on=Xtext%202.23&amp;query_format=advanced&amp;status_whiteboard=v2.23&amp;status_whiteboard_type=allwordssubstr">Fixed Eclipse Bugzilla tickets</a></p>
+</li>
+</ul>
+
+
+</body>
+</html>

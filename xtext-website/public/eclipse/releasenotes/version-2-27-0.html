@@ -1,0 +1,64 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+	<title>Xtext 2.27.0 Release Notes</title>
+	<link href="book.css" rel="stylesheet" type="text/css">
+	<link href="code.css" rel="stylesheet" type="text/css">
+	<link rel="home" href="index.html" title="">
+</head>
+<body>
+
+<p>Xtext 2.27.0 is a maintenance release.</p>
+<h2 id="call-to-action-secure-the-future-maintenance-of-xtext">Call to Action: Secure the future maintenance of Xtext</h2>
+<p>As you might have recognized, the number of people contributing to Xtext on a regular basis has declined over the past years and so has the number of contributions. At the same time the amount of work for basic maintenance has stayed the same or even increased with the new release cadence of Java and the Eclipse simultaneous release. Briefly: The future maintenance of Xtext is at risk, at least in the current form and as part of the Eclipse Simrel. If you care, please join the discussion in <a href="https://github.com/eclipse-xtext/xtext/issues/1721">https://github.com/eclipse-xtext/xtext/issues/1721</a>.</p>
+<h2 id="changes-to-orgeclipsextextsdk-feature">Changes to <code>org.eclipse.xtext.sdk</code> feature.</h2>
+<p>The <code>org.eclipse.xtext.sdk</code> does no longer package the deprecated <code>org.eclipse.xtext.generator</code> bundle. Please migrate to the new workflow/generator. The old and deprecated generator can still be found in the new <code>org.eclipse.xtext.generator</code> feature.</p>
+<h2 id="upgrades">Upgrades</h2>
+<ul>
+<li>Tycho 2.7.3</li>
+<li>Xtext now uses Reload4j 1.2.19</li>
+<li>Gradle 7.4.2 / xtext-gradle-plugin 3.0.2</li>
+<li>ASM 9.3</li>
+<li>MWE(2) to 1.7.0 / 2.13.0</li>
+<li>LSP4j is now on version 0.14.0 / protocol version 3.17.0</li>
+</ul>
+<h2 id="changes">Changes</h2>
+<ul>
+<li>The qualifiers of org.antlr.runtime,javax.xml,org.aopalliance have changed due to (breaking) changes in orbit.</li>
+</ul>
+<h2 id="enhancements">Enhancements</h2>
+<ul>
+<li>Xtext makes now use of the <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=579082">enhanced possibilities</a> for requesting rebuilds in platform. Please test this in your environments and give <a href="https://github.com/eclipse/xtext-eclipse/issues/1820">feedback</a></li>
+<li>The experimental API for Quickfix code actions of the Xtext Language Server Protocol (LSP) implementation has been extended to support textual quickfixes. This comes in addition to the existing support for semantic quickfixes</li>
+</ul>
+<h2 id="removals">Removals</h2>
+<ul>
+<li>Xtext no longer depends on commons lang</li>
+</ul>
+<h2 id="credits">Credits</h2>
+<p>The Xtext project is thankful for the dedication of each committer and contributor. This release has been made possible by the following persons (in order of the number of contributed commits to this release to <a href="https://github.com/eclipse/xtext#repositories">all repositories</a> except <a href="https://github.com/eclipse/xtext-xtend">xtext-xtend</a>):</p>
+<ul>
+<li>Christian Dietrich (itemis)</li>
+<li>Lorenzo Bettini (Università degli Studi di Firenze)</li>
+<li>Ruben Porras</li>
+<li>Sebastian Zarnekow (independent)</li>
+<li>Lukas Foerner <img src="https://img.shields.io/badge/-first%20time%20contributor-green.svg" alt=""></li>
+<li>Titouan Vervack (Sigasi)</li>
+</ul>
+<h2 id="fixed-issues">Fixed Issues</h2>
+<p>As in every release cycle we were eagerly hunting down bugs, and reviewed and integrated plenty of contributions. For further details please refer to the following lists:</p>
+<ul>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Aissue+milestone%3ARelease_2.27+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Fixed GitHub issues</a></p>
+</li>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Apr+milestone%3ARelease_2.27+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Closed Pull Requests</a></p>
+</li>
+<li>
+<p><a href="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&amp;classification=Modeling&amp;classification=Tools&amp;columnlist=product%2Ccomponent%2Cassigned_to%2Cbug_status%2Cresolution%2Cshort_desc%2Cchangeddate%2Ckeywords&amp;f0=OP&amp;f1=OP&amp;f3=CP&amp;f4=CP&amp;known_name=Xtext%202.27&amp;list_id=16618269&amp;product=TMF&amp;product=Xtend&amp;query_based_on=Xtext%202.27&amp;query_format=advanced&amp;status_whiteboard=v2.27&amp;status_whiteboard_type=allwordssubstr">Fixed Eclipse Bugzilla tickets</a></p>
+</li>
+</ul>
+
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+baseURL = 'https://eclipse.dev/Xtext/'
+title = 'Xtext - Language Engineering Framework'
+languageCode = 'en-us'
+uglyURLs = true
+
+[frontmatter]
+  date = [":filename", ":default"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.tableOfContents]
+    endLevel = 4
+    startLevel = 1
+
+[outputFormats.eclipse]
+  mediaType = 'text/html'
+  path = 'eclipse'
+  isHTML = true
+  permalinkable = true
+
+[outputs]
+  home = ['html']
+  section = ['html', 'eclipse']
+  page = ['html', 'eclipse']
+
+[params]
+  editRepo = "https://github.com/eclipse/xtext-website/edit/published/xtext-website/"
+  
+  [params.src]
+    xtext = "https://github.com/eclipse-xtext/xtext/blob/main"
+    mwe = "https://github.com/eclipse-mwe/mwe/blob/master"
+    emf = "https://git.eclipse.org/r/plugins/gitiles/emf/org.eclipse.emf/+/refs/tags/R2_20_0"
+  
+  [params.javadoc]
+    eclipse-platform = "https://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api"
+    eclipse-jdt = "https://help.eclipse.org/luna/topic/org.eclipse.jdt.doc.isv/reference/api"
+    java = "https://docs.oracle.com/javase/11/docs/api"
+    javaee = "https://docs.oracle.com/javaee/7/api"
+    junit = "https://junit.org/junit4/javadoc/4.13"
+    guice = "https://google.github.io/guice/api-docs/latest/javadoc"
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+[menu]
+  [[menu.main]]
+    name = "Download"
+    url = "/download.html"
+    weight = 1
+  [[menu.main]]
+    name = "Documentation"
+    url = "/documentation/index.html"
+    weight = 2
+  [[menu.main]]
+    name = "Community"
+    url = "/community.html"
+    weight = 3
+  [[menu.main]]
+    name = "Xtend"
+    url = "https://eclipse.dev/Xtext/xtend"
+    weight = 5

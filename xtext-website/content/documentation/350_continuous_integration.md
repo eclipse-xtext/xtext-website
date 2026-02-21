@@ -1,0 +1,370 @@
+---
+layout: documentation
+title: Continuous Integration (with Maven)
+part: Reference Documentation
+upsite:
+  eclipse: https://download.eclipse.org/
+  xtext: https://download.eclipse.org/modeling/tmf/xtext/updates/
+  emf: https://download.eclipse.org/modeling/emf/emf/updates/
+  mwe: https://download.eclipse.org/modeling/emft/mwe/updates/
+  xpand: https://download.eclipse.org/modeling/m2t/xpand/updates/
+---
+
+# {{< title >}} {#continuous-integration}
+
+There are two aspects to consider when it comes to continuous integration. Firstly you may want to have a continuous build of your language that runs all tests and creates an Eclipse update site and other needed artifacts, and secondly you may want to have your language and its corresponding code generator integrated in your application builds. We will discuss both cases in this section along with a set of example projects, which you can clone, inspect or download from [github.com/xtext/maven-xtext-example](https://github.com/xtext/maven-xtext-example).
+
+To follow this section you need a basic understanding of how Maven works. Please read a tutorial on Maven if you don't know anything about it.
+
+## An overview of the example projects
+
+If you have a look at the example, you'll find seven different projects of which six are for the various aspects of the language and its build. First we have the language's runtime project, UI project and test project. In addition we need a feature project, an update site project and a project where we put the parent pom. The seventh project is called `example-project` and is really a small application project that uses the built language and triggers the code generator through a dedicated maven plug-in. Let's first have a look at how to build the language.
+
+## Building an Xtext language with Maven and Tycho {#tycho-build}
+
+Although the runtime aspects of an Xtext language is not dependent on Eclipse or its OSGi container, an Xtext language is developed in the form of OSGi bundles. For this kind of builds most people rely on [Tycho](https://eclipse.org/tycho/), which is an OSGi/P2 adapter plug-in for Maven builds. Tycho obtains much information from the OSGi bundle's manifest. Additionally needed information is configured through the pom.xml file which sits at the root of each project.
+
+### The parent project (my.mavenized.herolanguage.parent)
+
+All of the projects are aggregated in a parent pom in the root directory. If you import the projects into Eclipse the imported project is called `my.mavenized.herolanguage.parent`. Information defined in the parent pom is automatically inherited by the aggregated child projects, so you don't need to reconfigure the same information over and over again. Here we have configured two additional plug-ins:
+
+*   The Xtend compiler plug-in will generate the Java source code for any Xtend files during the 'generate-sources' phase
+    
+    ```xml
+    <pluginManagement>
+      <plugins>
+        <!-- xtend-maven-plugin is in pluginManagement instead of in plugins
+           so that it doesn't run before the exec-maven-plugin's *.mwe2 gen;
+           this way we can list it after. 
+          -->
+          
+        <plugin>
+          <groupId>org.eclipse.xtend</groupId>
+          <artifactId>xtend-maven-plugin</artifactId>
+          <version>${xtext.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>compile</goal>
+                <goal>xtend-install-debug-info</goal>
+                <goal>testCompile</goal>
+                <goal>xtend-test-install-debug-info</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <outputDirectory>xtend-gen</outputDirectory>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    ```
+
+*   The Tycho plug-in will pick up and use Eclipse plug-in specific configuration data from the projects in order to build Eclipse conformant OSGi bundles, features and an update site.
+    
+    ```xml
+    <plugins>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-maven-plugin</artifactId>
+        <version>${tycho-version}</version>
+        <extensions>true</extensions>
+      </plugin>
+    </plugins>
+    ```
+
+To build the entire project you have to run your maven build with this pom file.
+
+### The update site project (my.mavenized.herolanguage.updatesite)
+
+The project `my.mavenized.herolanguage.updatesite` denotes the updatesite project and only contains a pom.xml and a file called category.xml. The latter includes information about which features are contained in the update site. As you can see, the `category.xml` file points to the single feature, which is defined in the project `my.mavenized.herolanguage.sdk`.
+
+### The feature project (my.mavenized.herolanguage.sdk)
+
+This is another project made up on configuration data solely. It contains the `feature.xml` file which points to the Eclipse plug-ins (bundles) included in this feature.
+
+### The core language project (my.mavenized.herolanguage)
+
+The `pom.xml` for the language project contains information about how Maven should run the Xtext's code generator. The first plug-in invokes the MWE2 file through a standard Java process:
+
+```xml
+<plugin>
+  <groupId>org.codehaus.mojo</groupId>
+  <artifactId>exec-maven-plugin</artifactId>
+  <version>1.4.0</version>
+  <executions>
+    <execution>
+      <id>mwe2Launcher</id>
+      <phase>generate-sources</phase>
+      <goals>
+        <goal>java</goal>
+      </goals>
+    </execution>
+  </executions>
+  <configuration>
+    <mainClass>org.eclipse.emf.mwe2.launch.runtime.Mwe2Launcher</mainClass>
+    <arguments>
+      <argument>/${project.basedir}/src/my/mavenized/GenerateHeroLanguage.mwe2</argument>
+      <argument>-p</argument>
+      <argument>rootPath=/${project.basedir}/..</argument>
+    </arguments>
+    <classpathScope>compile</classpathScope>
+    <includePluginDependencies>true</includePluginDependencies>
+    <cleanupDaemonThreads>false</cleanupDaemonThreads><!-- see https://bugs.eclipse.org/bugs/show_bug.cgi?id=475098#c3 -->
+  </configuration>
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.emf</groupId>
+      <artifactId>org.eclipse.emf.mwe2.launch</artifactId>
+      <version>2.15.0</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.xtext</groupId>
+      <artifactId>org.eclipse.xtext.common.types</artifactId>
+      <version>${xtext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.xtext</groupId>
+      <artifactId>org.eclipse.xtext.xtext.generator</artifactId>
+      <version>${xtext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.xtext</groupId>
+      <artifactId>org.eclipse.xtext.xbase</artifactId>
+      <version>${xtext.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.eclipse.xtext</groupId>
+      <artifactId>xtext-antlr-generator</artifactId>
+      <version>[2.1.1, 3)</version>
+    </dependency>
+  </dependencies>
+</plugin>
+```
+
+The second used plug-in cleans the directories containing generated resources during the clean phase:
+
+```xml
+<plugin>
+  <groupId>org.apache.maven.plugins</groupId>
+  <artifactId>maven-clean-plugin</artifactId>
+  <version>3.1.0</version>
+  <configuration>
+    <filesets>
+		<fileset>
+			<directory>${basedir}/../my.mavenized.herolanguage/src-gen/</directory>
+			<includes>
+				<include>**/*</include>
+			</includes>
+		</fileset>
+		<fileset>
+			<directory>${basedir}/../my.mavenized.herolanguage.tests/src-gen/</directory>
+			<includes>
+				<include>**/*</include>
+			</includes>
+		</fileset>
+		<fileset>
+			<directory>${basedir}/../my.mavenized.herolanguage.ide/src-gen/</directory>
+			<includes>
+				<include>**/*</include>
+			</includes>
+		</fileset>
+		<fileset>
+			<directory>${basedir}/../my.mavenized.herolanguage.ui/src-gen/</directory>
+			<includes>
+				<include>**/*</include>
+			</includes>
+		</fileset>
+		<fileset>
+			<directory>${basedir}/../my.mavenized.herolanguage.ui.tests/src-gen/</directory>
+			<includes>
+				<include>**/*</include>
+			</includes>
+		</fileset>
+		<fileset>
+			<directory>${basedir}/model/generated/</directory>
+		</fileset>
+    </filesets>
+  </configuration>
+</plugin>
+```
+
+### The ui language project (my.mavenized.herolanguage.ui)
+
+Here all code that is specific to Eclipse is located. All the additions that you place for the UI of the language, all editors, wizards and preferences, are to be placed inside this project. Regarding the maven build the `pom.xml` is not very special.
+
+### The tests language project (my.mavenized.herolanguage.tests)
+
+To separate the testing code from the application you should place all your unit tests into this project. The `pom.xml` includes the `tycho-surefire-plugin` for the testing but nothing special apart.
+
+
+## Integration in Standard Maven Builds {#standalone-build}
+
+Now that we can build our language we need to be able to integrate our language compiler in the integration build of application projects. For this purpose a dedicated maven-plugin is available in Maven central. We now refer to the project `example-project`, which is a standard Java-project that shouldn't contain any Eclipse plug-in specific information, nor should it be built with Tycho. Let's have a look at the pom.xml and therein the Xtext plug-in.
+
+```xml
+<plugin>
+	<groupId>org.eclipse.xtext</groupId>
+	<artifactId>xtext-maven-plugin</artifactId>
+	<version>${xtext-version}</version>
+	<executions>
+		<execution>
+			<goals>
+				<goal>generate</goal>
+			</goals>
+		</execution>
+	</executions>
+	<configuration>
+		<languages>
+			<language>
+				<setup>my.mavenized.HeroLanguageStandaloneSetup</setup>
+				<outputConfigurations>
+					<outputConfiguration>
+						<outputDirectory>src/main/generated-sources/xtend/</outputDirectory>
+					</outputConfiguration>
+				</outputConfigurations>
+			</language>
+		</languages>
+		<incrementalXtextBuild>true</incrementalXtextBuild> <!-- default value: false -->
+	</configuration>
+	<dependencies>
+		<dependency>
+			<groupId>my.mavenized.herolanguage</groupId>
+			<artifactId>my.mavenized.herolanguage</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+</plugin>
+```
+
+You may add multiple languages in the languages section. A language will use the default outputConfiguration, but you can override the different properties just as you can do within Eclipse preferences. The xtext-maven-plugin can work incrementally avoiding the need for an invocation of the `clean` target before running the code generator. Incremental builds are disabled by default for backwards compatibility reasons. It is safe to enable for all languages that use the regular code generation API for Xtext and do not write into a single file from multiple source files.
+
+If your language uses an `IJvmModelInferrer` (for example by using Xbase), the plug-in can create trace files for debugging purposes,
+by using the specialized maven goals `install-debug-info` and `test-install-debug-info`.
+
+```xml
+<plugin>
+	<groupId>org.eclipse.xtext</groupId>
+	<artifactId>xtext-maven-plugin</artifactId>
+	<version>${xtext-version}</version>
+	<executions>
+		<execution>
+      <id>generate</id>
+      <goals>
+        <goal>generate</goal>
+        <goal>testGenerate</goal>
+      </goals>
+    </execution>
+    <execution>
+      <id>trace</id>
+      <goals>
+        <goal>install-debug-info</goal>
+        <goal>test-install-debug-info</goal>
+      </goals>
+    </execution>
+	</executions>
+	<configuration>
+    <addOutputDirectoriesToCompileSourceRoots>true</addOutputDirectoriesToCompileSourceRoots>
+		<languages>
+			<language>
+				<setup>my.javalang.JavaLanguageStandaloneSetup</setup>
+				<outputConfigurations>
+				<outputConfigurations>
+          <outputConfiguration>
+            <installDslAsPrimarySource>true</installDslAsPrimarySource>
+            <outputDirectory>src-gen</outputDirectory>
+            <sourceMappings>
+              <sourceMapping>
+                <outputDirectory>src-gen</outputDirectory>
+                <sourceFolder>src</sourceFolder>
+              </sourceMapping>
+            </sourceMappings>
+          </outputConfiguration>
+        </outputConfigurations>
+			</language>
+		</languages>
+	</configuration>
+	<dependencies>
+		<dependency>
+			<groupId>my.javalang</groupId>
+			<artifactId>my.javalanguage</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+</plugin>
+```
+
+In this example, the option `installDslAsPrimarySource` is used to create traces that hide the underlying Java source and map the source file lines to the lines in the byte code.
+At least one source mapping is needed for the trace functionality to work as the plug-in has to map input to output folder locations.
+If you add the optional property `addOutputDirectoriesToCompileSourceRoots`, the output directories specified in `sourceMappings` will be appended as (test)compile roots of the current Maven project, which means the `maven-compiler-plugin` will recognize them as Java source folders. Set to `false` to opt out, as `true` is the default.
+
+## Maven Tycho Hints
+
+Tycho allows you to resolve project dependencies against existing p2 repositories. There are two ways to define target p2 repositories in a Tycho build. The first way is to define the repository URLs directly in the `pom.xml` using maven `<repositories>` section. The p2 repositories need to be marked with layout=p2.
+The second way is to use Eclipse [target platform files](https://wiki.eclipse.org/Tycho/Target_Platform#Target_files). This approach is much faster, because the target platform resolution is performed only once, while the repository look-ups have to be done for every module. Using the target platform will drastically reduce the build time, especially in bigger projects with a lot of modules.
+
+To further speed up the p2 dependency resolution step, use the concrete build repository instead of a project's repository or the huge [eclipse common]({{< upsite "eclipse" >}}releases/photon/) composite repository. In the table below you can find p2 repository URLs for Xtext releases and their dependencies. Versions in parentheses represent the minimal required versions.
+
+| Xtext         | EMF           | MWE2/MWE    | Xpand       | Eclipse     | All included in |
+| ------------- | ------------- | ----------- | ----------- | ----------- | ----------- |
+| [2.42.0]({{< upsite "xtext" >}}releases/2.42.0/)           | [2.45.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.45.0) (2.36.0)     | [2.25.0]({{< upsite "mwe" >}}releases/2.25.0/) (2.9.1) | no longer supported  | [4.39.0]({{< upsite "eclipse" >}}releases/2026-03) (4.30) | [2026-03]({{< upsite "eclipse" >}}releases/2026-03)|
+| [2.41.0]({{< upsite "xtext" >}}releases/2.41.0/)           | [2.44.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.44.0) (2.36.0)     | [2.24.0]({{< upsite "mwe" >}}releases/2.24.0/) (2.9.1) | no longer supported  | [4.38.0]({{< upsite "eclipse" >}}releases/2025-12) (4.30) | [2025-12]({{< upsite "eclipse" >}}releases/2025-12)|
+| [2.40.0]({{< upsite "xtext" >}}releases/2.40.0/)           | [2.43.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.43.0) (2.36.0)     | [2.23.0]({{< upsite "mwe" >}}releases/2.23.0/) (2.9.1) | no longer supported  | [4.37.0]({{< upsite "eclipse" >}}releases/2025-09) (4.30) | [2025-09]({{< upsite "eclipse" >}}releases/2025-09)|
+| [2.39.0]({{< upsite "xtext" >}}releases/2.39.0/)           | [2.42.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.42.0) (2.36.0)     | [2.22.0]({{< upsite "mwe" >}}releases/2.22.0/) (2.9.1) | no longer supported  | [4.36.0]({{< upsite "eclipse" >}}releases/2025-06) (4.30) | [2025-06]({{< upsite "eclipse" >}}releases/2025-06)|
+| [2.38.0]({{< upsite "xtext" >}}releases/2.38.0/)           | [2.41.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.41.0) (2.36.0)     | [2.21.0]({{< upsite "mwe" >}}releases/2.21.0/) (2.9.1) | no longer supported  | [4.35.0]({{< upsite "eclipse" >}}releases/2025-03) (4.30) | [2025-03]({{< upsite "eclipse" >}}releases/2025-03)|
+| [2.37.0]({{< upsite "xtext" >}}releases/2.37.0/)           | [2.40.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.40.0) (2.29.0)     | [2.20.0]({{< upsite "mwe" >}}releases/2.20.0/) (2.9.1) | no longer supported  | [4.34.0]({{< upsite "eclipse" >}}releases/2024-12) (4.24) | [2024-12]({{< upsite "eclipse" >}}releases/2024-12)|
+| [2.36.0]({{< upsite "xtext" >}}releases/2.36.0/)           | [2.39.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.39.0) (2.29.0)     | [2.19.0]({{< upsite "mwe" >}}releases/2.19.0/) (2.9.1) | no longer supported  | [4.33.0]({{< upsite "eclipse" >}}releases/2024-09) (4.23) | [2024-09]({{< upsite "eclipse" >}}releases/2024-09)|
+| [2.35.0]({{< upsite "xtext" >}}releases/2.35.0/)           | [2.38.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.38.0) (2.29.0)     | [2.18.0]({{< upsite "mwe" >}}releases/2.18.0/) (2.9.1) | no longer supported  | [4.32.0]({{< upsite "eclipse" >}}releases/2024-06) (4.23) | [2024-06]({{< upsite "eclipse" >}}releases/2024-06)|
+| [2.34.0]({{< upsite "xtext" >}}releases/2.34.0/)           | [2.37.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.37.0) (2.29.0)     | [2.17.0]({{< upsite "mwe" >}}releases/2.17.0/) (2.9.1) | no longer supported  | [4.31.0]({{< upsite "eclipse" >}}releases/2024-03) (4.23) | [2024-03]({{< upsite "eclipse" >}}releases/2024-03)|
+| [2.33.0]({{< upsite "xtext" >}}releases/2.33.0/)           | [2.36.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.36.0) (2.29.0)     | [2.16.0]({{< upsite "mwe" >}}releases/2.16.0/) (2.9.1) | no longer supported  | [4.30.0]({{< upsite "eclipse" >}}releases/2023-12) (4.23) | [2023-12]({{< upsite "eclipse" >}}releases/2023-12)|
+| [2.32.0]({{< upsite "xtext" >}}releases/2.32.0/)           | [2.35.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.35.0) (2.29.0)     | [2.15.0]({{< upsite "mwe" >}}releases/2.15.0/) (2.9.1) | [2.2.0]({{< upsite "xpand" >}}releases/R201605260315) (1.4)  | [4.29.0]({{< upsite "eclipse" >}}releases/2023-09) (4.23) | [2023-09]({{< upsite "eclipse" >}}releases/2023-09)|
+| [2.31.0]({{< upsite "xtext" >}}releases/2.31.0/)           | [2.34.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.34.0) (2.29.0)     | [2.14.0]({{< upsite "mwe" >}}releases/2.14.0/) (2.9.1) | [2.2.0]({{< upsite "xpand" >}}releases/R201605260315) (1.4)  | [4.28.0]({{< upsite "eclipse" >}}releases/2023-06) (4.23) | [2023-06]({{< upsite "eclipse" >}}releases/2023-06)|
+| [2.30.0]({{< upsite "xtext" >}}releases/2.30.0/)           | [2.33.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.33.0) (2.29.0)     | [2.14.0]({{< upsite "mwe" >}}releases/2.14.0/) (2.9.1) | [2.2.0]({{< upsite "xpand" >}}releases/R201605260315) (1.4)  | [4.27.0]({{< upsite "eclipse" >}}releases/2023-03) (4.23) | [2023-03]({{< upsite "eclipse" >}}releases/2023-03)|
+| [2.29.0]({{< upsite "xtext" >}}releases/2.29.0/)           | [2.32.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.32) (2.20.0)     | [2.14.0]({{< upsite "mwe" >}}releases/2.14.0/) (2.9.1) | [2.2.0]({{< upsite "xpand" >}}releases/R201605260315) (1.4)  | [4.26.0]({{< upsite "eclipse" >}}releases/2022-12) (4.23) | [2022-12]({{< upsite "eclipse" >}}releases/2022-12)|
+| [2.28.0]({{< upsite "xtext" >}}releases/2.28.0/)           | [2.31.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.31) (2.20.0)     | [2.13.0]({{< upsite "mwe" >}}releases/2.13.0/) (2.9.1) | [2.2.0]({{< upsite "xpand" >}}releases/R201605260315) (1.4)  | [4.25.0]({{< upsite "eclipse" >}}releases/2022-09) (4.7.3) | [2022-09]({{< upsite "eclipse" >}}releases/2022-09)|
+| [2.27.0]({{< upsite "xtext" >}}releases/2.27.0/)           | [2.30.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.30) (2.20.0)     | [2.13.0]({{< upsite "mwe" >}}releases/2.13.0/) (2.9.1) | [2.2.0]({{< upsite "xpand" >}}releases/R201605260315) (1.4)  | [4.24.0]({{< upsite "eclipse" >}}releases/2022-06) (4.7.3) | [2022-06]({{< upsite "eclipse" >}}releases/2022-06)|
+| [2.26.0]({{< upsite "xtext" >}}releases/2.26.0/)           | [2.29.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.29) (2.20.0)     | [2.12.2]({{< upsite "mwe" >}}releases/2.12.2/) (2.9.1) | [2.2.0]({{< upsite "xpand" >}}releases/R201605260315) (1.4)  | [4.23.0]({{< upsite "eclipse" >}}releases/2022-03) (4.7.3) | [2022-03]({{< upsite "eclipse" >}}releases/2022-03)|
+| [2.25.0]({{< upsite "xtext" >}}releases/2.25.0/)           | [2.25.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.25) (2.20.0)     | [2.12.1]({{< upsite "mwe" >}}releases/2.12.1/) (2.9.1) | [2.2.0]({{< upsite "xpand" >}}releases/R201605260315) (1.4)  | [4.19.0]({{< upsite "eclipse" >}}releases/2021-03) (4.7.3) | [2021-03]({{< upsite "eclipse" >}}releases/2021-03)|
+| [2.24.0]({{< upsite "xtext" >}}releases/2.24.0/)           | [2.24.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.24) (2.20.0)     | [2.12.0]({{< upsite "mwe" >}}releases/2.12.0/) (2.9.1) | [2.2.0]({{< upsite "xpand" >}}releases/R201605260315) (1.4)  | [4.18.0]({{< upsite "eclipse" >}}releases/2020-12) (4.7.3) | [2020-12]({{< upsite "eclipse" >}}releases/2020-12)|
+| [2.23.0]({{< upsite "xtext" >}}releases/2.23.0/)           | [2.23.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.23) (2.20.0)     | [2.11.3]({{< upsite "mwe" >}}releases/2.11.3/) (2.9.1) | [2.2.0]({{< upsite "xpand" >}}releases/R201605260315) (1.4)  | [4.17.0]({{< upsite "eclipse" >}}releases/2020-09) (4.7.3) | [2020-09]({{< upsite "eclipse" >}}releases/2020-09)|
+| [2.22.0]({{< upsite "xtext" >}}releases/2.22.0/)           | [2.22.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.22) (2.20.0)     | [2.11.3]({{< upsite "mwe" >}}releases/2.11.3/) (2.9.1) | [2.2.0]({{< upsite "xpand" >}}releases/R201605260315) (1.4)  | [4.16.0]({{< upsite "eclipse" >}}releases/2020-06) (4.7.3) | [2020-06]({{< upsite "eclipse" >}}releases/2020-06)|
+| [2.21.0]({{< upsite "xtext" >}}releases/2.21.0/)           | [2.21.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.21) (2.20.0)     | [2.11.2]({{< upsite "mwe" >}}releases/2.11.2/) (2.9.1) | [2.2.0]({{< upsite "xpand" >}}releases/R201605260315) (1.4)  | [4.15.0]({{< upsite "eclipse" >}}releases/2020-03) (4.7.3) | [2020-03]({{< upsite "eclipse" >}}releases/2020-03)|
+| [2.20.0]({{< upsite "xtext" >}}releases/2.20.0/)           | [2.20.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.20) (2.12.0)     | [2.11.1]({{< upsite "mwe" >}}releases/2.11.1/) (2.9.1) | [2.2.0]({{< upsite "xpand" >}}releases/R201605260315) (1.4)  | [4.14.0]({{< upsite "eclipse" >}}releases/2019-12) (4.7.3) | [2019-12]({{< upsite "eclipse" >}}releases/2019-12)|
+| [2.19.0]({{< upsite "xtext" >}}releases/2.19.0/)           | [2.19.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.19) (2.12.0)     | [2.11.0]({{< upsite "mwe" >}}releases/2.11.0/) (2.9.1) | [2.2.0]({{< upsite "xpand" >}}releases/R201605260315) (1.4)  | [4.13.0]({{< upsite "eclipse" >}}releases/2019-09) (4.7.3) | [2019-09]({{< upsite "eclipse" >}}releases/2019-09)|
+| [2.18.0]({{< upsite "xtext" >}}releases/2.18.0/)           | [2.18.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.18) (2.12.0)     | [2.10.0]({{< upsite "mwe" >}}releases/2.10.0/) (2.9.1) | [2.2.0]({{< upsite "xpand" >}}releases/R201605260315) (1.4)  | [4.12.0]({{< upsite "eclipse" >}}releases/2019-06) (4.7.3) | [2019-06]({{< upsite "eclipse" >}}releases/2019-06)|
+| [2.17.0]({{< upsite "xtext" >}}releases/2.17.0/)           | [2.17.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.17) (2.12.0)     | [2.10.0]({{< upsite "mwe" >}}releases/2.10.0/) (2.9.1) | [2.2.0]({{< upsite "xpand" >}}releases/R201605260315) (1.4)  | [4.11.0]({{< upsite "eclipse" >}}releases/2019-03) (4.7.3) | [2019-03]({{< upsite "eclipse" >}}releases/2019-03)|
+| [2.16.0]({{< upsite "xtext" >}}releases/2.16.0/)           | [2.16.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.16) (2.12.0)     | [2.9.0]({{< upsite "mwe" >}}releases/2.9.0/) (2.7.1) | [2.2.0]({{< upsite "xpand" >}}releases/R201605260315) (1.4)  | [4.10.0]({{< upsite "eclipse" >}}releases/2018-12/201812191000) (4.7.3) | [2018-12]({{< upsite "eclipse" >}}releases/2018-12/201812191000)|
+| [2.15.0]({{< upsite "xtext" >}}releases/2.15.0/)           | [2.15.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.15) (2.12.0)     | [2.9.0]({{< upsite "mwe" >}}releases/2.9.0/) (2.7.1) | [2.2.0]({{< upsite "xpand" >}}releases/R201605260315) (1.4)  | [4.9.0]({{< upsite "eclipse" >}}releases/2018-09/201809191002) (4.7.3) | [2018-09]({{< upsite "eclipse" >}}releases/2018-09/201809191002)|
+| [2.14.0]({{< upsite "xtext" >}}releases/2.14.0/)           | [2.14.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.14) (2.12.0)     | [2.9.0]({{< upsite "mwe" >}}releases/2.9.0/) (2.7.1) | [2.2.0]({{< upsite "xpand" >}}releases/R201605260315) (1.4)  | [4.8.0]({{< upsite "eclipse" >}}releases/photon/201806271001) (4.7.3) | [Photon]({{< upsite "eclipse" >}}releases/photon/201806271001)|
+| [2.13.0]({{< upsite "xtext" >}}releases/2.13.0/)           | [2.13.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.13) (2.12.0)     | [2.9.0]({{< upsite "mwe" >}}releases/2.9.0/) (2.7.1) | [2.2.0]({{< upsite "xpand" >}}releases/R201605260315) (1.4)  | [4.7.3]({{< upsite "eclipse" >}}releases/oxygen/201804111000) (3.6) | [Oxygen]({{< upsite "eclipse" >}}releases/oxygen/201804111000)|
+| [2.12.0]({{< upsite "xtext" >}}releases/2.12.0/)           | [2.13.0]({{< upsite "eclipse" >}}modeling/emf/emf/builds/release/2.13) (2.12.0)     | [2.9.0]({{< upsite "mwe" >}}releases/2.9.0/) (2.7.1) | [2.2.0]({{< upsite "xpand" >}}releases/R201605260315) (1.4)  | [4.7.3]({{< upsite "eclipse" >}}releases/oxygen/201804111000) (3.6) | [Oxygen]({{< upsite "eclipse" >}}releases/oxygen/201804111000)|
+| [2.11.0]({{< upsite "xtext" >}}releases/2.11.0/)           | [2.12.0]({{< upsite "eclipse" >}}releases/neon/201606221000) (2.12.0)     | [2.9.0]({{< upsite "mwe" >}}releases/2.9.0/) (2.7.1) | [2.2.0]({{< upsite "xpand" >}}releases/R201605260315) (1.4)  | [4.6.0]({{< upsite "eclipse" >}}eclipse/updates/4.6/R-4.6-201606061100) (3.6) | [Neon*]({{< upsite "eclipse" >}}releases/neon/201606221000)|
+| [2.10.0]({{< upsite "xtext" >}}releases/2.10.0/)           | [2.12.0]({{< upsite "eclipse" >}}releases/neon/201606221000) (2.12.0)     | [2.9.0]({{< upsite "mwe" >}}releases/2.9.0/) (2.7.1) | [2.2.0]({{< upsite "xpand" >}}releases/R201605260315) (1.4)  | [4.6.0]({{< upsite "eclipse" >}}eclipse/updates/4.6/R-4.6-201606061100) (3.6) | [Neon]({{< upsite "eclipse" >}}releases/neon/201606221000)|
+| [2.9.1]({{< upsite "xtext" >}}releases/2.9.1/) 					| [2.11.1]({{< upsite "emf" >}}2.11.x/core/) (2.10.2)  	 | [2.8.3]({{< upsite "mwe" >}}releases/2.8.3/) (2.7.1) | [2.1.0]({{< upsite "xpand" >}}releases/R201505260349) (1.4)  | [4.5.2]({{< upsite "eclipse" >}}eclipse/updates/4.5/R-4.5.2-201602121500/) (3.6) | [Mars SR2*]({{< upsite "eclipse" >}}releases/mars/)|
+| [2.8.4]({{< upsite "xtext" >}}releases/2.8.4/) 					| [2.11.1]({{< upsite "emf" >}}2.11.x/core/) (2.10.2)  	 | [2.8.1]({{< upsite "mwe" >}}releases/2.8.1/) (2.7.1) | [2.1.0]({{< upsite "xpand" >}}releases/R201505260349) (1.4)  | [4.5.1]({{< upsite "eclipse" >}}eclipse/updates/4.5/R-4.5-201506032000/) (3.6) | [Mars SR1]({{< upsite "eclipse" >}}releases/mars/)|
+| [2.8.3]({{< upsite "xtext" >}}releases/2.8.3/), [2.8.2]({{< upsite "xtext" >}}releases/2.8.2/), [2.8.1]({{< upsite "xtext" >}}releases/2.8.1/) | [2.11.0]({{< upsite "emf" >}}2.11/core/R201506010402/) (2.10.2)  	 | [2.8.0]({{< upsite "mwe" >}}releases/2.8.0/) (2.7.1) | [2.1.0]({{< upsite "xpand" >}}releases/R201505260349) (1.4)  | [4.5.0]({{< upsite "eclipse" >}}eclipse/updates/4.5/R-4.5-201506032000/) (3.6) | [Mars R]({{< upsite "eclipse" >}}releases/mars/201506241002/)|
+| [2.7.3]({{< upsite "xtext" >}}releases/maintenance/R201411190455/) | [2.10.2]({{< upsite "emf" >}}2.10.x/core/S201501230452/) (2.10) | [2.7.0]({{< upsite "mwe" >}}releases/R201409021051/mwe2lang/) [1.3.4]({{< upsite "mwe" >}}releases/R201409021027/mwe) (2.7.0/1.2)  | [2.0.0]({{< upsite "xpand" >}}releases/R201406030414) (1.4) | [4.4.2]({{< upsite "eclipse" >}}eclipse/updates/4.4/R-4.4.2-201502041700) (3.6) |[Luna SR2]({{< upsite "eclipse" >}}releases/luna/201502271000/)|
+
+The following is an example target platform definition for Xtext 2.42.0 and Eclipse 4.39 alias 2026-03.
+
+```xml
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?>
+<target name="org.xtext.myxtextlanguage.target" sequenceNumber="1">
+<locations>
+  <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
+    <unit id="org.eclipse.xtext.sdk.feature.group" version="0.0.0"/>
+    <repository location="https://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.42.0/"/>
+  </location>
+  <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="false" type="InstallableUnit">
+    <unit id="org.eclipse.jdt.feature.group" version="0.0.0"/>
+    <unit id="org.eclipse.platform.feature.group" version="0.0.0"/>
+    <unit id="org.eclipse.pde.feature.group" version="0.0.0"/>
+    <unit id="org.eclipse.draw2d.feature.group" version="0.0.0"/>
+    <unit id="org.eclipse.emf.sdk.feature.group" version="0.0.0"/>
+    <unit id="org.eclipse.emf.mwe2.launcher.feature.group" version="0.0.0"/>
+    <repository location="https://download.eclipse.org/releases/2026-03/"/>
+  </location>
+</locations>
+</target>
+```

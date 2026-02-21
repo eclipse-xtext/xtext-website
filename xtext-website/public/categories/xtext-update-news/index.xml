@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Xtext Update News on Xtext - Language Engineering Framework</title>
+    <link>https://eclipse.dev/Xtext/categories/xtext-update-news.html</link>
+    <description>Recent content in Xtext Update News on Xtext - Language Engineering Framework</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 20 Nov 2014 17:02:28 +0000</lastBuildDate>
+    <atom:link href="https://eclipse.dev/Xtext/categories/xtext-update-news/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Xtext 2.7.3 is out!</title>
+      <link>https://eclipse.dev/Xtext/news/xtext-2-7-3-is-out.html</link>
+      <pubDate>Thu, 20 Nov 2014 17:02:28 +0000</pubDate>
+      <guid>https://eclipse.dev/Xtext/news/xtext-2-7-3-is-out.html</guid>
+      <description>&lt;p&gt;We have just released version 2.7.3 of Xtext. It comes with some important bugfixes and is recommended for any 2.7.x users.&lt;/p&gt;&#xA;&lt;p&gt;Here is the &lt;a href=&#34;https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;amp;bug_status=VERIFIED&amp;amp;classification=Modeling&amp;amp;classification=Tools&amp;amp;f0=OP&amp;amp;f1=OP&amp;amp;f3=CP&amp;amp;f4=CP&amp;amp;j1=OR&amp;amp;list_id=10516978&amp;amp;product=TMF&amp;amp;product=Xtend&amp;amp;query_format=advanced&amp;amp;status_whiteboard=v2.7.3&amp;amp;status_whiteboard_type=allwordssubstr&#34;&gt;full log&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

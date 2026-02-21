@@ -1,0 +1,103 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+	<title>Xtext 2.18.0 Release Notes</title>
+	<link href="book.css" rel="stylesheet" type="text/css">
+	<link href="code.css" rel="stylesheet" type="text/css">
+	<link rel="home" href="index.html" title="">
+</head>
+<body>
+
+<p>Xtext 2.18.0 is mainly a maintenance release.</p>
+<h2 id="eclipse-integration">Eclipse Integration</h2>
+<h3 id="search-references-result-page-new-context-actions">Search References Result Page: New Context Actions</h3>
+<p>The results of the <em>Search References</em> action can now be copied to the clipboard. Further an action has been added to remove search results from the view. Both actions are available from the context menu and by common keyboard shortcuts.</p>
+<p><img src="%7B%7Bsite.baseurl%7D%7D/images/releasenotes/2_18_SearchReferencesResultActions.png" alt="Search References Result Page: New Context Actions">{:height=&ldquo;50%&rdquo; width=&ldquo;50%&rdquo;}</p>
+<h3 id="new-quickfix-on-empty-keywords">New Quickfix on Empty Keywords</h3>
+<p>Grammar rules with empty keyword statements (<code>''</code>) are raising errors already. Two new quickfixes have been added that can be used to resolve these errors:</p>
+<ul>
+<li>Remove the empty keyword</li>
+<li>Set the keyword value from the declaring rule name</li>
+</ul>
+<p>(<a href="https://github.com/eclipse/xtext-eclipse/issues/994">xtext-eclipse#994</a>)</p>
+<h3 id="fixed-potential-deadlock-on-startup">Fixed Potential Deadlock on Startup</h3>
+<p>A deadlock may occur on startup of Eclipse. The builder infrastructure has been improved to avoid locking on loading its stored state. (<a href="https://github.com/eclipse-xtext/xtext/issues/1460">#1460</a>)</p>
+<h3 id="fixed-exceptions-for-closed-projects">Fixed: Exceptions for Closed Projects</h3>
+<p>When projects are removed from the workspace the <code>ProjectOpenedOrClosedListener</code> may caused exceptions that were logged to the error log. This situation has been fixed with <a href="https://github.com/eclipse/xtext-eclipse/issues/1066">xtext-eclipse#1066</a>.</p>
+<h3 id="refactoring-support-improved-progress-reporting">Refactoring Support: Improved Progress Reporting</h3>
+<p>The <code>ResourceRelocationProcessor</code> did not forward the progress monitor to the change serializer, which prevented proper feedback and cancellation support during the application of a rename refactoring. The progress monitor is now forwarded. (<a href="https://github.com/eclipse/xtext-eclipse/issues/1053">xtext-eclipse#1053</a>)</p>
+<h3 id="refactoring-support-improved-memory-utilization">Refactoring Support: Improved Memory Utilization</h3>
+<p>During rename or move refactorings a temporary resource set is created and populated. This resource set was kept in memory, leading to unnecessary memory consumption. Now the memory held by this temporary resource set is released properly. (<a href="https://github.com/eclipse/xtext-eclipse/issues/1048">xtext-eclipse#1048</a>)</p>
+<h2 id="lsp-integration">LSP Integration</h2>
+<h3 id="ilanguageserveraccess-provide-access-to-xtext-index"><code>ILanguageServerAccess</code>: Provide Access to Xtext Index</h3>
+<p>A new method <code>doReadIndex</code> has been added to <code>ILanguageServerAccess</code> to allow access to the <code>IResourceDescritions</code> instance (a.k.a. the Xtext Index). This is useful for certain use cases for LS extension developers. (<a href="https://github.com/eclipse/xtext-core/issues/1067">xtext#1067</a>)</p>
+<h3 id="report-partial-results-of-cancelled-multi-project-builds">Report Partial Results of Cancelled Multi-Project Builds</h3>
+<p>When a multi-project build is canceled (another <code>runWrite</code> coming in from the <code>RequestManager</code>), it could be that some projects have already been built. Even though their <code>ProjectManager</code>s have been updated (e.g. their index state), their deltas were never returned, because the <code>BuildManager</code> aggregated all results in a local variable. Build listeners were never be informed about these changes.</p>
+<p>The <code>BuildManager</code> has been improved to report also partial results to listeners. (<a href="https://github.com/eclipse/xtext-core/issues/1124">xtext-core#1124</a>)</p>
+<h3 id="improved-handling-of-builds-cancellations-by-didchangewatchedfiles-notifications">Improved Handling of Builds Cancellations by <code>didChangeWatchedFiles</code> Notifications</h3>
+<p>When editing files in an auto-saving editor, <code>didChange</code> notifications are usually followed by <code>didChangeWatchedFiles</code> notifications. The latter cancel the build, but only look at their own changes to decide whether a new build should be issued. The changes from the prior <code>didChange</code> queued on the <code>BuildManager</code> were ignored.</p>
+<p>This issue has been improved by reprocessing URIs from cancelled builds in. (<a href="https://github.com/eclipse/xtext-core/issues/1121">xtext-core#1121</a>)</p>
+<h3 id="fixed-unexpected-occurrance-highlighting">Fixed Unexpected Occurrance Highlighting</h3>
+<p>In certain situations occurrances were not highlighted properly. The highlighting service has been improved for that. See <a href="https://github.com/eclipse/xtext-core/issues/1090">xtext-core#1090</a> for details.</p>
+<h2 id="xtext-grammar--code-generator">Xtext Grammar &amp; Code Generator</h2>
+<h3 id="fixed-illegal-whitespace-removal-in-merged-manifests">Fixed: Illegal Whitespace Removal in Merged Manifests</h3>
+<p>When re-generating language implementations whitespace was illegally removed for required bundles with changed versions. (<a href="https://github.com/eclipse/xtext-extras/issues/406">xtext-extras#406</a>)</p>
+<h2 id="security">Security</h2>
+<p>With <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=544852">Bug#544852</a> a theoretical security issue was reported (CVE-2019-10249). While building Xtext artifacts may be downloaded through HTTP instead of HTTPS. To avoid this, all build related resources have been revised and assured that all artifacts participating in the software build are only downloaded with HTTPS.</p>
+<ul>
+<li>p2 mirrors are disabled for builds using Eclipse Tycho. (<a href="https://github.com/eclipse-xtext/xtext/issues/1427">#1427</a>)</li>
+<li>p2 repository URLs changed from HTTP to HTTPS. (<a href="https://github.com/eclipse/xtext-xtend/issues/759">xtext-xtend#759</a>)</li>
+<li>Maven repository URLs changed from HTTP to HTTPS. (<a href="https://github.com/eclipse/xtext-maven/issues/74">xtext-maven</a>)</li>
+</ul>
+<h2 id="upgrades">Upgrades</h2>
+<ul>
+<li>LSP4J has been upgraded to its latest release 0.7.2.</li>
+<li>The Java Bytecode Manipultation library ASM has been upgraded to version 7.1.0. (<a href="https://github.com/eclipse-xtext/xtext/issues/1440">#1440</a>)</li>
+<li>Gradle based projects have been upgraded to use the Gradle Wrapper version 5.4.1.</li>
+<li>Eclipse Tycho has been upgraded to release 1.4.0. (<a href="https://github.com/eclipse-xtext/xtext/issues/1422">#1422</a>)</li>
+<li>In Gradle builds usages of Spring&rsquo;s <code>dependency-management-plugin</code> have been upgraded to version 1.0.7.RELEASE. (<a href="https://github.com/eclipse-xtext/xtext/issues/1420">#1420</a>)</li>
+</ul>
+<h2 id="new-features-in-xtend">New Features in Xtend</h2>
+<p>Xtend has learned try-with-resources and the ternary operator. See the <a href="https://www.eclipse.dev/Xtext/xtend/releasenotes.html#/releasenotes/2019/06/04/version-2-18-0">Xtend Releasenotes</a> for details.</p>
+<h2 id="credits">Credits</h2>
+<p>The Xtext project is thankful for the dedication of each committer and contributor. This release has been made possible by the following persons (in order of the number of contributed commits to this release to <a href="https://github.com/eclipse/xtext#repositories">all repositories</a> except <a href="https://github.com/eclipse/xtext-xtend">xtext-xtend</a>):</p>
+<ul>
+<li>Christian Dietrich (itemis)</li>
+<li>Karsten Thoms (itemis)</li>
+<li>Sebastian Zarnekow (itemis)</li>
+<li>Jan Koehnlein (TypeFox)</li>
+<li>Holger Schill (itemis)</li>
+<li>Arne Deutsch (itemis)</li>
+<li>Christian Schneider (TypeFox)</li>
+<li>Titouan Vervack (Sigasi)</li>
+<li>Max Leuthäuser (itemis) <img src="https://img.shields.io/badge/-first%20time%20contributor-green.svg" alt=""></li>
+<li>Akos Kitta (TypeFox)</li>
+<li>Lorenzo Addazi</li>
+<li>Lorenzo Bettini (Università degli Studi di Firenze)</li>
+<li>Tamas Miklossy (itemis)</li>
+<li>Dennis Huebner (TypeFox)</li>
+<li>RhiobeT <img src="https://img.shields.io/badge/-first%20time%20contributor-green.svg" alt=""></li>
+<li>Sergio Otero Lopez <img src="https://img.shields.io/badge/-first%20time%20contributor-green.svg" alt=""></li>
+<li>Eva Poell (itemis)</li>
+<li>Lieven Lemiengre (Sigasi)</li>
+<li>Mark Christiaens (Sigasi)</li>
+<li>Michael Budnick (all4net) <img src="https://img.shields.io/badge/-first%20time%20contributor-green.svg" alt=""></li>
+<li>Stéphane Galland (Université de Technologie de Belfort)</li>
+</ul>
+<h2 id="fixed-issues">Fixed Issues</h2>
+<p>As in every release cycle we were eagerly hunting down bugs, and reviewed and integrated plenty of contributions. Almost 100 issues and 300 pull requests have made it into this release. For further details please refer to the following lists:</p>
+<ul>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Aissue+milestone%3ARelease_2.18+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Fixed GitHub issues</a></p>
+</li>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Apr+milestone%3ARelease_2.18+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Closed Pull Requests</a></p>
+</li>
+<li>
+<p><a href="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&amp;classification=Modeling&amp;classification=Tools&amp;columnlist=product%2Ccomponent%2Cassigned_to%2Cbug_status%2Cresolution%2Cshort_desc%2Cchangeddate%2Ckeywords&amp;f0=OP&amp;f1=OP&amp;f3=CP&amp;f4=CP&amp;known_name=Xtext%202.18&amp;list_id=16618269&amp;product=TMF&amp;product=Xtend&amp;query_based_on=Xtext%202.18&amp;query_format=advanced&amp;status_whiteboard=v2.18&amp;status_whiteboard_type=allwordssubstr">Fixed Eclipse Bugzilla tickets</a></p>
+</li>
+</ul>
+
+
+</body>
+</html>

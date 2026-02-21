@@ -1,0 +1,67 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+	<title>Xtext 2.20.0 Release Notes</title>
+	<link href="book.css" rel="stylesheet" type="text/css">
+	<link href="code.css" rel="stylesheet" type="text/css">
+	<link rel="home" href="index.html" title="">
+</head>
+<body>
+
+<p>Xtext 2.20.0 is mainly a maintenance release.</p>
+<h2 id="eclipse-integration">Eclipse Integration</h2>
+<h3 id="egit-minimal-version">EGit minimal version</h3>
+<p>Xtext requires to use EGit 4.1 or newer now. We have removed a workaround that prevented an endless build loop caused by EGit <a href="https://bugs.eclipse.org/bugs/show_bug.cgi?id=474003">Bug#474003</a>. Since we expect that no clients are still using Xtext &gt;= 2.20 together with the ancient EGit version, we felt safe to finally remove this workaround.</p>
+<h3 id="new-project-wizard--new-file-wizard-improvements">New Project Wizard / New File Wizard improvements</h3>
+<p>The <code>New Project Wizard</code> / <code>New File Wizard</code> generator fragments have been extended by the <code>generateToolbarButton</code> option. Setting this option to <code>true</code> adds new project wizard / new file wizard buttons to the toolbar. Furthermore, the New Project Wizard templates provide an API to
+register images that can be used in the template descriptions. All these wizard improvements are demonstrated by the Statemachine example shipped by the Xtext framework.</p>
+<h2 id="xtext-web">Xtext-Web</h2>
+<p>The <code>Xtext-Web Entities Example</code> provides improved validator and formatter capabilities, such as validating the entity, property and operation names, validating the uniquness of the property/operation definitions as well as properly formatting the defined packages, entities, properties and operations elements.</p>
+<h2 id="upgrades">Upgrades</h2>
+<ul>
+<li>The Eclipse Modeling Workflow Engine (MWE2) was updated to version 2.11.1.</li>
+<li>LSP4J is now on version 0.8.1.</li>
+<li>Maven Tycho was updated to version 1.5.1.</li>
+<li>Gradle to version 5.6.x (Should also work with Gradle 6.0.x which we will ship with Xtext 2.21).</li>
+<li>grgit Gradle Plugin 4.0.0</li>
+</ul>
+<h2 id="xtend">Xtend</h2>
+<p>A word on Xtend. Back in 2013 Xtend was the &ldquo;Java 10 of today&rdquo; even before Java 8 was out. Meanwhile Java Release cadence has speeded up and many of Xtends features can be achieved with pure Java, too. There is still some areas where Xtend is particularly advanced like Code generation, Unit tests and lambda heavy APIs like JvmModelInferrer and Formatter. For other tasks there is no need to use Xtend. Also the resources we have no longer allow us to keep the head start against Java. And learning Xtend still is a burden for new Xtext users. To reflect this changed situation we have decided to make Java the default in the wizard again (except e.g. the Generator and a few other APIs). You can still decide if you want Java or Xtend in the workflow.</p>
+<h2 id="deprecations">Deprecations</h2>
+<h3 id="old-generator">Old Generator</h3>
+<p>With Xtext 2.9 we changed the way Xtext languages are generated to a new generator infrastructure/workflow (<code>org.eclipse.xtext.xtext.generator</code>). Until now we still kept the support for the old (Xpand based) workflows and generator (<code>org.eclipse.xtext.generator</code>). We also allowed to use old generator fragments in new workflows through <code>org.eclipse.xtext.generator.adapter.FragmentAdapter</code>. As we want to stop using old Xpand in Xtext we will drop this support in a future Xtext release. We strongly recommend you to migrate to the new workflow and to get rid of the usages of <code>FragmentAdapter</code>.</p>
+<h3 id="xtend1-based-ixtext2ecorepostprocessor">Xtend(1) based IXtext2EcorePostProcessor</h3>
+<p>Xtext has basically two methods to work with metamodels. The first on is to infer the metamodel from the Grammar. The second one is to maintain it manually and import it in Xtext. In the past we had actually a third option too: To hook into the inference with a <code>IXtext2EcorePostProcessor</code> written in old Xtend(1). We plan to drop this feature in the future and recommend you to switch to a manually maintained metamodel.</p>
+<h2 id="credits">Credits</h2>
+<p>The Xtext project is thankful for the dedication of each committer and contributor. This release has been made possible by the following persons (in order of the number of contributed commits to this release to <a href="https://github.com/eclipse/xtext#repositories">all repositories</a> except <a href="https://github.com/eclipse/xtext-xtend">xtext-xtend</a>):</p>
+<ul>
+<li>Christian Dietrich (itemis)</li>
+<li>Karsten Thoms (itemis)</li>
+<li>Sebastian Zarnekow (independent)</li>
+<li>Tamas Miklossy (itemis)</li>
+<li>D. Gabriel (Bachmann) <img src="https://img.shields.io/badge/-first%20time%20contributor-green.svg" alt=""></li>
+<li>Jan Köhnlein (TypeFox)</li>
+<li>Arne Deutsch (itemis)</li>
+<li>Mathias Rieder <img src="https://img.shields.io/badge/-first%20time%20contributor-green.svg" alt=""></li>
+<li>Elena Rogleva <img src="https://img.shields.io/badge/-first%20time%20contributor-green.svg" alt=""></li>
+<li>Mark Christiaens (Sigasi)</li>
+<li>Simeon Andreev (Advantest) <img src="https://img.shields.io/badge/-first%20time%20contributor-green.svg" alt=""></li>
+<li>Stéphane Galland (Université de Technologie de Belfort)</li>
+</ul>
+<h2 id="fixed-issues">Fixed Issues</h2>
+<p>As in every release cycle we were eagerly hunting down bugs, and reviewed and integrated plenty of contributions. Almost 60 issues and 320 pull requests have made it into this release. For further details please refer to the following lists:</p>
+<ul>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Aissue+milestone%3ARelease_2.20+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Fixed GitHub issues</a></p>
+</li>
+<li>
+<p><a href="https://github.com/search?utf8=%E2%9C%93&amp;q=is%3Apr+milestone%3ARelease_2.20+is%3Aclosed+repo%3Aeclipse%2Fxtext+repo%3Aeclipse%2Fxtext-core+repo%3Aeclipse%2Fxtext-lib+repo%3Aeclipse%2Fxtext-extras+repo%3Aeclipse%2Fxtext-eclipse+repo%3Aeclipse%2Fxtext-idea+repo%3Aeclipse%2Fxtext-web+repo%3Aeclipse%2Fxtext-maven+repo%3Aeclipse%2Fxtext-xtend&amp;type=Issues&amp;ref=searchresults">Closed Pull Requests</a></p>
+</li>
+<li>
+<p><a href="https://bugs.eclipse.org/bugs/buglist.cgi?bug_status=RESOLVED&amp;bug_status=VERIFIED&amp;bug_status=CLOSED&amp;classification=Modeling&amp;classification=Tools&amp;columnlist=product%2Ccomponent%2Cassigned_to%2Cbug_status%2Cresolution%2Cshort_desc%2Cchangeddate%2Ckeywords&amp;f0=OP&amp;f1=OP&amp;f3=CP&amp;f4=CP&amp;known_name=Xtext%202.20&amp;list_id=16618269&amp;product=TMF&amp;product=Xtend&amp;query_based_on=Xtext%202.20&amp;query_format=advanced&amp;status_whiteboard=v2.20&amp;status_whiteboard_type=allwordssubstr">Fixed Eclipse Bugzilla tickets</a></p>
+</li>
+</ul>
+
+
+</body>
+</html>

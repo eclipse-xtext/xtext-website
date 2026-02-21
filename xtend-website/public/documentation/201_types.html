@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head><script src="/Xtext/xtend/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=Xtext/xtend/livereload" data-no-instant defer></script>
+	<meta charset="UTF-8">
+	<title>Xtend - Java Interoperability</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Xtend is a statically typed programming language sitting on top of Java.">
+	<meta name="author" content="Sven Efftinge">
+	<meta name="author" content="Miro Spoenemann">
+	
+	<link rel="shortcut icon" href="http://localhost:1313/Xtext/xtend/images/favicon.png">
+	
+	<link href="http://localhost:1313/Xtext/xtend/css/bootstrap.css" rel="stylesheet" type='text/css'>
+	<link href="http://localhost:1313/Xtext/xtend/css/bootstrap-responsive.css" rel="stylesheet" type='text/css'>
+	<link href="http://localhost:1313/Xtext/xtend/css/shield-responsive.css" rel="stylesheet" type='text/css'>
+	<link href='http://localhost:1313/Xtext/xtend/css/fonts.css' rel='stylesheet' type='text/css'>
+	<link href="http://localhost:1313/Xtext/xtend/css/prettyPhoto.css" rel="stylesheet" media="screen" type='text/css'>
+	<link href="http://localhost:1313/Xtext/xtend/css/prettify.css" type="text/css" rel="stylesheet"/>
+	<link href="http://localhost:1313/Xtext/xtend/css/style.css" rel="stylesheet" type='text/css'>
+</head>
+
+  <body>
+    <div class="navbar navbar-fixed-top" style="border-bottom: 1px solid #000;">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="http://localhost:1313/Xtext/xtend/index.html"></a>
+      <div class="nav-collapse collapse" style="height: 0px;">
+        <ul class="nav">
+          
+          <li><a href="/Xtext/xtend/download.html">Download</a></li>
+          
+          <li><a href="/Xtext/xtend/documentation/index.html">Documentation</a></li>
+          
+          <li><a href="/Xtext/xtend/community.html">Community</a></li>
+          
+          <li><a href="https://eclipse.dev/Xtext">Xtext</a></li>
+          
+          <li><a href="https://www.eclipse.org">Eclipse.org</a></li>
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+<div class="page-content">
+  <script>
+    function startSearch(event) {
+        if (event.keyCode == 13) {
+            var q = 'site:eclipse.dev/Xtext/xtend/documentation+' + event.target.value;
+            window.open('https://www.google.com/search?q=' + q, "_self");
+        }
+    }
+  </script>
+  <div class="wrapper">
+    <div id="page">  
+      <div class="inner">
+        <div id="maincontainer" class="container">
+          <span class="edit-on-github pull-right">
+            <a href="content/documentation/documentation/201_types.md">Edit on Github</a>
+          </span>
+          <div class="span3" style="margin-left: 0px;">
+            <div class="search-bar">
+              <img src="http://localhost:1313/Xtext/xtend/images/search-gray.png"/>
+              <input type="search" id="google-search" onkeyup="startSearch(event);"/>
+            </div>
+            <ul id="nav-outline">
+	<li>&nbsp;</li>
+	<li style="color : #333;">Getting Started</li>
+	<li><a href="http://localhost:1313/Xtext/xtend/documentation/101_gettingstarted.html">Hello World</a></li>
+	<li><a href="http://localhost:1313/Xtext/xtend/documentation/102_moviesexample.html">The Movies Example</a></li>
+	<li>&nbsp;</li>
+	<li style="color : #333;">Reference Documentation</li>
+	<li><a href="http://localhost:1313/Xtext/xtend/documentation/201_types.html">Java Interoperability</a></li>
+	<li><a href="http://localhost:1313/Xtext/xtend/documentation/202_xtend_classes_members.html">Classes and Members</a></li>
+	<li><a href="http://localhost:1313/Xtext/xtend/documentation/203_xtend_expressions.html">Expressions</a></li>
+	<li><a href="http://localhost:1313/Xtext/xtend/documentation/204_activeannotations.html">Active Annotations</a></li>
+</ul>
+
+          </div>
+          <div class="span9 doc-contents">
+            <h1 id="types">Java Interoperability
+</h1>
+<p>Xtend, like Java, is a statically typed language. In fact it completely supports Java&rsquo;s type system, including the primitive types like <code>int</code> or <code>boolean</code>, arrays and all the Java classes, interfaces, enums and annotations that reside on the class path.</p>
+<p>Java generics are fully supported as well: You can define type parameters on methods and classes and pass type arguments to generic types just as you are used to from Java. The type system and its conformance and casting rules are implemented as defined in <a href="https://docs.oracle.com/javase/specs/jls/se6/html/conversions.html">the Java Language Specification</a>.</p>
+<p>Resembling and supporting every aspect of Java&rsquo;s type system ensures that there is no impedance mismatch between Java and Xtend. This means that Xtend and Java are 100% interoperable. There are no exceptional cases and you do not have to think in two worlds. You can invoke Xtend code from Java and vice versa without any surprises or hassles. As a bonus, if you know Java&rsquo;s type system and are familiar with Java&rsquo;s generic types, you already know the most complicated part of Xtend.</p>
+<p>The default behavior of the Xtend-to-Java compiler is to generate Java code with the same language version compatibility as specified for the Java compiler in the respective project. This can be changed in the global preferences or in the project properties on the <em>Xtend → Compiler</em> page (since 2.8). Depending on which Java language version is chosen, Xtend might generate different but equivalent code. For example, <a href="203_xtend_expressions.html#lambdas">lambda expressions</a> are translated to Java lambdas if the compiler is set to Java 8, while for lower Java versions anonymous classes are generated.</p>
+<h2 id="local-type-inference">Type Inference</h2>
+<p>One of the problems with Java is that you are forced to write type signatures over and over again. That is why so many people do not like static typing. But this is in fact not a problem of static typing but simply a problem with Java. Although Xtend is statically typed just like Java, you rarely have to write types down because they can be computed from the context.</p>
+<p>Consider the following Java variable declaration:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">final</span> LinkedList<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> LinkedList<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span>();
+</span></span></code></pre></div><p>The type name written for the constructor call must be repeated to declare the variable type. In Xtend the variable type can be inferred from the initialization expression:</p>
+<pre tabindex="0"><code class="language-xtend" data-lang="xtend">val list = new LinkedList&lt;String&gt;
+</code></pre><h2 id="conversion-rules">Conversion Rules</h2>
+<p>In addition to Java&rsquo;s autoboxing to convert primitives to their corresponding wrapper types (e.g. <code>int</code> is automatically converted to <a href="%7B%7Bsite.javadoc.java%7D%7D/java/lang/Integer.html">Integer</a> when needed), there are additional conversion rules in Xtend.</p>
+<p>Arrays are automatically converted to <a href="%7B%7Bsite.javadoc.java%7D%7D/java/util/List.html"><code>List&lt;ComponentType&gt;</code></a> and vice versa. That is you can write the following:</p>
+<pre tabindex="0"><code class="language-xtend" data-lang="xtend">def toList(String[] array) {
+  val List&lt;String&gt; asList = array
+  return asList
+}
+</code></pre><p>Subsequent changes to the array are reflected by the list and vice versa. Arrays of primitive types are converted to lists of their respective wrapper types.</p>
+<p>The conversion works the other way round, too. In fact, all subtypes of <a href="%7B%7Bsite.javadoc.java%7D%7D/java/lang/Iterable.html">Iterable</a> are automatically converted to arrays on demand.</p>
+<p>Another very useful conversion applies to lambda expressions. A lambda expression usually is of one of the types declared in <a href="%7B%7Bsite.src.xtext%7D%7D/org.eclipse.xtext.xbase.lib/src/org/eclipse/xtext/xbase/lib/Functions.java">Functions</a> or <a href="%7B%7Bsite.src.xtext%7D%7D/org.eclipse.xtext.xbase.lib/src/org/eclipse/xtext/xbase/lib/Procedures.java">Procedures</a>. However, if the expected type is an interface or a class with a single abstract method declaration, a lambda expression is automatically converted to that type. This allows to use lambda expressions with many existing Java libraries. See <a href="203_xtend_expressions.html#closure-types">Lambda Expression Typing</a> for more details.</p>
+<hr>
+<p>type: documentation</p>
+<p><strong><a href="202_xtend_classes_members.html">Next Chapter: Classes and Members</a></strong></p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <footer class="site-footer">
+  <div id="extra">
+    <div class="container inner-footer">
+      <div class="row">
+        <div class="span6">
+          <h3 class="footer-links-header">Quick Links</h3>
+          <ul class="footer-links clearfix">
+            <li><a href="https://www.eclipse.org/legal/privacy.php">Privacy Policy</a></li>
+            <li><a href="https://www.eclipse.org/legal/termsofuse.php">Terms of Use</a></li>
+            <li><a href="https://www.eclipse.org/legal/copyright.php">Copyright Agent</a></li>
+            <li><a href="https://www.eclipse.org/legal/">Legal</a></li>
+          </ul>
+          <ul class="footer-links clearfix">
+            <li><a href="https://www.eclipse.org">Eclipse Home</a></li>
+            <li><a href="https://marketplace.eclipse.org/">Market Place</a></li>
+            <li><a href="https://www.planeteclipse.org/">Eclipse Planet</a></li>
+            <li><a href="https://www.eclipse.org/forums/index.php/f/27/">Xtext Forum</a></li>
+          </ul>
+        </div>
+        <div class="span6">
+          <h3 class="footer-links-header">Social Media</h3>
+          <ul class="footer-links clearfix">
+            <li>
+              <a href="https://twitter.com/xtendlang"><img src="http://localhost:1313/Xtext/xtend/images/Twitter-bird-darkgray.png" class="img-responsive" style="margin-right: 5px;height: 1em;" alt="Twitter icon">@xtendlang on Twitter</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="#" class="scrollup fadeOutRight animated" style="display: none;">ScrollUp</a>
+  <a href="https://dryicons.com/">Icons by https://dryicons.com</a>
+  
+  <script src="http://localhost:1313/Xtext/xtend/js/jquery-1.7.1.min.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/prettify.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/lang-xtend.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/jquery.prettyPhoto.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/jquery.easing.1.3.js" type="text/javascript"></script>
+  <script src="http://localhost:1313/Xtext/xtend/js/custom.js" type="text/javascript"></script>
+</footer>
+
+  </body>
+</html>
