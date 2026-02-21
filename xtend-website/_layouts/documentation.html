@@ -15,11 +15,11 @@ layout: default
       <div class="inner">
         <div id="maincontainer" class="container">
           <span class="edit-on-github pull-right">
-            <a href="{{site.edit-repo}}{{page.path}}">Edit on Github</a>
+            <a href="{{ site['edit-repo'] }}{{ page.inputPath }}">Edit on Github</a>
           </span>
           <div class="span3" style="margin-left: 0px;">
             <div class="search-bar">
-              <img src="{{site.baseurl}}/images/search-gray.png"/>
+              <img src="{{ site.baseurl }}/images/search-gray.png"/>
               <input type="search" id="google-search" onkeyup="startSearch(event);"/>
             </div>
             {% include documentation-menu.md %}

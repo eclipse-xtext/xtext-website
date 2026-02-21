@@ -1,0 +1,23 @@
+{
+  "title": "Xtext - Language Engineering Framework",
+  "url": "https://eclipse.dev",
+  "baseurl": "/Xtext",
+  "email": "sven.efftinge@typefox.io",
+  "description": "Xtext is a framework for development of programming languages and domain specific languages. It covers all aspects of a complete language infrastructure, from parsers, over linker, compiler or interpreter to fully-blown top-notch Eclipse IDE integration. It comes with great defaults for all these aspects which at the same time can be easily tailored to your individual needs.",
+  "twitter_username": "xtext",
+  "github_username": "xtext-dev",
+  "src": {
+    "xtext": "https://github.com/eclipse-xtext/xtext/blob/main",
+    "mwe": "https://github.com/eclipse-mwe/mwe/blob/master",
+    "emf": "https://git.eclipse.org/r/plugins/gitiles/emf/org.eclipse.emf/+/refs/tags/R2_20_0"
+  },
+  "javadoc": {
+    "eclipse-platform": "https://help.eclipse.org/luna/topic/org.eclipse.platform.doc.isv/reference/api",
+    "eclipse-jdt": "https://help.eclipse.org/luna/topic/org.eclipse.jdt.doc.isv/reference/api",
+    "java": "https://docs.oracle.com/javase/11/docs/api",
+    "javaee": "https://docs.oracle.com/javaee/7/api",
+    "junit": "https://junit.org/junit4/javadoc/4.13",
+    "guice": "https://google.github.io/guice/api-docs/latest/javadoc"
+  },
+  "edit-repo": "https://github.com/eclipse/xtext-website/edit/published/xtext-website/"
+}

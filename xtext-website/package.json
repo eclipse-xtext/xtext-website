@@ -1,0 +1,20 @@
+{
+  "name": "xtext-website",
+  "version": "1.0.0",
+  "description": "Xtext - Language Engineering Framework website",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "build:eclipse": "eleventy --config=eleventy.eclipse.config.js"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.0",
+    "markdown-it": "^14.1.0",
+    "markdown-it-anchor": "^9.2.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "private": true
+}

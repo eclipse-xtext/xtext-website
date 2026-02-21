@@ -1,23 +1,59 @@
-How to Test the Website
-=======================
+# Xtend Website
 
-The website is generated with [Jekyll](https://jekyllrb.com).
-```
-gem install bundler jekyll jekyll-markdown-block
-```
-To generate the website, run
-```
-  jekyll build --unpublished
-```
-You will find the result in the `_site` folder. You can test it locally with
-```
-  jekyll serve --unpublished
-```
-which will start a [server](http://127.0.0.1:4000) displaying the site. The server also listens for file changes and
-automatically rebuilds the website.
+This is the Xtend website (https://eclipse.dev/Xtext/xtend/).
 
-Ruby Troubleshooting
---------------------
+## Building with Eleventy (11ty)
 
-- On Linux/Mac OS we recommend using [RVM](https://rvm.io/) to manage your Ruby installations
-- On Windows you will have to install the [development kit](https://github.com/oneclick/rubyinstaller/wiki/Development-Kit)
+### Prerequisites
+
+- Node.js 18 or later
+- npm
+
+### Installation
+
+```bash
+npm install
+```
+
+### Development
+
+```bash
+# Build the site (outputs to ../xtext-website/_site/xtend/)
+npm run build
+
+# Start development server with hot reload
+npm run serve
+```
+
+The site will be available at http://localhost:8080.
+
+## Project Structure
+
+```
+_data/           # Global site data (site.json)
+_includes/       # Partials (head.html, header.html, footer.html)
+_layouts/        # Page templates
+_posts/          # Release notes and news
+documentation/   # Documentation pages
+```
+
+## Adding Content
+
+### Release Notes
+
+Create files in `_posts/releasenotes/` with naming: `YYYY-MM-DD-version-X-Y-Z.md`
+
+### Documentation
+
+Add markdown files to `documentation/` with front matter:
+
+```yaml
+---
+layout: documentation
+title: Topic Title
+---
+```
+
+## Deployment
+
+The Xtend site builds into `../xtext-website/_site/xtend/` so both sites can be deployed together.
