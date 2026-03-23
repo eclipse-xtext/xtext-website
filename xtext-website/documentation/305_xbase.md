@@ -558,6 +558,15 @@ The null literal is, as in Java, `null`. It is compatible to any reference type 
 
 *   `null`
 
+##### Collection Literals {#xbase-collection-literals}
+
+Immutable list, array, set and map can be created with:
+
+* `val myList = #['Hello','World'] // list`
+* `val String[] myArray = #['Hello','World'] // array, depends on target type`
+* `#{'Hello','World'} // set`
+* `#{'a' -> 1 ,'b' -> 2} // map`
+
 ##### Type Literals {#xbase-expressions-type-literal}
 
 The syntax for type literals is generally the plain name of the type, e.g. the Xbase snippet `String` is equivalent to the Java code `String.class`. Nested types use the delimiter `'.'`.
