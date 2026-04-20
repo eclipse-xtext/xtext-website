@@ -409,6 +409,7 @@ The following list of words are reserved keywords, thus reducing the set of poss
 1.  `static`
 1.  `super`
 1.  `switch`
+1.  `synchronized`
 1.  `throw`
 1.  `true`
 1.  `try`
