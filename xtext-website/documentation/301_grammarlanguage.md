@@ -212,9 +212,9 @@ terminal ASCII:
 
 This group has three elements `'0x'`, `('0'..'7')`, and `('0'..'9'|'A'..'F')`, which have to appear in this order.
 
-####  Fragments {#fragments}
+####  Parser rule fragments {#parser-rule-fragments}
 
-Fragments allow reusing parts of rule definitions. For example, take the following grammar snippet:
+Parser rule fragments allow reusing parts of parser rule definitions. For example, take the following grammar snippet:
 
 ```xtext
 AbstractEntity:
