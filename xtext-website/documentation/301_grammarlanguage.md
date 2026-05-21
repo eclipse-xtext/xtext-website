@@ -256,30 +256,14 @@ fragment Entity *:
 
 With this modified version of the previous example, the parser will behave the same way but no Entity type will be inferred. The `name` structural feature will be added to both AbstractEntity and ConcreteEntity.
 
-One can also explicitly declare what type to associate to a given fragment by specifying it in the `returns` clause. This allows DSL developers to fine-tune the inferred Ecore metamodel even more. Extending the previous DSL introducing the notion of Subjects, one could write:
+One can also explicitly declare what type to associate to a given fragment by specifying it in the `returns` clause. This allows DSL developers to fine-tune the inferred Ecore metamodel even more. Some useful fragment usage patterns exploiting the `returns` clause are now presented.
+
+Take the following grammar snippet expading the previous ones introducing the concepts of packages and composite entities, that are elements capable of containing different sets of other elements:
 
 ```xtext
-AbstractEntity:
-    'abstract' Entity;
+Model:
+    packages+=Package*;
 
-ConcreteEntity:
-    'concrete' Entity;
-
-fragment Entity returns NamedElement:
-    'entity' name=ID;
-
-Subject:
-    'subject' SubjectName;
-
-fragment SubjectName returns NamedElement:
-    name=ID;
-```
-
-This grammar snippet yields an Ecore metamodel where AbstractEntity, ConcreteEntity and Subject all extend the NamedElement type, which owns all structural features assigned in at least one fragment that returns NamedElement (in this case, only the `name` structural feature). Note that the declared return type of a fragment need not coincide with a type associated to an already existing Parser rule. In the example above, there is no parser rule NamedElement: NamedElement is just a type introduced artificially to group all elements that have got a name (having such a type might, for example, come handy when programmatically navigating the AST).
-
-Suppose instead that one has got a grammar containing this snippet:
-
-```xtext
 AbstractEntity:
     'abstract' 'entity' name=ID;
 
@@ -289,51 +273,123 @@ ConcreteEntity:
 Subject:
     'subject' name=ID;
 
-NamedElement:
-    AbstractEntity | ConcreteEntity | Subject;
-
 Package:
-    'package' name=ID '{' members+=NamedElement+ '}';
+    'package' name=ID '{' members+=Entity+ '}';
+
+Entity:
+    AbstractEntity | ConcreteEntity | CompositeEntity;
+    
+CompositeEntity:
+    'composite' 'entity' name=ID '{' members+=CompositeEntityElement+ '}';
+
+CompositeEntityElement:
+    AbstractEntity | ConcreteEntity | Subject;
 ```
 
-This grammar features a NamedElement Parser rule that groups AbstractEntity, ConcreteEntity and Subject, to conveniently allow declaring any of them into a Package. The Ecore model inferrer, though, is not able to automatically extract the `name` structural feature, common to all three kinds of NamedElement, into the NamedElement type itself. This means that when navigating the AST programmatically, the following code will not work:
-
-```java
-Package pkg = ... // an instance of Package obtained somehow
-String name = pkg.getMembers().getFirst().getName(); // this does not compile
-```
-
-getFirst() returns a NamedElement, but the getName() method belongs to types AbstractEntity, ConcreteEntity and Subject, not to the common NamedElement supertype. To avoid writing several verbose `instanceof` checks, the grammar can be modified introducing fragments that return NamedElement, as shown in one of the previous examples:
+Because two different subsets of rules with a `name` attribute are grouped under two different parent rules (`Entity` and `CompositeEntityElement`), the Ecore model inferrer gives up on extracting the `name` feature into a supertype. In this scenario, not even adding a parent rule grouping all the rules containing a `name` attribute helps:
 
 ```xtext
-AbstractEntity:
-    'abstract' Entity;
+NamedElement:
+    AbstractEntity | ConcreteEntity | CompositeEntity | Subject | Package;
+```
 
-ConcreteEntity:
-    'concrete' Entity;
+and this alternative definition of `NamedElement` does not help either:
 
-fragment Entity returns NamedElement:
-    'entity' name=ID;
+```xtext
+NamedElement:
+    Entity | CompositeEntityElement;
+```
 
-Subject:
-    'subject' SubjectName;
+In both cases the inferrer still refuses to extract the `name` feature into the NamedElement type. Thankfully, fragments come to the rescue. By refactoring the grammar as shown below, one can achieve the desired goal:
 
-fragment SubjectName returns NamedElement:
+```xtext
+Model:
+    packages+=Package*;
+
+fragment NameFragment returns NamedElement:
     name=ID;
 
-NamedElement:
-    AbstractEntity | ConcreteEntity | Subject;
+AbstractEntity:
+    'abstract' 'entity' NameFragment;
+
+ConcreteEntity:
+    'concrete' 'entity' NameFragment;
+
+Subject:
+    'subject' NameFragment;
 
 Package:
-    'package' name=ID '{' members+=NamedElement+ '}';
+    'package' NameFragment '{' members+=Entity+ '}';
+
+CompositeEntity:
+    'composite' 'entity' NameFragment '{' members+=CompositeEntityElement+ '}';
+
+Entity:
+    AbstractEntity | ConcreteEntity | CompositeEntity;
+
+CompositeEntityElement:
+    AbstractEntity | ConcreteEntity | Subject;
 ```
 
-Now the `name` structural feature is moved to type NamedElement, together with its accessor methods. By using fragments that return a type associated to an existing Parser rule it is possible to group multiple parsable objects under a common supertype and at the same time move all their common structural features to said supertype. The following code now works correctly:
+By the way, with this grammar the inferrer does not recognize that Entity and CompositeEntityElement can both extend NamedElement. Here, a rule such as the following works fine:
 
-```java
-Package pkg = ... // an instance of Package obtained somehow
-String name = pkg.getMembers().getFirst().getName(); // this now compiles
+```xtext
+NamedElement:
+    Entity | CompositeEntityElement;
 ```
+
+Another useful application of fragments is to extract attributes common to several rules into a supertype, when the attributes use different types in their assignments. Referring to the previous grammar snippet, if one wishes to introduce a common `Container` supertype for `Package` and `CompositeEntity`, the following rule does not work, because the right hand side of the assignments to `member` present in the two rules differ:
+
+```xtext
+Container:
+    Package | CompositeEntity;
+```
+
+This rule causes the new `Container` supertype to be introduced into the metamodel, but the `members` feature is not hoisted into it. But by refactoring the grammar snippet as follows, the problem is solved:
+
+```xtext
+Model:
+    packages+=Package*;
+
+fragment NameFragment returns NamedElement:
+    name=ID;
+
+AbstractEntity:
+    'abstract' 'entity' NameFragment;
+
+ConcreteEntity:
+    'concrete' 'entity' NameFragment;
+
+Subject:
+    'subject' NameFragment;
+
+Package:
+    'package' NameFragment '{' PackageMembers '}';
+
+fragment PackageMembers returns Container:
+    members+=Entity+;
+
+CompositeEntity:
+    'composite' 'entity' NameFragment '{' CompositeEntityMembers '}';
+
+fragment CompositeEntityMembers returns Container:
+    members+=CompositeEntityElement+;
+
+Entity:
+    AbstractEntity | ConcreteEntity | CompositeEntity;
+
+CompositeEntityElement:
+    AbstractEntity | ConcreteEntity | Subject;
+```
+
+An important side effect of this approach is that in this example the type of the `members` field in the generated Java code is `EList<EObject>`; more in general, it is an EList of the most specific supertype of all the types involved in the assignments to the hoisted attribute across the different rules. Still, should one need a parent rule to allow parsing alternatively a `Package` or a `CompositeEntity`, adding
+
+```xtext
+Container:
+    Package | CompositeEntity;
+```
+
+to the grammar is still possible: this new rule will introduce the new supertype and allow alternative parsing, while the two fragments with the `returns` statement will enable feature hoisting.
 
 #### Terminal Fragments {#terminal-fragment}
 
