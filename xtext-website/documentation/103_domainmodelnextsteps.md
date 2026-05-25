@@ -268,7 +268,7 @@ This tutorial is about testing the parser, the linker, the validator and the gen
     }
     ```
 
-    *Note*: When using JUnit 5 the [InjectionExtension]({{site.src.xtext}}/org.eclipse.xtext.testing/src/org/eclipse/xtext/testing/extensions/InjectionExtension.java) is used instead of the XtextRunner. The Xtext code generator generates the example slightly different, depending on which option you have chosen in the *New Xtext Project* wizard.
+    *Note*: When using JUnit 6 the [InjectionExtension]({{site.src.xtext}}/org.eclipse.xtext.testing/src/org/eclipse/xtext/testing/extensions/InjectionExtension.java) is used instead of the XtextRunner. The Xtext code generator generates the example slightly different, depending on which option you have chosen in the *New Xtext Project* wizard.
 
 1. The utility class [ParseHelper]({{site.src.xtext}}/org.eclipse.xtext.testing/src/org/eclipse/xtext/testing/util/ParseHelper.java) allows to parse an arbitrary string into a *Domainmodel*. The model itself can be traversed and checked afterwards. A static import of [Assert]({{site.javadoc.junit}}/org/junit/Assert.html) leads to concise and readable test cases. You can rewrite the generated test case as follows:
     

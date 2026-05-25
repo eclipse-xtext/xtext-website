@@ -808,7 +808,7 @@ myXtextResource.save(#{XtextResource.OPTION_ENCODING -> "ISO-8859-1"})
 
 ## Unit Testing {#testing}
 
-Automated tests are crucial for the maintainability and the quality of a software product. That is why it is strongly recommended to write unit tests for your language, too. The Xtext project wizard creates test projects for that purpose, which simplify the setup procedure for the basic language implementation as well as platform-specific integrations. It supports an option to either create your tests for JUnit 4 or JUnit 5. Depending on your choice your test layout will vary in some details.
+Automated tests are crucial for the maintainability and the quality of a software product. That is why it is strongly recommended to write unit tests for your language, too. The Xtext project wizard creates test projects for that purpose, which simplify the setup procedure for the basic language implementation as well as platform-specific integrations. It supports an option to either create your tests for JUnit 4 or JUnit 6. Depending on your choice your test layout will vary in some details.
 
 ### Creating a Simple Test Class
 
@@ -833,7 +833,7 @@ class ParserTest {
 
 This configuration will make sure that you can use dependency injection in your test class, and that the global EMF registries are properly populated before and cleaned up after each test.
 
-A test class for JUnit 5 looks quite similar. Instead of runners JUnit 5 has a notion of [Extensions](https://junit.org/junit5/docs/current/user-guide/#extensions). While there can only be one runner per test class for JUnit 4 there could be multiple extensions for JUnit 5. The replacement for the XtextRunner is the new [InjectionExtension]({{site.src.xtext}}/org.eclipse.xtext.testing/src/org/eclipse/xtext/testing/extensions/InjectionExtension.java). Still needed is the language specific [IInjectorProvider]({{site.src.xtext}}/org.eclipse.xtext.testing/src/org/eclipse/xtext/testing/IInjectorProvider.java). Instead of `org.junit.Test` you have to annotate your cases with [org.junit.jupiter.api.Test](https://github.com/junit-team/junit5/blob/master/junit-jupiter-api/src/main/java/org/junit/jupiter/api/Test.java) and import the methods from [org.junit.jupiter.api.Assertions](https://github.com/junit-team/junit5/blob/master/junit-jupiter-api/src/main/java/org/junit/jupiter/api/Assertions.java). A simple test class for JUnit 5 will then look like this:
+A test class for JUnit 6 looks quite similar. Instead of runners JUnit 6 has a notion of [Extensions](https://docs.junit.org/). While there can only be one runner per test class for JUnit 4 there could be multiple extensions for JUnit 6. The replacement for the XtextRunner is the new [InjectionExtension]({{site.src.xtext}}/org.eclipse.xtext.testing/src/org/eclipse/xtext/testing/extensions/InjectionExtension.java). Still needed is the language specific [IInjectorProvider]({{site.src.xtext}}/org.eclipse.xtext.testing/src/org/eclipse/xtext/testing/IInjectorProvider.java). Instead of `org.junit.Test` you have to annotate your cases with [org.junit.jupiter.api.Test](https://github.com/junit-team/junit-framework/blob/main/junit-jupiter-api/src/main/java/org/junit/jupiter/api/Test.java) and import the methods from [org.junit.jupiter.api.Assertions](https://github.com/junit-team/junit-framework/blob/main/junit-jupiter-api/src/main/java/org/junit/jupiter/api/Assertions.java). A simple test class for JUnit 6 will then look like this:
 
 ```xtend
 import org.eclipse.xtext.testing.InjectWith
@@ -910,7 +910,7 @@ public class MyLanguageWithDependenciesInjectorProvider extends MyLanguageInject
 }
 
 // @RunWith(XtextRunner.class) // JUnit 4
-@ExtendWith(InjectionExtension.class) // JUnit 5
+@ExtendWith(InjectionExtension.class) // JUnit 6
 @InjectWith(MyLanguageWithDependenciesInjectorProvider.class)
 public class YourTest {
     ...
