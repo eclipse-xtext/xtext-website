@@ -930,4 +930,4 @@ The Xtext example projects (*File &rarr; New &rarr; Example &rarr; Xtext Example
 
 ---
 
-**[Next Chapter: Web Editor Support](330_web_support.html)**
+**[Next Chapter: LSP Support](340_lsp_support.html)**
