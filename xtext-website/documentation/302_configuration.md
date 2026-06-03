@@ -261,9 +261,6 @@ language = XtextGeneratorLanguage {
     fragment = xbase.XbaseGeneratorFragment2 {}
     fragment = ui.templates.CodetemplatesGeneratorFragment2 {}
     fragment = ui.compare.CompareFragment2 {}
-    fragment = web.WebIntegrationFragment {
-        framework = "Ace"
-    }
     fragment = ui.projectWizard.TemplateProjectWizardFragment {}
     fragment = ui.fileWizard.TemplateFileWizardFragment {}
 }
