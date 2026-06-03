@@ -307,8 +307,8 @@ To further speed up the p2 dependency resolution step, use the concrete build re
 
 | Xtext         | EMF           | MWE2/MWE    | Xpand       | Eclipse     | All included in |
 | ------------- | ------------- | ----------- | ----------- | ----------- | ----------- |
+| [2.44.0]({{page.upsite.xtext}}releases/2.44.0/)           | [2.47.0]({{page.upsite.eclipse}}modeling/emf/emf/builds/release/2.47.0) (2.36.0)     | [2.27.0]({{page.upsite.mwe}}releases/2.27.0/) (2.9.1) | no longer supported  | [4.41.0]({{page.upsite.eclipse}}releases/2026-09) (4.38) | [2026-09]({{page.upsite.eclipse}}releases/2026-09)|
 | [2.43.0]({{page.upsite.xtext}}releases/2.43.0/)           | [2.46.0]({{page.upsite.eclipse}}modeling/emf/emf/builds/release/2.46.0) (2.36.0)     | [2.26.0]({{page.upsite.mwe}}releases/2.26.0/) (2.9.1) | no longer supported  | [4.40.0]({{page.upsite.eclipse}}releases/2026-06) (4.38) | [2026-06]({{page.upsite.eclipse}}releases/2026-06)|
-
 | [2.42.0]({{page.upsite.xtext}}releases/2.42.0/)           | [2.45.0]({{page.upsite.eclipse}}modeling/emf/emf/builds/release/2.45.0) (2.36.0)     | [2.25.0]({{page.upsite.mwe}}releases/2.25.0/) (2.9.1) | no longer supported  | [4.39.0]({{page.upsite.eclipse}}releases/2026-03) (4.30) | [2026-03]({{page.upsite.eclipse}}releases/2026-03)|
 | [2.41.0]({{page.upsite.xtext}}releases/2.41.0/)           | [2.44.0]({{page.upsite.eclipse}}modeling/emf/emf/builds/release/2.44.0) (2.36.0)     | [2.24.0]({{page.upsite.mwe}}releases/2.24.0/) (2.9.1) | no longer supported  | [4.38.0]({{page.upsite.eclipse}}releases/2025-12) (4.30) | [2025-12]({{page.upsite.eclipse}}releases/2025-12)|
 | [2.40.0]({{page.upsite.xtext}}releases/2.40.0/)           | [2.43.0]({{page.upsite.eclipse}}modeling/emf/emf/builds/release/2.43.0) (2.36.0)     | [2.23.0]({{page.upsite.mwe}}releases/2.23.0/) (2.9.1) | no longer supported  | [4.37.0]({{page.upsite.eclipse}}releases/2025-09) (4.30) | [2025-09]({{page.upsite.eclipse}}releases/2025-09)|
