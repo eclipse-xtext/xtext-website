@@ -712,7 +712,7 @@ public void provideHighlightingFor(XtextResource resource,
 This example refers to an implementation of the [IHighlightingConfiguration]({{site.src.xtext}}/org.eclipse.xtext.ui/src/org/eclipse/xtext/ui/editor/syntaxcoloring/IHighlightingConfiguration.java) that registers an own style for each cross-reference. It is pretty much the same implementation as for the previously mentioned sample of a lexical [IHighlightingConfiguration]({{site.src.xtext}}/org.eclipse.xtext.ui/src/org/eclipse/xtext/ui/editor/syntaxcoloring/IHighlightingConfiguration.java).
 
 ```java
-public class HighlightingConfiguration
+public class MyHighlightingConfiguration
     implements IHighlightingConfiguration {
   
   // lexical stuff goes here 
