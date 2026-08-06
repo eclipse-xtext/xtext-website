@@ -212,6 +212,185 @@ terminal ASCII:
 
 This group has three elements `'0x'`, `('0'..'7')`, and `('0'..'9'|'A'..'F')`, which have to appear in this order.
 
+####  Parser rule fragments {#parser-rule-fragments}
+
+Parser rule fragments allow reusing parts of parser rule definitions. For example, take the following grammar snippet:
+
+```xtext
+AbstractEntity:
+    'abstract' 'entity' name=ID;
+
+ConcreteEntity:
+    'concrete' 'entity' name=ID;
+```
+
+Using fragments, it can be rewritten as:
+
+```xtext
+AbstractEntity:
+    'abstract' Entity;
+
+ConcreteEntity:
+    'concrete' Entity;
+
+fragment Entity:
+    'entity' name=ID;
+```
+
+The common portion of the AbstractEntity and ConcreteEntity rules has been extracted into the Entity fragment. Upon hitting a call to this fragment, the parser does not instantiate any EObject. Instead, it behaves as though the body of the fragment definition was inlined in place of the fragment call. Thus, these two grammar snippets define the same (subset of a) DSL.
+
+Fragments have an impact on the Ecore metamodel inferred from the grammar. By default, a fragment introduces a new namesake type in the Ecore metamodel. This type is a supertype of all types associated to the parser rules the fragment is used in (hereafter referred to as the *calling rules*). All structural features defined in the fragment are added to its namesake type, and not to the calling rules' types. In the context of the example above, when using the second grammar snippet a new Entity type is introduced, and both AbstractEntity and ConcreteEntity extend Entity. The `name` structural feature belongs to type Entity (i.e. the generated Entity interface owns the usual getName() and setName(String) methods).
+
+In order to suppress this behaviour, one can define a *wildcard fragment*. A wildcard fragment does not yield a namesake type when the Ecore metamodel is generated from the grammar. A wildcard fragment is defined this way:
+
+```xtext
+AbstractEntity:
+    'abstract' Entity;
+
+ConcreteEntity:
+    'concrete' Entity;
+
+fragment Entity *:
+    'entity' name=ID;
+```
+
+With this modified version of the previous example, the parser will behave the same way but no Entity type will be inferred. The `name` structural feature will be added to both AbstractEntity and ConcreteEntity.
+
+One can also explicitly declare what type to associate to a given fragment by specifying it in the `returns` clause. This allows DSL developers to fine-tune the inferred Ecore metamodel even more. Some useful fragment usage patterns exploiting the `returns` clause are now presented.
+
+Take the following grammar snippet expading the previous ones introducing the concepts of packages and composite entities, that are elements capable of containing different sets of other elements:
+
+```xtext
+Model:
+    packages+=Package*;
+
+AbstractEntity:
+    'abstract' 'entity' name=ID;
+
+ConcreteEntity:
+    'concrete' 'entity' name=ID;
+
+Subject:
+    'subject' name=ID;
+
+Package:
+    'package' name=ID '{' members+=Entity+ '}';
+
+Entity:
+    AbstractEntity | ConcreteEntity | CompositeEntity;
+    
+CompositeEntity:
+    'composite' 'entity' name=ID '{' members+=CompositeEntityElement+ '}';
+
+CompositeEntityElement:
+    AbstractEntity | ConcreteEntity | Subject;
+```
+
+Because two different subsets of rules with a `name` attribute are grouped under two different parent rules (`Entity` and `CompositeEntityElement`), the Ecore model inferrer gives up on extracting the `name` feature into a supertype. In this scenario, not even adding a parent rule grouping all the rules containing a `name` attribute helps:
+
+```xtext
+NamedElement:
+    AbstractEntity | ConcreteEntity | CompositeEntity | Subject | Package;
+```
+
+and this alternative definition of `NamedElement` does not help either:
+
+```xtext
+NamedElement:
+    Entity | CompositeEntityElement;
+```
+
+In both cases the inferrer still refuses to extract the `name` feature into the NamedElement type. Thankfully, fragments come to the rescue. By refactoring the grammar as shown below, one can achieve the desired goal:
+
+```xtext
+Model:
+    packages+=Package*;
+
+fragment NameFragment returns NamedElement:
+    name=ID;
+
+AbstractEntity:
+    'abstract' 'entity' NameFragment;
+
+ConcreteEntity:
+    'concrete' 'entity' NameFragment;
+
+Subject:
+    'subject' NameFragment;
+
+Package:
+    'package' NameFragment '{' members+=Entity+ '}';
+
+CompositeEntity:
+    'composite' 'entity' NameFragment '{' members+=CompositeEntityElement+ '}';
+
+Entity:
+    AbstractEntity | ConcreteEntity | CompositeEntity;
+
+CompositeEntityElement:
+    AbstractEntity | ConcreteEntity | Subject;
+```
+
+By the way, with this grammar the inferrer does not recognize that Entity and CompositeEntityElement can both extend NamedElement. Here, a rule such as the following works fine:
+
+```xtext
+NamedElement:
+    Entity | CompositeEntityElement;
+```
+
+Another useful application of fragments is to extract attributes common to several rules into a supertype, when the attributes use different types in their assignments. Referring to the previous grammar snippet, if one wishes to introduce a common `Container` supertype for `Package` and `CompositeEntity`, the following rule does not work, because the right hand side of the assignments to `member` present in the two rules differ:
+
+```xtext
+Container:
+    Package | CompositeEntity;
+```
+
+This rule causes the new `Container` supertype to be introduced into the metamodel, but the `members` feature is not hoisted into it. But by refactoring the grammar snippet as follows, the problem is solved:
+
+```xtext
+Model:
+    packages+=Package*;
+
+fragment NameFragment returns NamedElement:
+    name=ID;
+
+AbstractEntity:
+    'abstract' 'entity' NameFragment;
+
+ConcreteEntity:
+    'concrete' 'entity' NameFragment;
+
+Subject:
+    'subject' NameFragment;
+
+Package:
+    'package' NameFragment '{' PackageMembers '}';
+
+fragment PackageMembers returns Container:
+    members+=Entity+;
+
+CompositeEntity:
+    'composite' 'entity' NameFragment '{' CompositeEntityMembers '}';
+
+fragment CompositeEntityMembers returns Container:
+    members+=CompositeEntityElement+;
+
+Entity:
+    AbstractEntity | ConcreteEntity | CompositeEntity;
+
+CompositeEntityElement:
+    AbstractEntity | ConcreteEntity | Subject;
+```
+
+An important side effect of this approach is that in this example the type of the `members` field in the generated Java code is `EList<EObject>`; more in general, it is an EList of the most specific supertype of all the types involved in the assignments to the hoisted attribute across the different rules. Still, should one need a parent rule to allow parsing alternatively a `Package` or a `CompositeEntity`, adding
+
+```xtext
+Container:
+    Package | CompositeEntity;
+```
+
+to the grammar is still possible: this new rule will introduce the new supertype and allow alternative parsing, while the two fragments with the `returns` statement will enable feature hoisting.
+
 #### Terminal Fragments {#terminal-fragment}
 
 Since terminal rules are used in a stateless context, it's not easily possible to reuse parts of their definition. Fragments solve this problem. They allow the same EBNF elements as terminal rules do but may not be consumed by the lexer. Instead, they have to be used by other terminal rules. This allows to extract repeating parts of a definition:
