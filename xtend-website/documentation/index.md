@@ -19,7 +19,7 @@ Xtend is a statically-typed programming language which translates to comprehensi
 *   **[Properties](203_xtend_expressions.html#property-access)** - shorthands for accessing and defining getters and setter
 *   **Type inference** - you rarely need to write down type signatures anymore
 *   **Full support for Java generics** - including all conformance and conversion rules
-*   **Translates to Java** not bytecode - understand what is going on and use your code for platforms such as Android or GWT
+*   **Translates to Java** not bytecode - understand what is going on and use your code for platforms such as Android
 
 Unlike other JVM languages Xtend has [zero interoperability issues](201_types.html) with Java: Everything you write interacts with Java exactly as expected. At the same time Xtend is much more concise, readable and expressive. Xtend's small library is just a thin layer that provides useful utilities and extensions on top of the Java Development Kit (JDK). 
 

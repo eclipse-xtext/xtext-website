@@ -12,7 +12,6 @@
 	<li><a href="307_special_languages.html">Typical Language Configurations</a></li>
 	<li><a href="308_emf_integration.html">Integration with EMF</a></li>
 	<li><a href="310_eclipse_support.html">Eclipse Support</a></li>
-	<li><a href="330_web_support.html">Web Editor Support</a></li>
 	<li><a href="340_lsp_support.html">LSP Support</a></li>
 	<li><a href="350_continuous_integration.html">Continuous Integration</a></li>
 </ul>
