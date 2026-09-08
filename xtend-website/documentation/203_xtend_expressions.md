@@ -124,7 +124,7 @@ val mySet = #{'Hello','World'}
 An immutable map is created like this: 
 
 ```xtend
-val myMap = #{'a' -> 1 ,'b' ->2}
+val myMap = #{'a' -> 1 ,'b' -> 2}
 ```
 
 ### Arrays {#arrays}
