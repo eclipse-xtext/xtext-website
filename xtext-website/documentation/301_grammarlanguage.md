@@ -239,7 +239,7 @@ fragment Entity:
 
 The common portion of the AbstractEntity and ConcreteEntity rules has been extracted into the Entity fragment. Upon hitting a call to this fragment, the parser does not instantiate any EObject. Instead, it behaves as though the body of the fragment definition was inlined in place of the fragment call. Thus, these two grammar snippets define the same (subset of a) DSL.
 
-Fragments have an impact on the Ecore metamodel inferred from the grammar. By default, a fragment introduces a new namesake type in the Ecore metamodel. This type is a supertype of all types associated to the parser rules the fragment is used in (hereafter referred to as the *calling rules*). All structural features defined in the fragment are added to its namesake type, and not to the calling rules' types. In the context of the example above, when using the second grammar snippet a new Entity type is introduced, and both AbstractEntity and ConcreteEntity extend Entity. The `name` structural feature belongs to type Entity (i.e. the generated Entity interface owns the usual getName() and setName(String) methods).
+Fragments have an impact on the Ecore metamodel inferred from the grammar. By default, a fragment introduces a new namesake type in the Ecore metamodel. This type is a supertype of all types associated to the parser rules the fragment is used in (hereafter referred to as the *calling rules*). All structural features defined in the fragment are added to its namesake type, and not to the calling rules' types. In the context of the example above, when using the second grammar snippet a new Entity type is introduced, and both AbstractEntity and ConcreteEntity extend Entity. The `name` structural feature belongs to type Entity (i.e. the generated Entity interface owns the usual `getName()` and `setName(String)` methods).
 
 In order to suppress this behaviour, one can define a *wildcard fragment*. A wildcard fragment does not yield a namesake type when the Ecore metamodel is generated from the grammar. A wildcard fragment is defined this way:
 
@@ -258,7 +258,7 @@ With this modified version of the previous example, the parser will behave the s
 
 One can also explicitly declare what type to associate to a given fragment by specifying it in the `returns` clause. This allows DSL developers to fine-tune the inferred Ecore metamodel even more. Some useful fragment usage patterns exploiting the `returns` clause are now presented.
 
-Take the following grammar snippet expading the previous ones introducing the concepts of packages and composite entities, that are elements capable of containing different sets of other elements:
+Take the following grammar snippet expanding the previous ones introducing the concepts of packages and composite entities, that are elements capable of containing different sets of other elements:
 
 ```xtext
 Model:
@@ -338,7 +338,7 @@ NamedElement:
     Entity | CompositeEntityElement;
 ```
 
-Another useful application of fragments is to extract attributes common to several rules into a supertype, when the attributes use different types in their assignments. Referring to the previous grammar snippet, if one wishes to introduce a common `Container` supertype for `Package` and `CompositeEntity`, the following rule does not work, because the right hand side of the assignments to `member` present in the two rules differ:
+Another useful application of fragments is to extract attributes common to several rules into a supertype, when the attributes use different types in their assignments. Referring to the previous grammar snippet, if one wishes to introduce a common `Container` supertype for `Package` and `CompositeEntity`, with the goal of moving the `members` field into it, the following rule will not work, because the right hand sides of the assignments to `member` present in the two rules differ:
 
 ```xtext
 Container:
